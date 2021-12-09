@@ -1,0 +1,3995 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://wsdl.idt.b2bapi.net/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" targetNamespace="http://wsdl.idt.b2bapi.net/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">IDT B2BService</wsdl:documentation>
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://wsdl.idt.b2bapi.net/">
+      <s:import />
+      <s:element name="SessionStart">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserInfo" type="tns:UserInfoType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="UserInfoType">
+        <s:attribute name="UserName" type="s:string" />
+        <s:attribute name="Password" type="s:string" />
+        <s:attribute name="Token" type="s:string" />
+      </s:complexType>
+      <s:element name="SessionStartResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SessionStartResponse" type="tns:SessionStartResponseType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="SessionStartResponseType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ResponseReferenceData" type="tns:ResponseReferenceDataType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Result" type="tns:SessionStartResultType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ResponseReferenceDataType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="MessageList" type="tns:ArrayOfMessageType" />
+        </s:sequence>
+        <s:attribute name="Success" type="s:string" />
+        <s:attribute name="VersionPSF" type="s:string" />
+        <s:attribute name="TransactionID" type="s:string" />
+        <s:attribute name="ClientTransactionID" type="s:string" />
+      </s:complexType>
+      <s:complexType name="ArrayOfMessageType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Message" type="tns:MessageType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="MessageType">
+        <s:attribute name="PlatformCode" type="s:string" />
+        <s:attribute name="Service" type="s:string" />
+        <s:attribute name="Command" type="s:string" />
+        <s:attribute name="StatusCode" type="s:string" />
+        <s:attribute name="StatusText" type="s:string" />
+      </s:complexType>
+      <s:complexType name="SessionStartResultType">
+        <s:attribute name="Token" type="s:string" />
+      </s:complexType>
+      <s:element name="SessionEnd">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserInfo" type="tns:UserInfoType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SessionEndResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ResponseReferenceData" type="tns:ResponseReferenceDataType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AccessValidation">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AccessValidationRequest" type="tns:AccessValidationRequestType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="AccessValidationRequestType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="UserInfo" type="tns:UserInfoType" />
+          <s:element minOccurs="0" maxOccurs="1" name="ClientReferenceData" type="tns:ClientReferenceDataType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Parameters" type="tns:AccessValidationParametersType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ClientReferenceDataType">
+        <s:attribute name="MobileDeviceId" type="s:string" />
+        <s:attribute name="MobileDeviceInfo" type="s:string" />
+        <s:attribute name="ClientTransactionID" type="s:string" />
+        <s:attribute name="Service" type="tns:enumService" use="required" />
+        <s:attribute name="IP" type="s:string" />
+        <s:attribute name="TimeStamp" type="s:dateTime" use="required" />
+        <s:attribute name="ApplicationID" type="s:string" />
+        <s:attribute name="BusinessEntity" type="s:string" />
+        <s:attribute name="SourceDeviceInfo" type="s:string" />
+        <s:attribute name="DeviceID" type="s:string" />
+        <s:attribute name="MASS" type="s:string" />
+        <s:attribute name="MemberProfile" type="tns:enumBool" />
+        <s:attribute name="Version" type="s:string" />
+      </s:complexType>
+      <s:simpleType name="enumService">
+        <s:restriction base="s:string">
+          <s:enumeration value="pinless_dialing" />
+          <s:enumeration value="imtu" />
+          <s:enumeration value="remittance" />
+          <s:enumeration value="virtual_visa" />
+          <s:enumeration value="cfp_bill_pay" />
+          <s:enumeration value="boss_virtual_visa" />
+          <s:enumeration value="money_transfer" />
+          <s:enumeration value="dial_local" />
+          <s:enumeration value="boss_dial_local" />
+          <s:enumeration value="raf_invite" />
+          <s:enumeration value="subscribe" />
+          <s:enumeration value="billing" />
+          <s:enumeration value="voucher" />
+          <s:enumeration value="ww_money_transfer" />
+          <s:enumeration value="beast" />
+          <s:enumeration value="accertify" />
+          <s:enumeration value="cpas" />
+          <s:enumeration value="yiptv" />
+          <s:enumeration value="report" />
+          <s:enumeration value="callback" />
+          <s:enumeration value="bill_pay" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="enumBool">
+        <s:restriction base="s:string">
+          <s:enumeration value="N" />
+          <s:enumeration value="Y" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="AccessValidationParametersType">
+        <s:attribute name="AccountID" type="s:string" />
+        <s:attribute name="ServiceNumber" type="s:string" />
+        <s:attribute name="ParentAccountID" type="s:string" />
+        <s:attribute name="ParentServiceNumber" type="s:string" />
+        <s:attribute name="DataType" type="s:string" />
+      </s:complexType>
+      <s:element name="AccessValidationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AccessValidationResponse" type="tns:AccessValidationResponseType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="AccessValidationResponseType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ResponseReferenceData" type="tns:ResponseReferenceDataType" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetVersion">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetVersionRequest" type="tns:GetB2BVersionRequestType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="GetB2BVersionRequestType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="UserInfo" type="tns:UserInfoType" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetVersionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Response" type="tns:VersionResponseType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="VersionResponseType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Version" type="tns:VersionType" />
+          <s:element minOccurs="0" maxOccurs="1" name="ResponseReferenceData" type="tns:ResponseReferenceDataType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="VersionType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="B2BassemblyVersion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PSFassemblyVersion" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CreateAccount">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateAccountRequest" type="tns:CreateAccountRequestType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="CreateAccountRequestType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="UserInfo" type="tns:UserInfoType" />
+          <s:element minOccurs="0" maxOccurs="1" name="ClientReferenceData" type="tns:ClientReferenceDataType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Parameters" type="tns:CreateAccountParametersType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Personal" type="tns:PersonalType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Billing" type="tns:BillingType" />
+          <s:element minOccurs="0" maxOccurs="1" name="AccessNumberList" type="tns:ArrayOfAccessNumberType" />
+          <s:element minOccurs="0" maxOccurs="1" name="KeyValueParams" type="tns:ArrayOfKeyValueType" />
+          <s:element minOccurs="0" maxOccurs="1" name="AuthClientInfo" type="tns:AuthClientInfoType" />
+          <s:element minOccurs="0" maxOccurs="1" name="DataList" type="tns:UpdateRegisteredNumberType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Acquisition" type="tns:AcquisitionType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Sender" type="tns:SenderType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Recipient" type="tns:RecipientType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CreateAccountParametersType">
+        <s:attribute name="ServiceNumber" type="s:string" />
+        <s:attribute name="PlanCode" type="s:string" />
+        <s:attribute name="CarrierCode" type="s:string" />
+        <s:attribute name="CountryCode" type="s:string" />
+        <s:attribute name="SecurityCode" type="s:string" />
+        <s:attribute name="Amount" type="s:integer" />
+        <s:attribute name="MobileNumber" type="s:string" />
+        <s:attribute name="SenderNumber" type="s:string" />
+        <s:attribute name="ExternalReferenceID" type="s:string" />
+        <s:attribute name="MerchantID" type="s:string" />
+        <s:attribute name="TerminalID" type="s:string" />
+        <s:attribute name="StoreID" type="s:string" />
+        <s:attribute name="Recharge" type="tns:enumBool" use="required" />
+        <s:attribute name="ChargeType" type="tns:enumCreate" />
+        <s:attribute name="WelcomeMessage" type="tns:enumBool" use="required" />
+        <s:attribute name="NotificationLanguage" type="s:string" />
+        <s:attribute name="SendSMS" type="tns:enumBool" use="required" />
+        <s:attribute name="SendEmail" type="tns:enumBool" use="required" />
+        <s:attribute name="NotificationEmail" type="s:string" />
+        <s:attribute name="NotificationMobile" type="s:string" />
+        <s:attribute name="FromAccountID" type="s:string" />
+        <s:attribute name="FromServiceNumber" type="s:string" />
+        <s:attribute name="OriginCountry" type="s:string" />
+        <s:attribute name="OriginStateProvince" type="s:string" />
+        <s:attribute name="OriginAni" type="s:string" />
+        <s:attribute name="ReferrerPhoneNumber" type="s:string" />
+        <s:attribute name="MapAni" type="tns:enumBool" use="required" />
+        <s:attribute name="AcceptPromo" type="tns:enumBool" use="required" />
+        <s:attribute name="ReturnLocalValue" type="tns:enumBool" use="required" />
+        <s:attribute name="AgentID" type="s:string" />
+        <s:attribute name="AgentNumber" type="s:string" />
+        <s:attribute name="CurrencyCode" type="s:string" />
+        <s:attribute name="DistributorID" type="s:string" />
+        <s:attribute name="iCountryCode" type="s:string" />
+        <s:attribute name="iCurrencyCode" type="s:string" />
+        <s:attribute name="iPricePaid" type="s:string" />
+        <s:attribute name="NotificationType" type="s:string" />
+        <s:attribute name="ChallengeDescription" type="s:string" />
+        <s:attribute name="ChallengeAnswer" type="s:string" />
+        <s:attribute name="DeliveryLanguage" type="s:string" />
+        <s:attribute name="DeliveryDate" type="s:string" />
+        <s:attribute name="DeliveryMethod" type="s:string" />
+        <s:attribute name="DeliveryPersonalMessage" type="s:string" />
+        <s:attribute name="ConsumerFee" type="s:string" />
+        <s:attribute name="DiscountedAmount" type="s:string" />
+      </s:complexType>
+      <s:simpleType name="enumCreate">
+        <s:restriction base="s:string">
+          <s:enumeration value="transfer" />
+          <s:enumeration value="credit_card" />
+          <s:enumeration value="auth" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="PersonalType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ContactList" type="tns:ArrayOfContactListTypeContact" />
+          <s:element minOccurs="0" maxOccurs="1" name="Address" type="tns:AddressType" />
+        </s:sequence>
+        <s:attribute name="Title" type="s:string" />
+        <s:attribute name="FirstName" type="s:string" />
+        <s:attribute name="MiddleName" type="s:string" />
+        <s:attribute name="LastName" type="s:string" />
+        <s:attribute name="Company" type="s:string" />
+        <s:attribute name="SecurityQuestion" type="s:string" />
+        <s:attribute name="SecurityAnswer" type="s:string" />
+        <s:attribute name="Language" type="s:string" />
+        <s:attribute name="HomeCountry" type="s:string" />
+        <s:attribute name="DateOfBirth" type="s:date" use="required" />
+        <s:attribute name="DateOfBirthSource" type="s:string" />
+        <s:attribute name="NameSource" type="s:string" />
+        <s:attribute name="EmailAddressSource" type="s:string" />
+        <s:attribute name="MarketingLanguage" type="s:string" />
+        <s:attribute name="HasProfile" type="tns:enumBool" use="required" />
+      </s:complexType>
+      <s:complexType name="ArrayOfContactListTypeContact">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Contact">
+            <s:complexType>
+              <s:attribute name="Type" type="tns:enumContact" use="required" />
+              <s:attribute name="Data" type="s:string" />
+              <s:attribute name="Default" type="s:string" />
+            </s:complexType>
+          </s:element>
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="enumContact">
+        <s:restriction base="s:string">
+          <s:enumeration value="email" />
+          <s:enumeration value="home" />
+          <s:enumeration value="work" />
+          <s:enumeration value="fax" />
+          <s:enumeration value="cell" />
+          <s:enumeration value="other" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="AddressType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Country" type="tns:CountryType" />
+        </s:sequence>
+        <s:attribute name="State" type="s:string" />
+        <s:attribute name="PostalCode" type="s:string" />
+        <s:attribute name="AddrType" type="s:string" />
+        <s:attribute name="Line1" type="s:string" />
+        <s:attribute name="Line2" type="s:string" />
+        <s:attribute name="City" type="s:string" />
+      </s:complexType>
+      <s:complexType name="CountryType">
+        <s:attribute name="Code" type="s:string" />
+        <s:attribute name="Abbreviation" type="s:string" />
+        <s:attribute name="Name" type="s:string" />
+      </s:complexType>
+      <s:complexType name="BillingType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Currency" type="tns:CurrencyType" />
+          <s:element minOccurs="0" maxOccurs="1" name="ContactList" type="tns:ArrayOfContactListTypeContact" />
+          <s:element minOccurs="0" maxOccurs="1" name="Address" type="tns:AddressType" />
+          <s:element minOccurs="0" maxOccurs="1" name="CreditCard" type="tns:CreditCardType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Ecp" type="tns:EcpType" />
+        </s:sequence>
+        <s:attribute default="N" name="Update" type="s:string" />
+        <s:attribute name="FullName" type="s:string" />
+        <s:attribute name="FirstName" type="s:string" />
+        <s:attribute name="LastName" type="s:string" />
+        <s:attribute name="AutoRecharge" type="s:string" />
+        <s:attribute name="AutoRechargeFrequency" type="s:decimal" use="required" />
+        <s:attribute name="RechargeThreshold" type="s:decimal" use="required" />
+        <s:attribute name="RechargeAmount" type="s:decimal" use="required" />
+        <s:attribute default="N" name="PayNow" type="s:string" />
+        <s:attribute name="SaleCertified" type="tns:enumBoolExt" use="required" />
+        <s:attribute default="0" name="Balance" type="s:integer" />
+        <s:attribute default="0" name="StoreDiscount" type="s:integer" />
+        <s:attribute name="AutoRechgRequired" type="tns:enumBoolExt" use="required" />
+        <s:attribute name="DefRechgAmount" type="s:int" use="required" />
+        <s:attribute name="DefRechgThreshold" type="s:int" use="required" />
+        <s:attribute name="CreditLimit" type="s:string" />
+        <s:attribute name="CreditLimitDelta" type="s:string" />
+        <s:attribute name="PlanType" type="tns:enumPlanType" use="required" />
+        <s:attribute name="Linked" type="tns:enumBool" use="required" />
+        <s:attribute name="BillingCycle" type="tns:enumBillingCycle" use="required" />
+        <s:attribute name="PaymentTerms" type="s:int" use="required" />
+        <s:attribute name="AutoPayment" type="tns:enumAutoPayment" use="required" />
+        <s:attribute name="Replenishment" type="tns:enumReplenishment" use="required" />
+        <s:attribute name="NextInvoiceDate" type="s:dateTime" use="required" />
+        <s:attribute name="EcpStatus" type="s:string" />
+        <s:attribute name="ThresholdBalance" type="s:int" use="required" />
+        <s:attribute name="LastInvoiced" type="s:dateTime" use="required" />
+        <s:attribute name="LastCharged" type="s:dateTime" use="required" />
+      </s:complexType>
+      <s:complexType name="CurrencyType">
+        <s:attribute name="Code" type="s:string" />
+        <s:attribute name="Name" type="s:string" />
+        <s:attribute name="Divisor" type="s:string" />
+        <s:attribute name="ExchangeFactor" type="s:decimal" />
+        <s:attribute name="Major" type="s:decimal" />
+        <s:attribute name="Minor" type="s:decimal" />
+        <s:attribute name="DisplayText" type="s:decimal" />
+        <s:attribute name="DisplaySymbol" type="s:decimal" />
+      </s:complexType>
+      <s:complexType name="CreditCardType">
+        <s:attribute name="CardNumber" type="s:string" />
+        <s:attribute name="CardType" type="s:string" />
+        <s:attribute name="CVV2" type="s:string" />
+        <s:attribute name="ExpiryDate" type="s:date" use="required" />
+        <s:attribute name="Bank" type="s:string" />
+        <s:attribute default="N" name="MultiUse" type="s:string" />
+        <s:attribute default="N" name="Disable" type="s:string" />
+        <s:attribute name="CVVResponse" type="s:string" />
+        <s:attribute name="AuthCode" type="s:string" />
+        <s:attribute name="AVSResponse" type="s:string" />
+        <s:attribute name="CardCreditType" type="tns:enumCardCreditType" use="required" />
+        <s:attribute name="CardHolderName" type="s:string" />
+        <s:attribute name="Handle" type="s:string" />
+        <s:attribute name="Token" type="s:string" />
+      </s:complexType>
+      <s:simpleType name="enumCardCreditType">
+        <s:restriction base="s:string">
+          <s:enumeration value="Unknown" />
+          <s:enumeration value="Credit" />
+          <s:enumeration value="Debit" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="EcpType">
+        <s:attribute name="Handle" type="s:string" />
+        <s:attribute name="Token" type="s:string" />
+        <s:attribute name="BankAccountNumber" type="s:string" />
+        <s:attribute name="BankRoutingNumber" type="s:string" />
+        <s:attribute name="BankAccountType" type="tns:enumBankAcctType" />
+        <s:attribute name="CustomerName" type="s:string" />
+        <s:attribute name="BankName" type="s:string" />
+        <s:attribute default="N" name="MultiUse" type="s:string" />
+        <s:attribute default="N" name="Disable" type="s:string" />
+        <s:attribute default="N" name="SaveWithoutVerification" type="s:string" />
+        <s:attribute default="P" name="Status" type="s:string" />
+        <s:attribute default="ECP" name="PayType" type="s:string" />
+      </s:complexType>
+      <s:simpleType name="enumBankAcctType">
+        <s:restriction base="s:string">
+          <s:enumeration value="Checking" />
+          <s:enumeration value="Savings" />
+          <s:enumeration value="CorpChecking" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="enumBoolExt">
+        <s:restriction base="s:string">
+          <s:enumeration value="None" />
+          <s:enumeration value="N" />
+          <s:enumeration value="Y" />
+          <s:enumeration value="U" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="enumPlanType">
+        <s:restriction base="s:string">
+          <s:enumeration value="cash" />
+          <s:enumeration value="credit" />
+          <s:enumeration value="combined" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="enumBillingCycle">
+        <s:restriction base="s:string">
+          <s:enumeration value="none" />
+          <s:enumeration value="monthly" />
+          <s:enumeration value="daily" />
+          <s:enumeration value="weekly" />
+          <s:enumeration value="twice_a_week" />
+          <s:enumeration value="every_two_weeks" />
+          <s:enumeration value="monday_wednesday_friday" />
+          <s:enumeration value="tuesday_thursday_saturday" />
+          <s:enumeration value="tuesday_friday_saturday" />
+          <s:enumeration value="variable" />
+          <s:enumeration value="every_other_monday" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="enumAutoPayment">
+        <s:restriction base="s:string">
+          <s:enumeration value="on_invoice" />
+          <s:enumeration value="automatic" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="enumReplenishment">
+        <s:restriction base="s:string">
+          <s:enumeration value="on_invoice" />
+          <s:enumeration value="on_payment" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfAccessNumberType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="AccessNumber" type="tns:AccessNumberType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="AccessNumberType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Data" type="tns:DataType" />
+        </s:sequence>
+        <s:attribute name="Max" type="s:string" />
+        <s:attribute name="Language" type="s:string" />
+        <s:attribute name="Type" type="s:string" />
+      </s:complexType>
+      <s:complexType name="DataType">
+        <s:attribute name="Number" type="s:string" />
+        <s:attribute name="Description" type="s:string" />
+        <s:attribute name="State" type="s:string" />
+      </s:complexType>
+      <s:complexType name="ArrayOfKeyValueType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Param" type="tns:KeyValueType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="KeyValueType">
+        <s:attribute name="Key" type="s:string" />
+        <s:attribute name="Value" type="s:string" />
+      </s:complexType>
+      <s:complexType name="AuthClientInfoType">
+        <s:attribute name="AuthClientID" type="s:string" />
+        <s:attribute name="AuthClientDispName" type="s:string" />
+        <s:attribute name="AuthAccessLevel" type="s:string" />
+        <s:attribute name="AuthAppVersion" type="s:string" />
+        <s:attribute name="AuthDeviceOS" type="s:string" />
+        <s:attribute name="AuthDeviceVersion" type="s:string" />
+        <s:attribute name="AuthDeviceMake" type="s:string" />
+        <s:attribute name="AuthDeviceModel" type="s:string" />
+        <s:attribute name="AuthToken" type="s:string" />
+      </s:complexType>
+      <s:complexType name="UpdateRegisteredNumberType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Data">
+            <s:complexType>
+              <s:attribute name="PhoneNumber" type="s:string" />
+              <s:attribute name="Action" type="tns:enumAction" use="required" />
+            </s:complexType>
+          </s:element>
+        </s:sequence>
+        <s:attribute name="Type" type="tns:enumMapAniType" use="required" />
+      </s:complexType>
+      <s:simpleType name="enumAction">
+        <s:restriction base="s:string">
+          <s:enumeration value="A" />
+          <s:enumeration value="D" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="enumMapAniType">
+        <s:restriction base="s:string">
+          <s:enumeration value="map_ani" />
+          <s:enumeration value="designated_ani" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="AcquisitionType">
+        <s:attribute name="PresenterType" type="s:string" />
+        <s:attribute name="PresenterDetail" type="s:string" />
+        <s:attribute name="AcmType" type="s:string" />
+        <s:attribute name="AcmSubType" type="s:string" />
+        <s:attribute name="AcmCRV1" type="s:string" />
+        <s:attribute name="AcmCRV2" type="s:string" />
+        <s:attribute name="AcmCRV3" type="s:string" />
+      </s:complexType>
+      <s:complexType name="SenderType">
+        <s:attribute name="DateOfBirth" type="s:string" />
+        <s:attribute name="SenderStscId" type="s:string" />
+        <s:attribute name="SenderID" type="s:string" />
+        <s:attribute name="Email" type="s:string" />
+        <s:attribute name="ErrorMessage" type="s:string" />
+        <s:attribute name="MothersMaidenName" type="s:string" />
+        <s:attribute name="Nationality" type="s:string" />
+        <s:attribute name="Phone1" type="s:string" />
+        <s:attribute name="Phone2" type="s:string" />
+        <s:attribute name="ResultCode" type="s:string" />
+        <s:attribute name="SenderCountry" type="s:string" />
+        <s:attribute name="SenderFirstName" type="s:string" />
+        <s:attribute name="SenderLastName" type="s:string" />
+        <s:attribute name="SenderMiddleName" type="s:string" />
+        <s:attribute name="SenderOccupation" type="s:string" />
+        <s:attribute name="SenderStreetAddress1" type="s:string" />
+        <s:attribute name="SenderStreetAddress2" type="s:string" />
+        <s:attribute name="SenderZipCode" type="s:string" />
+        <s:attribute name="ZipCode" type="s:string" />
+        <s:attribute name="SenderGender" type="s:string" />
+        <s:attribute name="SenderState" type="s:string" />
+        <s:attribute name="SenderCityName" type="s:string" />
+      </s:complexType>
+      <s:complexType name="RecipientType">
+        <s:attribute name="RecipientID" type="s:string" />
+        <s:attribute name="Email" type="s:string" />
+        <s:attribute name="ErrorMessage" type="s:string" />
+        <s:attribute name="MothersMaidenName" type="s:string" />
+        <s:attribute name="Nationality" type="s:string" />
+        <s:attribute name="Phone1" type="s:string" />
+        <s:attribute name="Phone2" type="s:string" />
+        <s:attribute name="ZipCode" type="s:string" />
+        <s:attribute name="RecipientAddress1" type="s:string" />
+        <s:attribute name="RecipientAddress2" type="s:string" />
+        <s:attribute name="RecipientCountry" type="s:string" />
+        <s:attribute name="RecipientFirstName" type="s:string" />
+        <s:attribute name="RecipientGender" type="s:string" />
+        <s:attribute name="RecipientLastName" type="s:string" />
+        <s:attribute name="RecipientMiddleName" type="s:string" />
+        <s:attribute name="RecipientOccupation" type="s:string" />
+        <s:attribute name="RecipientCityName" type="s:string" />
+        <s:attribute name="NickName" type="s:string" />
+        <s:attribute name="RecipientStateName" type="s:string" />
+        <s:attribute name="RecipientPostCode" type="s:string" />
+        <s:attribute name="RecipientPersonalMessage" type="s:string" />
+        <s:attribute name="RecipientChallengeQuestion" type="s:string" />
+        <s:attribute name="RecipientChallengeAnswer" type="s:string" />
+      </s:complexType>
+      <s:element name="CreateAccountResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateAccountResponse" type="tns:CreateAccountResponseType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="CreateAccountResponseType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ResponseReferenceData" type="tns:ResponseReferenceDataType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Result" type="tns:CreateResultType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Personal" type="tns:PersonalType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Billing" type="tns:BillingType" />
+          <s:element minOccurs="0" maxOccurs="1" name="BillingHistory" type="tns:BillingHistoryType" />
+          <s:element minOccurs="0" maxOccurs="1" name="AccessNumberList" type="tns:ArrayOfAccessNumberType" />
+          <s:element minOccurs="0" maxOccurs="1" name="AuthClientInfo" type="tns:AuthClientInfoType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CreateResultType">
+        <s:attribute name="AccountID" type="s:string" />
+        <s:attribute name="ServiceNumber" type="s:string" />
+        <s:attribute name="PlanCode" type="s:string" />
+        <s:attribute name="PlanName" type="s:string" />
+        <s:attribute name="MobileNumber" type="s:string" />
+        <s:attribute name="ResponseMessage" type="s:string" />
+        <s:attribute name="Balance" type="s:integer" />
+        <s:attribute name="CurrencyCode" type="s:string" />
+        <s:attribute name="CurrencySymbol" type="s:string" />
+        <s:attribute name="CurrencyDivisor" type="s:string" />
+        <s:attribute name="Status" type="s:string" />
+        <s:attribute name="MobAppActivated" type="s:string" />
+        <s:attribute name="LocalCurrency" type="s:string" />
+        <s:attribute name="LocalAmount" type="s:string" />
+        <s:attribute name="LocalDivisor" type="s:string" />
+        <s:attribute name="CustomerServiceNumber" type="s:string" />
+        <s:attribute name="PromoAmount" type="s:string" />
+        <s:attribute name="ePin" type="s:string" />
+        <s:attribute name="RedeemTransactionID" type="s:string" />
+        <s:attribute name="HasRecharge" type="tns:enumBool" use="required" />
+        <s:attribute name="SecurityCode" type="s:string" />
+        <s:attribute name="Secure" type="s:string" />
+      </s:complexType>
+      <s:complexType name="BillingHistoryType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Data">
+            <s:complexType>
+              <s:attribute name="BillTransactionID" type="s:string" />
+              <s:attribute name="Date" type="s:string" />
+              <s:attribute name="PaymentReferenceID" type="s:string" />
+              <s:attribute name="AccountNumber" type="s:string" />
+              <s:attribute name="Description" type="s:string" />
+              <s:attribute name="Commission" type="s:string" />
+              <s:attribute name="Type" type="s:string" />
+              <s:attribute name="StartBalance" type="s:string" />
+              <s:attribute name="EndBalance" type="s:string" />
+              <s:attribute name="Amount" type="s:string" />
+              <s:attribute name="MerchantID" type="s:string" />
+              <s:attribute name="TerminalID" type="s:string" />
+              <s:attribute name="StoreID" type="s:string" />
+              <s:attribute name="Country" type="s:string" />
+              <s:attribute name="Carrier" type="s:string" />
+              <s:attribute name="TopupPin" type="s:string" />
+              <s:attribute name="ePin" type="s:string" />
+              <s:attribute name="MobileNumber" type="s:string" />
+              <s:attribute name="NotificationMobile" type="s:string" />
+              <s:attribute name="NotificationEmail" type="s:string" />
+              <s:attribute name="TransactionCode" type="s:string" />
+              <s:attribute name="CanUndo" type="s:string" />
+              <s:attribute name="TransactionStatus" type="s:string" />
+              <s:attribute name="ProductType" type="s:string" />
+              <s:attribute name="ISOCountryCode" type="s:string" />
+              <s:attribute name="DiscountType" type="s:string" />
+              <s:attribute name="DiscountValue" type="s:string" />
+              <s:attribute name="DiscountAmount" type="s:string" />
+              <s:attribute name="PlanClassID" type="s:string" />
+              <s:attribute name="CCNumber" type="s:string" />
+            </s:complexType>
+          </s:element>
+        </s:sequence>
+        <s:attribute name="Type" type="s:string" />
+      </s:complexType>
+      <s:element name="QueryAccount">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Request" type="tns:QueryAccountRequestType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="QueryAccountRequestType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="UserInfo" type="tns:UserInfoType" />
+          <s:element minOccurs="0" maxOccurs="1" name="ClientReferenceData" type="tns:ClientReferenceDataType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Parameters" type="tns:QueryAccountParametersType" />
+          <s:element minOccurs="0" maxOccurs="1" name="AccessNumberList" type="tns:ArrayOfAccessNumberType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="QueryAccountParametersType">
+        <s:attribute name="AccountID" type="s:string" />
+        <s:attribute name="ServiceNumber" type="s:string" />
+        <s:attribute name="PhoneNumber" type="s:string" />
+        <s:attribute name="RecipientMobileNumber" type="s:string" />
+        <s:attribute default="N" name="ReturnSecurityCode" type="tns:enumBool" />
+        <s:attribute default="N" name="ReturnBillingHistory" type="tns:enumBool" />
+        <s:attribute default="N" name="ReturnCallHistory" type="tns:enumBool" />
+        <s:attribute default="N" name="ReturnPersonal" type="tns:enumBool" />
+        <s:attribute default="N" name="ReturnCreditCard" type="tns:enumBool" />
+        <s:attribute default="N" name="ReturnRegisteredNumbers" type="tns:enumBool" />
+        <s:attribute default="N" name="ReturnSpeedDial" type="tns:enumBool" />
+        <s:attribute default="N" name="ReturnTransactionSummary" type="tns:enumBool" />
+        <s:attribute default="N" name="ReturnReferrals" type="tns:enumBool" />
+        <s:attribute default="N" name="ReturnRewards" type="tns:enumBool" />
+        <s:attribute default="N" name="ReturnPlanInfo" type="tns:enumBool" />
+        <s:attribute default="N" name="ReturnPlanDNL" type="tns:enumBool" />
+        <s:attribute default="N" name="ReturnP2PEventRecs" type="tns:enumBool" />
+        <s:attribute default="N" name="ReturnReferralEarnings" type="tns:enumBool" />
+        <s:attribute default="N" name="ReturnDenoms" type="tns:enumBool" />
+        <s:attribute name="DateFrom" type="s:dateTime" use="required" />
+        <s:attribute name="DateTo" type="s:dateTime" use="required" />
+        <s:attribute name="MaxDataRows" type="s:integer" />
+        <s:attribute name="CallForwardNumber" type="s:string" />
+        <s:attribute name="DidNumber" type="s:string" />
+        <s:attribute name="DialLocalID" type="s:string" />
+        <s:attribute name="ProductFilter" type="s:string" />
+        <s:attribute default="All" name="AccountStatusFilter" type="tns:enumAcctStatusFilter" />
+        <s:attribute name="BillTransactionID" type="s:string" />
+        <s:attribute name="OptInKeyword" type="s:string" />
+        <s:attribute default="None" name="MobileCallFilter" type="tns:enumMobileCallFilter" />
+        <s:attribute name="CallCorrelationID" type="s:string" />
+        <s:attribute name="CallHostID" type="s:string" />
+      </s:complexType>
+      <s:simpleType name="enumAcctStatusFilter">
+        <s:restriction base="s:string">
+          <s:enumeration value="All" />
+          <s:enumeration value="Active" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="enumMobileCallFilter">
+        <s:list>
+          <s:simpleType>
+            <s:restriction base="s:string">
+              <s:enumeration value="None" />
+              <s:enumeration value="V" />
+              <s:enumeration value="D" />
+              <s:enumeration value="S" />
+              <s:enumeration value="All" />
+            </s:restriction>
+          </s:simpleType>
+        </s:list>
+      </s:simpleType>
+      <s:element name="QueryAccountResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="QueryAccountResponse" type="tns:QueryAccountResponseType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="QueryAccountResponseType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ResponseReferenceData" type="tns:ResponseReferenceDataType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Result" type="tns:QueryAccountResultType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Personal" type="tns:PersonalType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Billing" type="tns:BillingType" />
+          <s:element minOccurs="0" maxOccurs="1" name="BillDataList" type="tns:BillingHistoryType" />
+          <s:element minOccurs="0" maxOccurs="1" name="CallDataList" type="tns:CallHistoryType" />
+          <s:element minOccurs="0" maxOccurs="1" name="RegisteredNumberList" type="tns:RegisteredNumberType" />
+          <s:element minOccurs="0" maxOccurs="1" name="SpeedDialList" type="tns:SpeedDialType" />
+          <s:element minOccurs="0" maxOccurs="1" name="UnlimitedPlanList" type="tns:ArrayOfUnlimitedPlanTypeData" />
+          <s:element minOccurs="0" maxOccurs="1" name="DestinationPlanList" type="tns:ArrayOfDestinationPlanTypeData" />
+          <s:element minOccurs="0" maxOccurs="1" name="P2PEventRecList" type="tns:P2PEventRecType" />
+          <s:element minOccurs="0" maxOccurs="1" name="AccessNumberList" type="tns:ArrayOfAccessNumberType" />
+          <s:element minOccurs="0" maxOccurs="1" name="AuthClientInfo" type="tns:AuthClientInfoType" />
+          <s:element minOccurs="0" maxOccurs="1" name="MobileRecList" type="tns:MobileRecType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Denoms" type="tns:ArrayOfInt" />
+          <s:element minOccurs="0" maxOccurs="1" name="BucketPlanList" type="tns:ArrayOfBucketPlanTypeData" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="QueryAccountResultType">
+        <s:attribute name="AccountID" type="s:string" />
+        <s:attribute name="ServiceNumber" type="s:string" />
+        <s:attribute name="Balance" type="s:integer" />
+        <s:attribute name="Minutes" type="s:integer" />
+        <s:attribute name="FracBal" type="s:decimal" use="required" />
+        <s:attribute name="ReservedBal" type="s:decimal" use="required" />
+        <s:attribute name="CurrencyCode" type="s:string" />
+        <s:attribute name="CurrencySymbol" type="s:string" />
+        <s:attribute name="CurrencyDivisor" type="s:string" />
+        <s:attribute name="SecurityCode" type="s:string" />
+        <s:attribute name="Status" type="s:string" />
+        <s:attribute name="MobileNumber" type="s:string" />
+        <s:attribute name="PurchaseDate" type="s:string" />
+        <s:attribute name="TopupDate" type="s:string" />
+        <s:attribute name="ePin" type="s:string" />
+        <s:attribute name="HasRecharge" type="tns:enumBool" />
+        <s:attribute name="ReferrerPhoneNumber" type="s:string" />
+        <s:attribute name="SaleTotal" type="s:integer" />
+        <s:attribute name="LoadTotal" type="s:integer" />
+        <s:attribute name="DebitCreditTotal" type="s:integer" />
+        <s:attribute name="CommissionTotal" type="s:integer" />
+        <s:attribute name="StartDate" type="s:date" />
+        <s:attribute name="PlanCode" type="s:string" />
+        <s:attribute name="ExpDate" type="s:date" />
+        <s:attribute name="NotificationEmail" type="s:string" />
+        <s:attribute name="CountryCode" type="s:string" />
+        <s:attribute name="NotificationMobile" type="s:string" />
+        <s:attribute name="Renewable" type="tns:enumBool" />
+        <s:attribute name="ExternalAccountID" type="s:string" />
+        <s:attribute name="LastRechargeDate" type="s:date" />
+        <s:attribute name="CallForwardNumber" type="s:string" />
+        <s:attribute name="DidNumber" type="s:string" />
+        <s:attribute name="StatusCode" type="s:string" />
+        <s:attribute name="MobAppActivated" type="s:string" />
+        <s:attribute name="DialLocalID" type="s:string" />
+        <s:attribute name="CreditRisk" type="s:string" />
+        <s:attribute name="Rewards" type="s:integer" />
+        <s:attribute name="AllowRedeemRewards" type="tns:enumBool" />
+        <s:attribute name="ReferralEarnings" type="s:string" />
+        <s:attribute name="SubscriberPlanRestricted" type="tns:enumBool" use="required" />
+        <s:attribute name="IsSubscribed" type="tns:enumBool" use="required" />
+        <s:attribute name="Service" type="s:string" />
+        <s:attribute name="ClassID" type="s:string" />
+        <s:attribute name="CanUndo" type="s:string" />
+      </s:complexType>
+      <s:complexType name="CallHistoryType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Data">
+            <s:complexType>
+              <s:attribute name="CallTransactionID" type="s:string" />
+              <s:attribute name="Date" type="s:string" />
+              <s:attribute name="Amount" type="s:string" />
+              <s:attribute name="Minutes" type="s:string" />
+              <s:attribute name="NumberTo" type="s:string" />
+              <s:attribute name="NumberFrom" type="s:string" />
+              <s:attribute name="UnlimitedClassID" type="s:string" />
+              <s:attribute name="PlanClassID" type="s:string" />
+              <s:attribute name="PlanCurrencyCode" type="s:string" />
+            </s:complexType>
+          </s:element>
+        </s:sequence>
+        <s:attribute name="Type" type="s:string" />
+      </s:complexType>
+      <s:complexType name="RegisteredNumberType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Data">
+            <s:complexType>
+              <s:attribute name="PhoneNumber" type="s:string" />
+              <s:attribute name="Language" type="s:string" />
+              <s:attribute name="Description" type="s:string" />
+              <s:attribute name="Designated" type="s:string" />
+              <s:attribute name="TransDate" type="s:string" />
+              <s:attribute name="CanRemove" type="s:string" />
+            </s:complexType>
+          </s:element>
+        </s:sequence>
+        <s:attribute name="Type" type="s:string" />
+      </s:complexType>
+      <s:complexType name="SpeedDialType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Data">
+            <s:complexType>
+              <s:attribute name="PhoneNumber" type="s:string" />
+              <s:attribute name="Action" type="s:string" />
+              <s:attribute name="Code" type="s:string" />
+              <s:attribute name="Description" type="s:string" />
+              <s:attribute name="Date" type="s:string" />
+            </s:complexType>
+          </s:element>
+        </s:sequence>
+        <s:attribute name="Type" type="s:string" />
+      </s:complexType>
+      <s:complexType name="ArrayOfUnlimitedPlanTypeData">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Data">
+            <s:complexType>
+              <s:sequence>
+                <s:element minOccurs="0" maxOccurs="unbounded" name="PlanDestinationNumber">
+                  <s:complexType>
+                    <s:attribute name="PhoneNumber" type="s:string" />
+                    <s:attribute name="Replaceable" type="tns:enumBool" use="required" />
+                    <s:attribute name="MultiReplace" type="tns:enumBool" use="required" />
+                    <s:attribute name="CreatedDate" type="s:dateTime" use="required" />
+                    <s:attribute name="ModifiedDate" type="s:dateTime" use="required" />
+                  </s:complexType>
+                </s:element>
+              </s:sequence>
+              <s:attribute name="PlanName" type="s:string" />
+              <s:attribute name="ExpDate" type="s:dateTime" use="required" />
+              <s:attribute name="AutoRenew" type="s:string" />
+              <s:attribute name="TransID" type="s:string" />
+              <s:attribute name="CanRenew" type="s:string" />
+              <s:attribute name="RateTableID" type="s:string" />
+              <s:attribute name="UnlimitedClassID" type="s:string" />
+              <s:attribute name="PlanID" type="s:string" />
+              <s:attribute name="NumOfDestAllowed" type="s:string" />
+            </s:complexType>
+          </s:element>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfDestinationPlanTypeData">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Data">
+            <s:complexType>
+              <s:attribute name="PlanCode" type="s:string" />
+              <s:attribute name="PlanName" type="s:string" />
+              <s:attribute name="PlanClassID" type="s:string" />
+              <s:attribute name="PlanStatus" type="s:string" />
+              <s:attribute name="CanRenew" type="s:string" />
+              <s:attribute name="PlanID" type="s:string" />
+            </s:complexType>
+          </s:element>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="P2PEventRecType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Data">
+            <s:complexType>
+              <s:attribute name="P2PTimeStampTZ" type="s:string" />
+              <s:attribute name="P2PTimeStampUTC" type="s:string" />
+              <s:attribute name="P2PTimeStampOffset" type="s:string" />
+              <s:attribute name="P2POrigTermFlag" type="s:string" />
+              <s:attribute name="P2PMessageId" type="s:string" />
+              <s:attribute name="P2PSender" type="s:string" />
+              <s:attribute name="P2PRecipient" type="s:string" />
+              <s:attribute name="P2PStatusCode" type="s:string" />
+              <s:attribute name="P2PAppVersion" type="s:string" />
+              <s:attribute name="P2PEventType" type="s:string" />
+              <s:attribute name="P2PConnectionType" type="s:string" />
+              <s:attribute name="P2PContentType" type="s:string" />
+              <s:attribute name="P2PContentMeasure" type="s:string" />
+              <s:attribute name="P2PContentUnit" type="s:string" />
+              <s:attribute name="P2PDeviceId" type="s:string" />
+              <s:attribute name="P2PDeviceType" type="s:string" />
+              <s:attribute name="P2PDeviceOS" type="s:string" />
+              <s:attribute name="P2PGroupName" type="s:string" />
+              <s:attribute name="P2PGroupCount" type="s:string" />
+              <s:attribute name="P2PCreateDate" type="s:string" />
+            </s:complexType>
+          </s:element>
+        </s:sequence>
+        <s:attribute name="Type" type="s:string" />
+      </s:complexType>
+      <s:complexType name="MobileRecType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Data">
+            <s:complexType>
+              <s:attribute name="Amount" type="s:string" />
+              <s:attribute name="Contact" type="s:string" />
+              <s:attribute name="Quantity" type="s:string" />
+              <s:attribute name="QuantityUnit" type="s:string" />
+              <s:attribute name="RecordType" type="s:string" />
+              <s:attribute name="StartTime" type="s:string" />
+              <s:attribute name="EndTime" type="s:string" />
+              <s:attribute name="Type" type="s:string" />
+              <s:attribute name="TransCode" type="s:string" />
+              <s:attribute name="Sender" type="s:string" />
+              <s:attribute name="Receiver" type="s:string" />
+              <s:attribute name="International" type="s:string" />
+            </s:complexType>
+          </s:element>
+        </s:sequence>
+        <s:attribute name="Type" type="s:string" />
+      </s:complexType>
+      <s:complexType name="ArrayOfInt">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Denom" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfBucketPlanTypeData">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Data">
+            <s:complexType>
+              <s:sequence>
+                <s:element minOccurs="0" maxOccurs="unbounded" name="PlanDestinationNumber">
+                  <s:complexType>
+                    <s:attribute name="PhoneNumber" type="s:string" />
+                    <s:attribute name="Replaceable" type="tns:enumBool" use="required" />
+                    <s:attribute name="MultiReplace" type="tns:enumBool" use="required" />
+                    <s:attribute name="CreatedDate" type="s:dateTime" use="required" />
+                    <s:attribute name="ModifiedDate" type="s:dateTime" use="required" />
+                  </s:complexType>
+                </s:element>
+              </s:sequence>
+              <s:attribute name="PlanName" type="s:string" />
+              <s:attribute name="ExpDate" type="s:dateTime" use="required" />
+              <s:attribute name="AutoRenew" type="s:string" />
+              <s:attribute name="TransID" type="s:string" />
+              <s:attribute name="CanRenew" type="s:string" />
+              <s:attribute name="RateTableID" type="s:string" />
+              <s:attribute name="BucketClassID" type="s:string" />
+              <s:attribute name="PlanID" type="s:string" />
+              <s:attribute name="Unit" type="s:string" />
+              <s:attribute name="Currency" type="s:string" />
+              <s:attribute name="NumOfDestAllowed" type="s:string" />
+            </s:complexType>
+          </s:element>
+        </s:sequence>
+      </s:complexType>
+      <s:element name="Recharge">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RechargeRequest" type="tns:RechargeRequestType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="RechargeRequestType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="UserInfo" type="tns:UserInfoType" />
+          <s:element minOccurs="0" maxOccurs="1" name="ClientReferenceData" type="tns:ClientReferenceDataType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Parameters" type="tns:RechargeParametersType" />
+          <s:element minOccurs="0" maxOccurs="1" name="AccessNumberList" type="tns:ArrayOfAccessNumberType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Billing" type="tns:B2BBillingType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="RechargeParametersType">
+        <s:attribute name="ChargeType" type="tns:enumRecharge" use="required" />
+        <s:attribute name="AccountID" type="s:string" />
+        <s:attribute name="ServiceNumber" type="s:string" />
+        <s:attribute name="FromAccountID" type="s:string" />
+        <s:attribute name="FromServiceNumber" type="s:string" />
+        <s:attribute name="PlanCode" type="s:string" />
+        <s:attribute name="CarrierCode" type="s:string" />
+        <s:attribute name="CountryCode" type="s:string" />
+        <s:attribute default="0" name="Amount" type="s:integer" />
+        <s:attribute name="MobileNumber" type="s:string" />
+        <s:attribute name="MerchantID" type="s:string" />
+        <s:attribute name="TerminalID" type="s:string" />
+        <s:attribute name="StoreID" type="s:string" />
+        <s:attribute name="WelcomeMessage" type="tns:enumBool" use="required" />
+        <s:attribute name="NotificationLanguage" type="s:string" />
+        <s:attribute name="SendSMS" type="tns:enumBool" use="required" />
+        <s:attribute name="SendEmail" type="tns:enumBool" use="required" />
+        <s:attribute name="NotificationEmail" type="s:string" />
+        <s:attribute name="NotificationMobile" type="s:string" />
+        <s:attribute name="OriginCountry" type="s:string" />
+        <s:attribute name="OriginStateProvince" type="s:string" />
+        <s:attribute name="OriginAni" type="s:string" />
+        <s:attribute name="AcceptPromo" type="tns:enumBool" use="required" />
+        <s:attribute name="ReturnLocalValue" type="tns:enumBool" use="required" />
+        <s:attribute name="ProductID" type="s:string" />
+        <s:attribute name="ProcessorID" type="s:string" />
+        <s:attribute name="AgentID" type="s:string" />
+        <s:attribute name="AgentNumber" type="s:string" />
+        <s:attribute name="CVV2" type="s:string" />
+        <s:attribute name="CurrencyCode" type="s:string" />
+        <s:attribute name="iCountryCode" type="s:string" />
+        <s:attribute name="iCurrencyCode" type="s:string" />
+        <s:attribute name="iPricePaid" type="s:string" />
+        <s:attribute name="PromoCode" type="s:string" />
+        <s:attribute name="PromoPayMethod" type="tns:enumPspPayMethod" use="required" />
+        <s:attribute name="ProductClassID" type="s:string" />
+        <s:attribute name="RecipientClassID" type="s:string" />
+      </s:complexType>
+      <s:simpleType name="enumRecharge">
+        <s:restriction base="s:string">
+          <s:enumeration value="cash" />
+          <s:enumeration value="transfer" />
+          <s:enumeration value="credit_card" />
+          <s:enumeration value="p2p" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="enumPspPayMethod">
+        <s:restriction base="s:string">
+          <s:enumeration value="CC_MANUAL" />
+          <s:enumeration value="CC_AUTO" />
+          <s:enumeration value="VOUCHER_HC" />
+          <s:enumeration value="VOUCHER_RESELLER" />
+          <s:enumeration value="ACH_AUTO" />
+          <s:enumeration value="ACH_MANUAL" />
+          <s:enumeration value="ECP_AUTO" />
+          <s:enumeration value="ECP_MANUAL" />
+          <s:enumeration value="EXTERNAL_PAYMENT" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="B2BBillingType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Address" type="tns:AddressType" />
+          <s:element minOccurs="0" maxOccurs="1" name="CreditCard" type="tns:B2BCreditCardType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="B2BCreditCardType">
+        <s:attribute name="Token" type="s:string" />
+        <s:attribute name="ExpiryDate" type="s:date" use="required" />
+        <s:attribute name="CardHolderName" type="s:string" />
+        <s:attribute name="CVV2" type="s:string" />
+        <s:attribute name="Handle" type="s:string" />
+        <s:attribute name="MultiUse" type="s:string" />
+      </s:complexType>
+      <s:element name="RechargeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RechargeResponse" type="tns:RechargeResponseType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="RechargeResponseType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ResponseReferenceData" type="tns:ResponseReferenceDataType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Result" type="tns:RechargeResultType" />
+          <s:element minOccurs="0" maxOccurs="1" name="AccessNumberList" type="tns:ArrayOfAccessNumberType" />
+          <s:element minOccurs="0" maxOccurs="1" name="PromoInfoList" type="tns:ArrayOfPromotionInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="RechargeResultType">
+        <s:attribute name="AccountID" type="s:string" />
+        <s:attribute name="ServiceNumber" type="s:string" />
+        <s:attribute name="Status" type="s:string" />
+        <s:attribute name="PaymentReferenceID" type="s:string" />
+        <s:attribute name="Balance" type="s:string" />
+        <s:attribute name="SenderBalance" type="s:string" />
+        <s:attribute name="CurrencyCode" type="s:string" />
+        <s:attribute name="CurrencyDivisor" type="s:string" />
+        <s:attribute name="CurrencySymbol" type="s:string" />
+        <s:attribute name="ResponseMessage" type="s:string" />
+        <s:attribute name="StoreDiscount" type="s:string" />
+        <s:attribute name="LocalCurrency" type="s:string" />
+        <s:attribute name="LocalAmount" type="s:string" />
+        <s:attribute name="LocalDivisor" type="s:string" />
+        <s:attribute name="PromoAmount" type="s:string" />
+        <s:attribute name="ePin" type="s:string" />
+        <s:attribute name="HasRecharge" type="tns:enumBool" use="required" />
+        <s:attribute name="RedeemTransactionID" type="s:string" />
+      </s:complexType>
+      <s:complexType name="ArrayOfPromotionInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PromoInfoList" type="tns:PromotionInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PromotionInfo">
+        <s:attribute name="RewardName" type="s:string" />
+        <s:attribute name="PromoAmount" type="s:string" />
+        <s:attribute name="PromoID" type="s:string" />
+      </s:complexType>
+      <s:element name="Reverse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ReverseRequest" type="tns:ReverseRequestType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ReverseRequestType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="UserInfo" type="tns:UserInfoType" />
+          <s:element minOccurs="0" maxOccurs="1" name="ClientReferenceData" type="tns:ClientReferenceDataType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Parameters" type="tns:ReverseParametersType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ReverseParametersType">
+        <s:attribute name="AccountID" type="s:string" />
+        <s:attribute name="ServiceNumber" type="s:string" />
+        <s:attribute name="BillTransactionID" type="s:string" />
+        <s:attribute name="MerchantID" type="s:string" />
+        <s:attribute name="TerminalID" type="s:string" />
+        <s:attribute name="StoreID" type="s:string" />
+        <s:attribute name="NotificationLanguage" type="s:string" />
+        <s:attribute name="SendSMS" type="tns:enumBool" use="required" />
+        <s:attribute name="SendEmail" type="tns:enumBool" use="required" />
+        <s:attribute name="NotificationEmail" type="s:string" />
+        <s:attribute name="NotificationMobile" type="s:string" />
+        <s:attribute name="ReversalReason" type="s:string" />
+        <s:attribute name="ReversalReasonID" type="s:string" />
+      </s:complexType>
+      <s:element name="ReverseResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ReverseResponse" type="tns:ReverseResponseType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ReverseResponseType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ResponseReferenceData" type="tns:ResponseReferenceDataType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Result" type="tns:ReverseResultType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ReverseResultType">
+        <s:attribute name="AccountID" type="s:string" />
+        <s:attribute name="ServiceNumber" type="s:string" />
+        <s:attribute name="Balance" type="s:integer" />
+        <s:attribute name="CurrencyCode" type="s:string" />
+        <s:attribute name="CurrencySymbol" type="s:string" />
+        <s:attribute name="CurrencyDivisor" type="s:string" />
+        <s:attribute name="Status" type="s:string" />
+      </s:complexType>
+      <s:element name="UpdatePlan">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdatePlanRequest" type="tns:UpdatePlanRequestType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="UpdatePlanRequestType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="UserInfo" type="tns:UserInfoType" />
+          <s:element minOccurs="0" maxOccurs="1" name="ClientReferenceData" type="tns:ClientReferenceDataType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Parameters" type="tns:UpdatePlanParametersType" />
+          <s:element minOccurs="0" maxOccurs="1" name="DnlDataList" type="tns:UpdatePlanDestinationNumberType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Billing" type="tns:B2BBillingType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="UpdatePlanParametersType">
+        <s:attribute name="Action" type="tns:enumPlanActionType" use="required" />
+        <s:attribute name="AccountID" type="s:string" />
+        <s:attribute name="ServiceNumber" type="s:string" />
+        <s:attribute name="FromAccountID" type="s:string" />
+        <s:attribute name="FromServiceNumber" type="s:string" />
+        <s:attribute default="0" name="Amount" type="s:integer" />
+        <s:attribute name="PlanCode" type="s:string" />
+        <s:attribute name="AutoRenew" type="tns:enumBool" use="required" />
+        <s:attribute name="TransID" type="s:string" />
+        <s:attribute name="SendSMS" type="tns:enumBool" use="required" />
+        <s:attribute name="SendEmail" type="tns:enumBool" use="required" />
+        <s:attribute name="NotificationEmail" type="s:string" />
+        <s:attribute name="NotificationMobile" type="s:string" />
+        <s:attribute name="AgentNumber" type="s:string" />
+      </s:complexType>
+      <s:simpleType name="enumPlanActionType">
+        <s:restriction base="s:string">
+          <s:enumeration value="Add" />
+          <s:enumeration value="UpdateOptions" />
+          <s:enumeration value="Reverse" />
+          <s:enumeration value="DnlGet" />
+          <s:enumeration value="DnlAdd" />
+          <s:enumeration value="DnlDelete" />
+          <s:enumeration value="DnlDeleteAll" />
+          <s:enumeration value="DnlUpdate" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="UpdatePlanResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdatePlanResponse" type="tns:UpdatePlanResponseType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="UpdatePlanResponseType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ResponseReferenceData" type="tns:ResponseReferenceDataType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Result" type="tns:UpdatePlanResultType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="UpdatePlanResultType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="PlanDestinationNumberList" type="tns:ArrayOfPlanDestinationNumberType" />
+          <s:element minOccurs="0" maxOccurs="1" name="PlanDestinationNumberStatusList" type="tns:ArrayOfPlanDestinationNumberStatusType" />
+        </s:sequence>
+        <s:attribute name="NumOfDestAllowed" type="s:string" />
+        <s:attribute name="AccountID" type="s:string" />
+        <s:attribute name="ServiceNumber" type="s:string" />
+        <s:attribute name="Status" type="s:string" />
+        <s:attribute name="PlanClassID" type="s:string" />
+      </s:complexType>
+      <s:complexType name="ArrayOfPlanDestinationNumberType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PlanDestinationNumber" nillable="true">
+            <s:complexType>
+              <s:attribute name="PhoneNumber" type="s:string" />
+              <s:attribute name="Replaceable" type="tns:enumBool" use="required" />
+              <s:attribute name="MultiReplace" type="tns:enumBool" use="required" />
+              <s:attribute name="CreatedDate" type="s:dateTime" use="required" />
+              <s:attribute name="ModifiedDate" type="s:dateTime" use="required" />
+            </s:complexType>
+          </s:element>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfPlanDestinationNumberStatusType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PlanDestinationNumberStatus" nillable="true">
+            <s:complexType>
+              <s:attribute name="PhoneNumber" type="s:string" />
+              <s:attribute name="Replaceable" type="tns:enumBool" use="required" />
+              <s:attribute name="MultiReplace" type="tns:enumBool" use="required" />
+            </s:complexType>
+          </s:element>
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ReversePlan">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ReversePlanRequest" type="tns:ReversePlanRequestType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ReversePlanRequestType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="UserInfo" type="tns:UserInfoType" />
+          <s:element minOccurs="0" maxOccurs="1" name="ClientReferenceData" type="tns:ClientReferenceDataType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Parameters" type="tns:ReversePlanParametersType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ReversePlanParametersType">
+        <s:attribute name="AccountID" type="s:string" />
+        <s:attribute name="ServiceNumber" type="s:string" />
+        <s:attribute name="FromAccountID" type="s:string" />
+        <s:attribute name="FromServiceNumber" type="s:string" />
+        <s:attribute name="PlanCode" type="s:string" />
+        <s:attribute name="Action" type="tns:enumPlanActionType" use="required" />
+        <s:attribute name="TransID" type="s:string" />
+        <s:attribute name="SendSMS" type="tns:enumBool" use="required" />
+        <s:attribute name="SendEmail" type="tns:enumBool" use="required" />
+        <s:attribute name="NotificationEmail" type="s:string" />
+        <s:attribute name="NotificationMobile" type="s:string" />
+      </s:complexType>
+      <s:element name="ReversePlanResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ReversePlanResponse" type="tns:ReversePlanResponseType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ReversePlanResponseType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ResponseReferenceData" type="tns:ResponseReferenceDataType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Result" type="tns:ReversePlanResultType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ReversePlanResultType">
+        <s:attribute name="AccountID" type="s:string" />
+        <s:attribute name="ServiceNumber" type="s:string" />
+        <s:attribute name="Status" type="s:string" />
+      </s:complexType>
+      <s:element name="Refund">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RefundRequest" type="tns:RefundRequestType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="RefundRequestType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="UserInfo" type="tns:UserInfoType" />
+          <s:element minOccurs="0" maxOccurs="1" name="ClientReferenceData" type="tns:ClientReferenceDataType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Parameters" type="tns:RefundParametersType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="RefundParametersType">
+        <s:attribute name="AccountID" type="s:string" />
+        <s:attribute name="ServiceNumber" type="s:string" />
+        <s:attribute name="PaymentReferenceID" type="s:string" />
+        <s:attribute name="Amount" type="s:string" />
+        <s:attribute name="MerchantID" type="s:string" />
+        <s:attribute name="TerminalID" type="s:string" />
+        <s:attribute name="StoreID" type="s:string" />
+        <s:attribute name="NotificationLanguage" type="s:string" />
+        <s:attribute name="SendSMS" type="tns:enumBool" use="required" />
+        <s:attribute name="SendEmail" type="tns:enumBool" use="required" />
+        <s:attribute name="NotificationEmail" type="s:string" />
+        <s:attribute name="NotificationMobile" type="s:string" />
+      </s:complexType>
+      <s:element name="RefundResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RefundResponse" type="tns:RefundResponseType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="RefundResponseType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ResponseReferenceData" type="tns:ResponseReferenceDataType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Result" type="tns:RefundResultType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="RefundResultType">
+        <s:attribute name="AccountID" type="s:string" />
+        <s:attribute name="ServiceNumber" type="s:string" />
+        <s:attribute name="Status" type="s:string" />
+        <s:attribute name="PaymentReferenceID" type="s:string" />
+        <s:attribute name="Balance" type="s:string" />
+        <s:attribute name="CurrencyCode" type="s:string" />
+        <s:attribute name="CurrencyDivisor" type="s:string" />
+        <s:attribute name="CurrencySymbol" type="s:string" />
+        <s:attribute name="ResponseMessage" type="s:string" />
+        <s:attribute name="StoreDiscount" type="s:string" />
+      </s:complexType>
+      <s:element name="GetProducts">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetProductsRequest" type="tns:GetProductsRequestType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="GetProductsRequestType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="UserInfo" type="tns:UserInfoType" />
+          <s:element minOccurs="0" maxOccurs="1" name="ClientReferenceData" type="tns:ClientReferenceDataType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Parameters" type="tns:GetProductsParametersType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="GetProductsParametersType">
+        <s:attribute name="AccountID" type="s:string" />
+        <s:attribute name="ServiceNumber" type="s:string" />
+        <s:attribute name="ClientSource" type="tns:enumClientSource" />
+        <s:attribute name="CarrierCode" type="s:string" />
+        <s:attribute name="CountryCode" type="s:string" />
+        <s:attribute name="DataType" type="s:string" />
+      </s:complexType>
+      <s:simpleType name="enumClientSource">
+        <s:restriction base="s:string">
+          <s:enumeration value="None" />
+          <s:enumeration value="Ivr" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="GetProductsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetProductsResponse" type="tns:GetProductsResponseType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="GetProductsResponseType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ResponseReferenceData" type="tns:ResponseReferenceDataType" />
+          <s:element minOccurs="0" maxOccurs="1" name="ProductList" type="tns:ArrayOfProductListTypeProduct" />
+          <s:element minOccurs="0" maxOccurs="1" name="DataList" type="tns:ArrayOfProductListTypeProductV2" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfProductListTypeProduct">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Product">
+            <s:complexType>
+              <s:complexContent mixed="false">
+                <s:extension base="tns:ProductListTypeProductBase">
+                  <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="1" name="ProductCountryList" type="tns:ArrayOfProductCountryTypeProductCountry" />
+                  </s:sequence>
+                </s:extension>
+              </s:complexContent>
+            </s:complexType>
+          </s:element>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ProductListTypeProductBase">
+        <s:attribute name="Code" type="s:string" />
+        <s:attribute name="Name" type="s:string" />
+        <s:attribute name="ProductType" type="s:string" />
+        <s:attribute name="DisplayName" type="s:string" />
+        <s:attribute default="0" name="Denomination" type="s:integer" />
+        <s:attribute default="0" name="MinDenomination" type="s:integer" />
+        <s:attribute default="0" name="MaxDenomination" type="s:integer" />
+        <s:attribute name="CustomerServiceNumber" type="s:string" />
+        <s:attribute name="Default" type="s:string" />
+        <s:attribute name="DenomText" type="s:string" />
+        <s:attribute name="Mask" type="s:string" />
+        <s:attribute name="ClassID" type="s:string" />
+      </s:complexType>
+      <s:complexType name="ArrayOfProductCountryTypeProductCountry">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ProductCountry">
+            <s:complexType>
+              <s:sequence>
+                <s:element minOccurs="0" maxOccurs="1" name="CarrierList" type="tns:ArrayOfCarrierTypeCarrier" />
+              </s:sequence>
+              <s:attribute name="CountryCode" type="s:string" />
+              <s:attribute name="CountryName" type="s:string" />
+            </s:complexType>
+          </s:element>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfCarrierTypeCarrier">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Carrier">
+            <s:complexType>
+              <s:attribute name="CarrierCode" type="s:string" />
+              <s:attribute name="CarrierName" type="s:string" />
+              <s:attribute name="LocalAmount" type="s:string" />
+              <s:attribute name="LocalCurrency" type="s:string" />
+              <s:attribute name="LocalDivisor" type="s:string" />
+            </s:complexType>
+          </s:element>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfProductListTypeProductV2">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Data">
+            <s:complexType>
+              <s:complexContent mixed="false">
+                <s:extension base="tns:ProductListTypeProductBase">
+                  <s:attribute name="Discount" type="s:string" />
+                  <s:attribute name="DiscountType" type="s:string" />
+                  <s:attribute name="Type" type="s:string" />
+                  <s:attribute name="CarrierName" type="s:string" />
+                  <s:attribute name="CarrierCode" type="s:string" />
+                  <s:attribute name="PlanCode" type="s:string" />
+                  <s:attribute name="CountryName" type="s:string" />
+                  <s:attribute name="CountryCode" type="s:string" />
+                  <s:attribute name="LocalAmount" type="s:string" />
+                  <s:attribute name="LocalCurrency" type="s:string" />
+                  <s:attribute name="LocalDivisor" type="s:string" />
+                  <s:attribute name="ConsumerFee" type="s:string" />
+                </s:extension>
+              </s:complexContent>
+            </s:complexType>
+          </s:element>
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetProductNotes">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetProductNotesRequest" type="tns:GetProductNotesRequestType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="GetProductNotesRequestType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="UserInfo" type="tns:UserInfoType" />
+          <s:element minOccurs="0" maxOccurs="1" name="ClientReferenceData" type="tns:ClientReferenceDataType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Parameters" type="tns:GetProductNotesParametersType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="GetProductNotesParametersType">
+        <s:attribute name="AccountID" type="s:string" />
+        <s:attribute name="ServiceNumber" type="s:string" />
+        <s:attribute name="ClientSource" type="tns:enumClientSource" />
+        <s:attribute name="CarrierCode" type="s:string" />
+        <s:attribute name="CountryCode" type="s:string" />
+        <s:attribute name="DataType" type="s:string" />
+      </s:complexType>
+      <s:element name="GetProductNotesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetProductNotesResponse" type="tns:GetProductNotesResponseType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="GetProductNotesResponseType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ResponseReferenceData" type="tns:ResponseReferenceDataType" />
+          <s:element minOccurs="0" maxOccurs="1" name="ProductNotes" type="tns:ArrayOfProductNotesTypeProductNote" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfProductNotesTypeProductNote">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ProductNote">
+            <s:complexType>
+              <s:sequence>
+                <s:element minOccurs="0" maxOccurs="1" name="Notes" type="s:string" />
+              </s:sequence>
+              <s:attribute name="Code" type="s:string" />
+              <s:attribute name="ClassID" type="s:string" />
+              <s:attribute name="ProductID" type="s:string" />
+              <s:attribute name="InventoryItemID" type="s:string" />
+              <s:attribute name="Locale" type="s:string" />
+            </s:complexType>
+          </s:element>
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetCommissions">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCommissionsRequest" type="tns:GetCommissionsRequestType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="GetCommissionsRequestType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="UserInfo" type="tns:UserInfoType" />
+          <s:element minOccurs="0" maxOccurs="1" name="ClientReferenceData" type="tns:ClientReferenceDataType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Parameters" type="tns:GetCommissionsParametersType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="GetCommissionsParametersType">
+        <s:attribute name="AccountID" type="s:string" />
+        <s:attribute name="ServiceNumber" type="s:string" />
+        <s:attribute default="0" name="InclCCD" type="s:byte" />
+        <s:attribute name="DataType" type="s:string" />
+      </s:complexType>
+      <s:element name="GetCommissionsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCommissionsResponse" type="tns:GetCommissionsResponseType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="GetCommissionsResponseType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ResponseReferenceData" type="tns:ResponseReferenceDataType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Result" type="tns:GetCommissionsResultType" />
+          <s:element minOccurs="0" maxOccurs="1" name="DataList" type="tns:ArrayOfCommissionTypeData" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="GetCommissionsResultType">
+        <s:attribute name="AccountID" type="s:string" />
+        <s:attribute name="ServiceNumber" type="s:string" />
+      </s:complexType>
+      <s:complexType name="ArrayOfCommissionTypeData">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Data">
+            <s:complexType>
+              <s:attribute name="ItemName" type="s:string" />
+              <s:attribute name="Commission" type="s:string" />
+              <s:attribute name="CommAmtType" type="tns:enumCommAmtType" use="required" />
+              <s:attribute name="CommType" type="s:string" />
+              <s:attribute name="CountryCode" type="s:string" />
+              <s:attribute name="CountryName" type="s:string" />
+              <s:attribute name="CarrierCode" type="s:string" />
+              <s:attribute name="CarrierName" type="s:string" />
+              <s:attribute name="Denom" type="s:string" />
+            </s:complexType>
+          </s:element>
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="enumCommAmtType">
+        <s:restriction base="s:string">
+          <s:enumeration value="Perc" />
+          <s:enumeration value="Fixed" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="UpdateAccount">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateAccountRequest" type="tns:UpdateAccountRequestType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="UpdateAccountRequestType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="UserInfo" type="tns:UserInfoType" />
+          <s:element minOccurs="0" maxOccurs="1" name="ClientReferenceData" type="tns:ClientReferenceDataType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Parameters" type="tns:UpdateParametersType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Personal" type="tns:PersonalType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Billing" type="tns:BillingType" />
+          <s:element minOccurs="0" maxOccurs="1" name="DataList" type="tns:UpdateRegisteredNumberType" />
+          <s:element minOccurs="0" maxOccurs="1" name="SpeedDialList" type="tns:ArrayOfSetSpeedDialTypeData" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="UpdateParametersType">
+        <s:attribute name="AccountID" type="s:string" />
+        <s:attribute name="ServiceNumber" type="s:string" />
+        <s:attribute name="NewSecurityCode" type="s:string" />
+        <s:attribute name="SecurityCode" type="s:string" />
+        <s:attribute name="ExternalReferenceID" type="s:string" />
+        <s:attribute name="SenderNumber" type="s:string" />
+        <s:attribute name="MobileNumber" type="s:string" />
+        <s:attribute name="DistributorID" type="s:string" />
+        <s:attribute name="TerminalID" type="s:string" />
+        <s:attribute name="StoreID" type="s:string" />
+        <s:attribute name="NotificationLanguage" type="s:string" />
+        <s:attribute name="SendSMS" type="tns:enumBool" use="required" />
+        <s:attribute name="SendEmail" type="tns:enumBool" use="required" />
+        <s:attribute name="NotificationEmail" type="s:string" />
+        <s:attribute name="NotificationMobile" type="s:string" />
+        <s:attribute name="ReferrerPhoneNumber" type="s:string" />
+        <s:attribute name="MapAni" type="tns:enumBool" use="required" />
+        <s:attribute name="SetSpeedDial" type="tns:enumBool" />
+        <s:attribute name="CallForwardNumber" type="s:string" />
+        <s:attribute name="DidNumber" type="s:string" />
+        <s:attribute name="DialLocalID" type="s:string" />
+        <s:attribute name="DeleteCreditCard" type="tns:enumBool" use="required" />
+      </s:complexType>
+      <s:complexType name="ArrayOfSetSpeedDialTypeData">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Data">
+            <s:complexType>
+              <s:attribute name="PhoneNumber" type="s:string" />
+              <s:attribute name="Code" type="s:string" />
+              <s:attribute name="Description" type="s:string" />
+              <s:attribute name="Action" type="tns:enumAction" use="required" />
+            </s:complexType>
+          </s:element>
+        </s:sequence>
+      </s:complexType>
+      <s:element name="UpdateAccountResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateAccountResponse" type="tns:UpdateAccountResponseType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="UpdateAccountResponseType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ResponseReferenceData" type="tns:ResponseReferenceDataType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Result" type="tns:UpdateResultType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="UpdateResultType">
+        <s:attribute name="AccountID" type="s:string" />
+        <s:attribute name="ServiceNumber" type="s:string" />
+        <s:attribute name="MobAppActivated" type="s:string" />
+      </s:complexType>
+      <s:element name="QueryByANI">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="QueryByANIRequest" type="tns:QueryByAniRequestType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="QueryByAniRequestType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="UserInfo" type="tns:UserInfoType" />
+          <s:element minOccurs="0" maxOccurs="1" name="ClientReferenceData" type="tns:ClientReferenceDataType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Parameters" type="tns:QueryByAniParametersType" />
+          <s:element minOccurs="0" maxOccurs="1" name="AuthClientInfo" type="tns:AuthClientInfoType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="QueryByAniParametersType">
+        <s:attribute name="ANI" type="s:string" />
+        <s:attribute name="DateFrom" type="s:dateTime" use="required" />
+        <s:attribute name="DateTo" type="s:dateTime" use="required" />
+        <s:attribute default="All" name="AccountStatusFilter" type="tns:enumAcctStatusFilter" />
+      </s:complexType>
+      <s:element name="QueryByANIResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="QueryAccountResponse" type="tns:QueryAccountResponseType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ValidateRecharge">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ValidateRechargeRequest" type="tns:ValidateRechargeRequestType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ValidateRechargeRequestType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="UserInfo" type="tns:UserInfoType" />
+          <s:element minOccurs="0" maxOccurs="1" name="ClientReferenceData" type="tns:ClientReferenceDataType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Parameters" type="tns:ValidateRechargeParametersType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ValidateRechargeParametersType">
+        <s:attribute name="ChargeType" type="tns:enumRecharge" use="required" />
+        <s:attribute name="AccountID" type="s:string" />
+        <s:attribute name="ServiceNumber" type="s:string" />
+        <s:attribute name="FromAccountID" type="s:string" />
+        <s:attribute name="FromServiceNumber" type="s:string" />
+        <s:attribute name="PlanCode" type="s:string" />
+        <s:attribute name="CarrierCode" type="s:string" />
+        <s:attribute name="CountryCode" type="s:string" />
+        <s:attribute default="0" name="Amount" type="s:integer" />
+        <s:attribute name="MobileNumber" type="s:string" />
+        <s:attribute name="MerchantID" type="s:string" />
+        <s:attribute name="TerminalID" type="s:string" />
+        <s:attribute name="StoreID" type="s:string" />
+        <s:attribute name="WelcomeMessage" type="tns:enumBool" use="required" />
+        <s:attribute name="NotificationLanguage" type="s:string" />
+        <s:attribute name="SendSMS" type="tns:enumBool" use="required" />
+        <s:attribute name="SendEmail" type="tns:enumBool" use="required" />
+        <s:attribute name="NotificationEmail" type="s:string" />
+        <s:attribute name="NotificationMobile" type="s:string" />
+        <s:attribute name="OriginCountry" type="s:string" />
+        <s:attribute name="OriginStateProvince" type="s:string" />
+        <s:attribute name="OriginAni" type="s:string" />
+      </s:complexType>
+      <s:element name="ValidateRechargeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ValidateRechargeResponse" type="tns:ValidateRechargeResponseType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ValidateRechargeResponseType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ResponseReferenceData" type="tns:ResponseReferenceDataType" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="AddNote">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Request" type="tns:AddNoteRequestType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="AddNoteRequestType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="UserInfo" type="tns:UserInfoType" />
+          <s:element minOccurs="0" maxOccurs="1" name="ClientReferenceData" type="tns:ClientReferenceDataType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Parameters" type="tns:AddNoteParametersType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="AddNoteParametersType">
+        <s:attribute name="AccountID" type="s:string" />
+        <s:attribute name="ServiceNumber" type="s:string" />
+        <s:attribute name="CommentID" type="s:string" />
+        <s:attribute name="Comment" type="s:string" />
+      </s:complexType>
+      <s:element name="AddNoteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AddNoteResponse" type="tns:AddNoteResponseType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="AddNoteResponseType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ResponseReferenceData" type="tns:ResponseReferenceDataType" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CreateReferral">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateReferralRequest" type="tns:CreateReferralRequestType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="CreateReferralRequestType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="UserInfo" type="tns:UserInfoType" />
+          <s:element minOccurs="0" maxOccurs="1" name="ClientReferenceData" type="tns:ClientReferenceDataType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Parameters" type="tns:CreateReferralParametersType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CreateReferralParametersType">
+        <s:attribute name="AccountID" type="s:string" />
+        <s:attribute name="Language" type="s:string" />
+        <s:attribute name="SendSMS" type="tns:enumBool" use="required" />
+        <s:attribute name="SendEmail" type="tns:enumBool" use="required" />
+        <s:attribute name="NotificationEmail" type="s:string" />
+        <s:attribute name="NotificationMobile" type="s:string" />
+        <s:attribute name="Note" type="s:string" />
+        <s:attribute name="LastName" type="s:string" />
+        <s:attribute name="FirstName" type="s:string" />
+        <s:attribute name="PromoCode" type="s:string" />
+        <s:attribute name="AcceptReferral" type="tns:enumBool" use="required" />
+        <s:attribute name="RefereeServiceNumber" type="s:string" />
+        <s:attribute name="LogReferral" type="tns:enumBool" use="required" />
+        <s:attribute name="ReferrerSource" type="s:string" />
+        <s:attribute name="RefereeSource" type="s:string" />
+        <s:attribute name="ReferralType" type="s:string" />
+        <s:attribute name="ReferralSource" type="s:string" />
+      </s:complexType>
+      <s:element name="CreateReferralResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateReferralResponse" type="tns:CreateReferralResponseType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="CreateReferralResponseType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ResponseReferenceData" type="tns:ResponseReferenceDataType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Result" type="tns:CreateReferralResultType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Personal" type="tns:PersonalType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CreateReferralResultType">
+        <s:attribute name="AccountID" type="s:string" />
+        <s:attribute name="ServiceNumber" type="s:string" />
+        <s:attribute name="Balance" type="s:integer" />
+        <s:attribute name="CurrencyCode" type="s:string" />
+        <s:attribute name="CurrencySymbol" type="s:string" />
+        <s:attribute name="CurrencyDivisor" type="s:string" />
+        <s:attribute name="Status" type="s:string" />
+      </s:complexType>
+      <s:element name="Subscribe">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SubscribeRequest" type="tns:SubscribeRequestType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="SubscribeRequestType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="UserInfo" type="tns:UserInfoType" />
+          <s:element minOccurs="0" maxOccurs="1" name="ClientReferenceData" type="tns:ClientReferenceDataType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Parameters" type="tns:SubscribeParametersType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SubscribeParametersType">
+        <s:attribute name="AccountID" type="s:string" />
+        <s:attribute name="ServiceNumber" type="s:string" />
+        <s:attribute name="PhoneNumber" type="s:string" />
+        <s:attribute name="OptInKeyword" type="s:string" />
+        <s:attribute name="PromoCode" type="s:string" />
+        <s:attribute name="FirstTime" type="tns:enumBoolExt" use="required" />
+        <s:attribute name="NotificationEmail" type="s:string" />
+        <s:attribute name="NotificationMobile" type="s:string" />
+        <s:attribute name="NotificationLanguage" type="s:string" />
+        <s:attribute name="SendEmail" type="tns:enumBoolExt" use="required" />
+        <s:attribute name="SendSMS" type="tns:enumBoolExt" use="required" />
+        <s:attribute name="OptInPush" type="tns:enumBoolExt" use="required" />
+        <s:attribute name="OptInSMS" type="tns:enumBoolExt" use="required" />
+        <s:attribute name="OptInEmail" type="tns:enumBoolExt" use="required" />
+        <s:attribute name="Channel" type="s:string" />
+        <s:attribute name="SourceID" type="s:string" />
+        <s:attribute name="RequestID" type="s:string" />
+        <s:attribute name="ExternalSubscriberID" type="s:string" />
+      </s:complexType>
+      <s:element name="SubscribeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SubscribeResponse" type="tns:SubscribeResponseType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="SubscribeResponseType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ResponseReferenceData" type="tns:ResponseReferenceDataType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Result" type="tns:SubscribeResultType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SubscribeResultType">
+        <s:attribute name="AccountID" type="s:string" />
+        <s:attribute name="ServiceNumber" type="s:string" />
+        <s:attribute name="PromoAmount" type="s:integer" />
+      </s:complexType>
+      <s:element name="UnSubscribe">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UnSubscribeRequest" type="tns:UnSubscribeRequestType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="UnSubscribeRequestType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="UserInfo" type="tns:UserInfoType" />
+          <s:element minOccurs="0" maxOccurs="1" name="ClientReferenceData" type="tns:ClientReferenceDataType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Parameters" type="tns:UnSubscribeParametersType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="UnSubscribeParametersType">
+        <s:attribute name="AccountID" type="s:string" />
+        <s:attribute name="ServiceNumber" type="s:string" />
+        <s:attribute name="PhoneNumber" type="s:string" />
+        <s:attribute name="Keyword" type="s:string" />
+        <s:attribute name="NotificationEmail" type="s:string" />
+        <s:attribute name="NotificationLanguage" type="s:string" />
+        <s:attribute name="OptOutPush" type="tns:enumBoolExt" use="required" />
+        <s:attribute name="OptOutSMS" type="tns:enumBoolExt" use="required" />
+        <s:attribute name="OptOutEmail" type="tns:enumBoolExt" use="required" />
+        <s:attribute name="Channel" type="s:string" />
+        <s:attribute name="SourceID" type="s:string" />
+        <s:attribute name="RequestID" type="s:string" />
+        <s:attribute name="ExternalSubscriberID" type="s:string" />
+      </s:complexType>
+      <s:element name="UnSubscribeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UnSubscribeResponse" type="tns:UnSubscribeResponseType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="UnSubscribeResponseType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ResponseReferenceData" type="tns:ResponseReferenceDataType" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="IsSubscribed">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IsSubscribedRequest" type="tns:IsSubscribedRequestType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="IsSubscribedRequestType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="UserInfo" type="tns:UserInfoType" />
+          <s:element minOccurs="0" maxOccurs="1" name="ClientReferenceData" type="tns:ClientReferenceDataType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Parameters" type="tns:IsSubscribedParametersType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="IsSubscribedParametersType">
+        <s:attribute name="PhoneNumber" type="s:string" />
+        <s:attribute name="Keyword" type="s:string" />
+        <s:attribute name="SubscribeOption" type="tns:enumOptInOut" use="required" />
+        <s:attribute name="NotificationLanguage" type="s:string" />
+        <s:attribute name="Channel" type="s:string" />
+        <s:attribute name="ShortCode" type="s:string" />
+      </s:complexType>
+      <s:simpleType name="enumOptInOut">
+        <s:restriction base="s:string">
+          <s:enumeration value="sms" />
+          <s:enumeration value="email" />
+          <s:enumeration value="push" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="IsSubscribedResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IsSubscribedResponse" type="tns:IsSubscribedResponseType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="IsSubscribedResponseType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ResponseReferenceData" type="tns:ResponseReferenceDataType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Result" type="tns:IsSubscribedResultType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="IsSubscribedResultType">
+        <s:attribute name="IsSubscribed" type="tns:enumBool" />
+        <s:attribute name="IsFirstTime" type="tns:enumBool" />
+      </s:complexType>
+      <s:element name="AddTransaction">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AddTransactionRequest" type="tns:AddTransactionRequestType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="AddTransactionRequestType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="UserInfo" type="tns:UserInfoType" />
+          <s:element minOccurs="0" maxOccurs="1" name="ClientReferenceData" type="tns:ClientReferenceDataType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Parameters" type="tns:AddTransactionParametersType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="AddTransactionParametersType">
+        <s:attribute name="AccountID" type="s:string" />
+        <s:attribute name="ServiceNumber" type="s:string" />
+        <s:attribute default="0" name="Amount" type="s:integer" />
+        <s:attribute name="TransAppType" type="s:string" />
+        <s:attribute name="TransType" type="s:string" />
+        <s:attribute name="TransComment" type="s:string" />
+      </s:complexType>
+      <s:element name="AddTransactionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AddTransactionResponse" type="tns:AddTransactionResponseType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="AddTransactionResponseType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ResponseReferenceData" type="tns:ResponseReferenceDataType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Result" type="tns:AddTransactionResultType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="AddTransactionResultType">
+        <s:attribute name="AccountID" type="s:string" />
+        <s:attribute name="ServiceNumber" type="s:string" />
+        <s:attribute name="Balance" type="s:integer" />
+        <s:attribute name="CurrencyCode" type="s:string" />
+        <s:attribute name="CurrencySymbol" type="s:string" />
+        <s:attribute name="CurrencyDivisor" type="s:string" />
+        <s:attribute name="Status" type="s:string" />
+      </s:complexType>
+      <s:element name="AddTransactionNoBalUpdate">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AddTransactionNoBalUpdateRequest" type="tns:AddTransactionNoBalUpdateRequestType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="AddTransactionNoBalUpdateRequestType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="UserInfo" type="tns:UserInfoType" />
+          <s:element minOccurs="0" maxOccurs="1" name="ClientReferenceData" type="tns:ClientReferenceDataType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Parameters" type="tns:AddTransactionNoBalUpdateParametersType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="AddTransactionNoBalUpdateParametersType">
+        <s:attribute name="AccountID" type="s:string" />
+        <s:attribute name="ServiceNumber" type="s:string" />
+        <s:attribute default="0" name="Amount" type="s:integer" />
+        <s:attribute name="TransAppType" type="s:string" />
+        <s:attribute name="TransType" type="s:string" />
+        <s:attribute name="TransComment" type="s:string" />
+      </s:complexType>
+      <s:element name="AddTransactionNoBalUpdateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AddTransactionNoBalUpdateResponse" type="tns:AddTransactionNoBalUpdateResponseType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="AddTransactionNoBalUpdateResponseType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ResponseReferenceData" type="tns:ResponseReferenceDataType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Result" type="tns:AddTransactionNoBalUpdateResultType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="AddTransactionNoBalUpdateResultType">
+        <s:attribute name="AccountID" type="s:string" />
+        <s:attribute name="ServiceNumber" type="s:string" />
+        <s:attribute name="Balance" type="s:integer" />
+        <s:attribute name="CurrencyCode" type="s:string" />
+        <s:attribute name="CurrencySymbol" type="s:string" />
+        <s:attribute name="CurrencyDivisor" type="s:string" />
+        <s:attribute name="Status" type="s:string" />
+      </s:complexType>
+      <s:element name="IssueInstantPromo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IssueInstantPromoRequest" type="tns:IssueInstantPromoRequestType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="IssueInstantPromoRequestType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="UserInfo" type="tns:UserInfoType" />
+          <s:element minOccurs="0" maxOccurs="1" name="ClientReferenceData" type="tns:ClientReferenceDataType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Parameters" type="tns:IssueInstantPromoParametersType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="IssueInstantPromoParametersType">
+        <s:attribute name="AccountID" type="s:string" />
+        <s:attribute name="ServiceNumber" type="s:string" />
+        <s:attribute name="CouponCode" type="s:string" />
+        <s:attribute name="Amount" type="s:integer" />
+        <s:attribute default="instant" name="PromoType" type="tns:enumPromoType" />
+        <s:attribute name="StartDate" type="s:dateTime" use="required" />
+        <s:attribute name="EndDate" type="s:dateTime" use="required" />
+      </s:complexType>
+      <s:simpleType name="enumPromoType">
+        <s:restriction base="s:string">
+          <s:enumeration value="instant" />
+          <s:enumeration value="optin" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="IssueInstantPromoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IssueInstantPromoResponse" type="tns:IssueInstantPromoResponseType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="IssueInstantPromoResponseType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ResponseReferenceData" type="tns:ResponseReferenceDataType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Result" type="tns:IssueInstantPromoResultType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="IssueInstantPromoResultType">
+        <s:attribute name="AccountID" type="s:string" />
+        <s:attribute name="ServiceNumber" type="s:string" />
+        <s:attribute name="Balance" type="s:integer" />
+        <s:attribute name="CurrencyCode" type="s:string" />
+        <s:attribute name="CurrencySymbol" type="s:string" />
+        <s:attribute name="CurrencyDivisor" type="s:string" />
+        <s:attribute name="Status" type="s:string" />
+      </s:complexType>
+      <s:element name="LookupLocalValue">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LookupLocalValueRequest" type="tns:LookupLocalValueRequestType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="LookupLocalValueRequestType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="UserInfo" type="tns:UserInfoType" />
+          <s:element minOccurs="0" maxOccurs="1" name="ClientReferenceData" type="tns:ClientReferenceDataType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Parameters" type="tns:LookupLocalValueParametersType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="LookupLocalValueParametersType">
+        <s:attribute name="Amount" type="s:integer" />
+        <s:attribute name="CarrierCode" type="s:string" />
+        <s:attribute name="CountryCode" type="s:string" />
+        <s:attribute name="CurrencyCode" type="s:string" />
+        <s:attribute name="PlanCode" type="s:string" />
+      </s:complexType>
+      <s:element name="LookupLocalValueResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LookupLocalValueResponse" type="tns:LookupLocalValueResponseType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="LookupLocalValueResponseType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ResponseReferenceData" type="tns:ResponseReferenceDataType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Result" type="tns:LookupLocalValueResultType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="LookupLocalValueResultType">
+        <s:attribute name="LocalCurrency" type="s:string" />
+        <s:attribute name="LocalAmount" type="s:string" />
+        <s:attribute name="LocalDivisor" type="s:string" />
+      </s:complexType>
+      <s:element name="LookupBiller">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LookupBillerRequest" type="tns:LookupBillerRequestType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="LookupBillerRequestType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="UserInfo" type="tns:UserInfoType" />
+          <s:element minOccurs="0" maxOccurs="1" name="ClientReferenceData" type="tns:ClientReferenceDataType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Parameters" type="tns:LookupBillerParametersType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="LookupBillerParametersType">
+        <s:attribute name="AccountID" type="s:string" />
+        <s:attribute name="ServiceNumber" type="s:string" />
+        <s:attribute name="PartialName" type="s:string" />
+        <s:attribute name="ListCountLimit" type="s:integer" />
+      </s:complexType>
+      <s:element name="LookupBillerResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LookupBillerResponse" type="tns:LookupBillerResponseType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="LookupBillerResponseType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ResponseReferenceData" type="tns:ResponseReferenceDataType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Result" type="tns:LookupBillerResultType" />
+          <s:element minOccurs="0" maxOccurs="1" name="BillerList" type="tns:ArrayOfBillerType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="LookupBillerResultType">
+        <s:attribute name="HasMoreData" type="tns:enumBool" />
+      </s:complexType>
+      <s:complexType name="ArrayOfBillerType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Biller" type="tns:BillerType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="BillerType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="BillChoice" type="tns:BillChoiceType" />
+        </s:sequence>
+        <s:attribute name="billerName" type="s:string" />
+        <s:attribute name="isCreditCard" type="s:boolean" />
+        <s:attribute name="billerID" type="s:string" />
+        <s:attribute name="originalBillerID" type="s:string" />
+      </s:complexType>
+      <s:complexType name="BillChoiceType">
+        <s:attribute name="productID" type="s:string" />
+        <s:attribute name="originalProductID" type="s:string" />
+        <s:attribute name="productDescription" type="s:string" />
+        <s:attribute name="deliveryMethod" type="s:string" />
+        <s:attribute name="billType" type="s:string" />
+      </s:complexType>
+      <s:element name="PostPayment">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PostPaymentRequest" type="tns:PostPaymentRequestType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="PostPaymentRequestType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="UserInfo" type="tns:UserInfoType" />
+          <s:element minOccurs="0" maxOccurs="1" name="ClientReferenceData" type="tns:ClientReferenceDataType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Parameters" type="tns:PostPaymentParametersType" />
+          <s:element minOccurs="0" maxOccurs="1" name="DataList" type="tns:FieldType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PostPaymentParametersType">
+        <s:attribute name="AccountID" type="s:string" />
+        <s:attribute name="ServiceNumber" type="s:string" />
+        <s:attribute name="CustomerAccount" type="s:string" />
+        <s:attribute name="BillerID" type="s:string" />
+        <s:attribute name="ProductID" type="s:string" />
+        <s:attribute name="DeliveryMethod" type="tns:enumDeliveryMethodType" use="required" />
+        <s:attribute name="Amount" type="s:integer" />
+        <s:attribute name="ValidateOnly" type="tns:enumBool" />
+      </s:complexType>
+      <s:simpleType name="enumDeliveryMethodType">
+        <s:restriction base="s:string">
+          <s:enumeration value="nextday" />
+          <s:enumeration value="creditcard" />
+          <s:enumeration value="standard" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="FieldType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Data">
+            <s:complexType>
+              <s:attribute name="Value" type="s:string" />
+              <s:attribute name="Name" type="s:string" />
+            </s:complexType>
+          </s:element>
+        </s:sequence>
+        <s:attribute name="Type" type="tns:enumFieldType" use="required" />
+      </s:complexType>
+      <s:simpleType name="enumFieldType">
+        <s:restriction base="s:string">
+          <s:enumeration value="fields" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="PostPaymentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PostPaymentResponse" type="tns:PostPaymentResponseType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="PostPaymentResponseType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ResponseReferenceData" type="tns:ResponseReferenceDataType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Result" type="tns:PostPaymentResultType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PostPaymentResultType">
+        <s:attribute name="BillerName" type="s:string" />
+        <s:attribute name="EntryDate" type="s:string" />
+        <s:attribute name="EntryTime" type="s:string" />
+        <s:attribute name="ReceiveDate" type="s:string" />
+        <s:attribute name="ReceiveTime" type="s:string" />
+        <s:attribute name="BPTransactionID" type="s:integer" />
+        <s:attribute name="CompanyFee" type="s:integer" />
+        <s:attribute name="Commission" type="s:integer" />
+        <s:attribute name="BillAmount" type="s:integer" />
+        <s:attribute name="BillReceipt" type="s:string" />
+        <s:attribute name="Last4OfAccount" type="s:string" />
+      </s:complexType>
+      <s:element name="RedeemRewards">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RedeemRewardsRequest" type="tns:RedeemRewardsRequestType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="RedeemRewardsRequestType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="UserInfo" type="tns:UserInfoType" />
+          <s:element minOccurs="0" maxOccurs="1" name="ClientReferenceData" type="tns:ClientReferenceDataType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Parameters" type="tns:RedeemRewardsParametersType" />
+          <s:element minOccurs="0" maxOccurs="1" name="DataList" type="tns:OrderDetailType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="RedeemRewardsParametersType">
+        <s:attribute name="AccountID" type="s:string" />
+        <s:attribute name="ServiceNumber" type="s:string" />
+        <s:attribute name="InvoiceNumber" type="s:string" />
+        <s:attribute default="0" name="RedemptionAmount" type="s:integer" />
+        <s:attribute name="OrderNumber" type="s:string" />
+        <s:attribute name="NotificationLanguage" type="s:string" />
+        <s:attribute name="SendSMS" type="tns:enumBool" use="required" />
+        <s:attribute name="SendEmail" type="tns:enumBool" use="required" />
+        <s:attribute name="NotificationEmail" type="s:string" />
+        <s:attribute name="NotificationMobile" type="s:string" />
+      </s:complexType>
+      <s:complexType name="OrderDetailType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Data">
+            <s:complexType>
+              <s:attribute name="CatalogItemNumber" type="s:string" />
+              <s:attribute name="CatalogItemDescription" type="s:string" />
+              <s:attribute name="Quantity" type="s:integer" />
+              <s:attribute name="OrderLineNumber" type="s:integer" />
+            </s:complexType>
+          </s:element>
+        </s:sequence>
+        <s:attribute name="Type" type="tns:enumOrderDetailType" use="required" />
+      </s:complexType>
+      <s:simpleType name="enumOrderDetailType">
+        <s:restriction base="s:string">
+          <s:enumeration value="order_detail" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="RedeemRewardsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RedeemRewardsResponse" type="tns:RedeemRewardsResponseType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="RedeemRewardsResponseType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ResponseReferenceData" type="tns:ResponseReferenceDataType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Result" type="tns:RedeemRewardsResultType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="RedeemRewardsResultType">
+        <s:attribute name="AccountID" type="s:string" />
+        <s:attribute name="ServiceNumber" type="s:string" />
+        <s:attribute name="Rewards" type="s:integer" />
+      </s:complexType>
+      <s:element name="ReturnRewards">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnRewardsRequest" type="tns:ReturnRewardsRequestType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ReturnRewardsRequestType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="UserInfo" type="tns:UserInfoType" />
+          <s:element minOccurs="0" maxOccurs="1" name="ClientReferenceData" type="tns:ClientReferenceDataType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Parameters" type="tns:ReturnRewardsParametersType" />
+          <s:element minOccurs="0" maxOccurs="1" name="DataList" type="tns:OrderDetailType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ReturnRewardsParametersType">
+        <s:attribute name="AccountID" type="s:string" />
+        <s:attribute name="ServiceNumber" type="s:string" />
+        <s:attribute name="InvoiceNumber" type="s:string" />
+        <s:attribute default="0" name="ReturnAmount" type="s:integer" />
+        <s:attribute name="OrderNumber" type="s:string" />
+        <s:attribute name="OriginalOrderNumber" type="s:string" />
+        <s:attribute name="NotificationLanguage" type="s:string" />
+        <s:attribute name="SendSMS" type="tns:enumBool" use="required" />
+        <s:attribute name="SendEmail" type="tns:enumBool" use="required" />
+        <s:attribute name="NotificationEmail" type="s:string" />
+        <s:attribute name="NotificationMobile" type="s:string" />
+      </s:complexType>
+      <s:element name="ReturnRewardsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnRewardsResponse" type="tns:ReturnRewardsResponseType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ReturnRewardsResponseType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ResponseReferenceData" type="tns:ResponseReferenceDataType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Result" type="tns:ReturnRewardsResultType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ReturnRewardsResultType">
+        <s:attribute name="AccountID" type="s:string" />
+        <s:attribute name="ServiceNumber" type="s:string" />
+        <s:attribute name="Rewards" type="s:integer" />
+      </s:complexType>
+      <s:element name="GetTermsAndConditions">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTermsAndConditionsRequest" type="tns:GetTermsAndConditionsRequestType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="GetTermsAndConditionsRequestType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="UserInfo" type="tns:UserInfoType" />
+          <s:element minOccurs="0" maxOccurs="1" name="ClientReferenceData" type="tns:ClientReferenceDataType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Parameters" type="tns:GetTermsAndConditionsParametersType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="GetTermsAndConditionsParametersType">
+        <s:attribute name="DataType" type="tns:enumTermsAndConditionsType" use="required" />
+        <s:attribute name="PlanCode" type="s:string" />
+        <s:attribute name="Locale" type="s:string" />
+        <s:attribute name="CarrierCode" type="s:string" />
+        <s:attribute name="CountryCode" type="s:string" />
+        <s:attribute default="0" name="Amount" type="s:integer" />
+        <s:attribute name="TermsAndCondOption" type="s:string" />
+        <s:attribute name="ProductType" type="s:string" />
+      </s:complexType>
+      <s:simpleType name="enumTermsAndConditionsType">
+        <s:restriction base="s:string">
+          <s:enumeration value="terms_and_conditions" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="GetTermsAndConditionsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTermsAndConditionsResponse" type="tns:GetTermsAndConditionsResponseType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="GetTermsAndConditionsResponseType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ResponseReferenceData" type="tns:ResponseReferenceDataType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Result" type="tns:GetTermsAndConditionsResultType" />
+          <s:element minOccurs="0" maxOccurs="1" name="DataList" type="tns:ArrayOfTermsAndConditionsTypeData" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="GetTermsAndConditionsResultType">
+        <s:attribute name="PlanCode" type="s:string" />
+      </s:complexType>
+      <s:complexType name="ArrayOfTermsAndConditionsTypeData">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Data">
+            <s:complexType>
+              <s:attribute name="Locale" type="s:string" />
+              <s:attribute name="Section" type="s:string" />
+              <s:attribute name="Message" type="s:string" />
+              <s:attribute name="MediaType" type="s:string" />
+            </s:complexType>
+          </s:element>
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SendSecCode">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SendSecCodeRequest" type="tns:SendSecCodeRequestType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="SendSecCodeRequestType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="UserInfo" type="tns:UserInfoType" />
+          <s:element minOccurs="0" maxOccurs="1" name="ClientReferenceData" type="tns:ClientReferenceDataType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Parameters" type="tns:SendSecCodeParametersType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SendSecCodeParametersType">
+        <s:attribute name="ServiceNumber" type="s:string" />
+        <s:attribute name="ToMobile" type="s:string" />
+        <s:attribute name="ToEmail" type="s:string" />
+        <s:attribute name="NotifTemplate" type="s:string" />
+        <s:attribute name="NotificationLanguage" type="s:string" />
+        <s:attribute name="CodeOnFile" type="tns:enumBool" use="required" />
+      </s:complexType>
+      <s:element name="SendSecCodeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SendSecCodeResponse" type="tns:SendSecCodeResponseType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="SendSecCodeResponseType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ResponseReferenceData" type="tns:ResponseReferenceDataType" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="BillingCreateReceipt">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BillingCreateReceiptRequest" type="tns:BillingCreateReceiptRequestType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="BillingCreateReceiptRequestType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="UserInfo" type="tns:UserInfoType" />
+          <s:element minOccurs="0" maxOccurs="1" name="ClientReferenceData" type="tns:ClientReferenceDataType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Parameters" type="tns:BillingCreateReceiptParametersType" />
+          <s:element minOccurs="0" maxOccurs="1" name="InvoiceList" type="tns:ArrayOfBillingCreateReceiptInvoiceType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="BillingCreateReceiptParametersType">
+        <s:attribute name="AccountID" type="s:string" />
+        <s:attribute name="CustomerID" type="s:string" />
+        <s:attribute name="ServiceAccountType" type="s:string" />
+        <s:attribute name="ReceiptDate" type="s:string" />
+        <s:attribute name="ReceiptAmount" type="s:decimal" use="required" />
+        <s:attribute name="BankId" type="s:string" />
+        <s:attribute name="PaymentMethodId" type="s:string" />
+        <s:attribute name="ReceiptSource" type="s:string" />
+        <s:attribute name="ReceiptStatus" type="s:string" />
+      </s:complexType>
+      <s:complexType name="ArrayOfBillingCreateReceiptInvoiceType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Invoice" type="tns:BillingCreateReceiptInvoiceType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="BillingCreateReceiptInvoiceType">
+        <s:attribute name="InvoiceNum" type="s:string" />
+        <s:attribute name="ApplyAmount" type="s:decimal" use="required" />
+      </s:complexType>
+      <s:element name="BillingCreateReceiptResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BillingCreateReceiptResponse" type="tns:BillingCreateReceiptResponseType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="BillingCreateReceiptResponseType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ResponseReferenceData" type="tns:ResponseReferenceDataType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Result" type="tns:BillingCreateReceiptResultType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="BillingCreateReceiptResultType">
+        <s:attribute name="ReceiptId" type="s:string" />
+      </s:complexType>
+      <s:element name="BillingReverseReceipt">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BillingReverseReceiptRequest" type="tns:BillingReverseReceiptRequestType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="BillingReverseReceiptRequestType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="UserInfo" type="tns:UserInfoType" />
+          <s:element minOccurs="0" maxOccurs="1" name="ClientReferenceData" type="tns:ClientReferenceDataType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Parameters" type="tns:BillingReverseReceiptParametersType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="BillingReverseReceiptParametersType">
+        <s:attribute name="ReceiptID" type="s:int" use="required" />
+        <s:attribute name="ReverseCode" type="s:string" />
+        <s:attribute name="ReverseReason" type="s:string" />
+        <s:attribute name="ReverseSource" type="s:string" />
+      </s:complexType>
+      <s:element name="BillingReverseReceiptResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BillingReverseReceiptResponse" type="tns:BillingReverseReceiptResponseType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="BillingReverseReceiptResponseType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ResponseReferenceData" type="tns:ResponseReferenceDataType" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="BillingCreatePrePaymentPO">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BillingCreatePrePaymentPORequest" type="tns:BillingCreatePrePaymentPORequestType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="BillingCreatePrePaymentPORequestType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="UserInfo" type="tns:UserInfoType" />
+          <s:element minOccurs="0" maxOccurs="1" name="ClientReferenceData" type="tns:ClientReferenceDataType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Parameters" type="tns:BillingCreatePrePaymentPOParametersType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="BillingCreatePrePaymentPOParametersType">
+        <s:attribute name="AccountID" type="s:string" />
+        <s:attribute name="CustomerID" type="s:string" />
+        <s:attribute name="ServiceAccountType" type="s:string" />
+        <s:attribute name="PrepayDate" type="s:string" />
+        <s:attribute name="PrepayAmount" type="s:decimal" use="required" />
+        <s:attribute name="PrepaySource" type="s:string" />
+        <s:attribute name="PrepayStatus" type="s:string" />
+      </s:complexType>
+      <s:element name="BillingCreatePrePaymentPOResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BillingCreatePrePaymentPOResponse" type="tns:BillingCreatePrePaymentPOResponseType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="BillingCreatePrePaymentPOResponseType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ResponseReferenceData" type="tns:ResponseReferenceDataType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Result" type="tns:BillingCreatePrePaymentPOResponseResultType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="BillingCreatePrePaymentPOResponseResultType">
+        <s:attribute name="PrepayId" type="s:string" />
+      </s:complexType>
+      <s:element name="GetPromos">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPromosRequest" type="tns:GetPromosRequestType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="GetPromosRequestType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="UserInfo" type="tns:UserInfoType" />
+          <s:element minOccurs="0" maxOccurs="1" name="ClientReferenceData" type="tns:ClientReferenceDataType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Parameters" type="tns:GetPromosParametersType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="GetPromosParametersType">
+        <s:attribute name="OffsetDays" type="s:integer" />
+      </s:complexType>
+      <s:element name="GetPromosResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPromosResponse" type="tns:GetPromosResponseType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="GetPromosResponseType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ResponseReferenceData" type="tns:ResponseReferenceDataType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Result" type="tns:GetPromosResultType" />
+          <s:element minOccurs="0" maxOccurs="1" name="DataList" type="tns:ArrayOfPromoTypeData" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="GetPromosResultType">
+        <s:attribute name="AccountID" type="s:string" />
+        <s:attribute name="ServiceNumber" type="s:string" />
+      </s:complexType>
+      <s:complexType name="ArrayOfPromoTypeData">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Data">
+            <s:complexType>
+              <s:attribute name="Locale" type="s:string" />
+              <s:attribute name="Country" type="s:string" />
+              <s:attribute name="CountryName" type="s:string" />
+              <s:attribute name="Carrier" type="s:string" />
+              <s:attribute name="CarrierName" type="s:string" />
+              <s:attribute name="PromoName" type="s:string" />
+              <s:attribute name="PromoSubheader" type="s:string" />
+              <s:attribute name="PromoDescription" type="s:string" />
+              <s:attribute name="ProductType" type="s:string" />
+              <s:attribute name="PromoType" type="s:string" />
+              <s:attribute name="StartAt" type="s:string" />
+              <s:attribute name="EndAt" type="s:string" />
+            </s:complexType>
+          </s:element>
+        </s:sequence>
+      </s:complexType>
+      <s:element name="PromoEligibility">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PromoEligibilityRequest" type="tns:PromoEligibilityRequestType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="PromoEligibilityRequestType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="UserInfo" type="tns:UserInfoType" />
+          <s:element minOccurs="0" maxOccurs="1" name="ClientReferenceData" type="tns:ClientReferenceDataType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Parameters" type="tns:PromoEligibilityParametersType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PromoEligibilityParametersType">
+        <s:attribute name="AccountID" type="s:string" />
+        <s:attribute name="CustomerID" type="s:string" />
+        <s:attribute name="PromoAction" type="tns:enumPspPromoAction" use="required" />
+        <s:attribute name="PromoCode" type="s:string" />
+        <s:attribute name="PromoPayMethod" type="tns:enumPspPayMethod" use="required" />
+        <s:attribute name="ProductClassID" type="s:string" />
+        <s:attribute default="0" name="Amount" type="s:integer" />
+      </s:complexType>
+      <s:simpleType name="enumPspPromoAction">
+        <s:restriction base="s:string">
+          <s:enumeration value="RECHARGE" />
+          <s:enumeration value="PURCHASE" />
+          <s:enumeration value="REGISTRATION" />
+          <s:enumeration value="REDEMPTION" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="PromoEligibilityResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PromoEligibilityResponse" type="tns:PromoEligibilityResponseType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="PromoEligibilityResponseType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ResponseReferenceData" type="tns:ResponseReferenceDataType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Result" type="tns:PromoEligibilityResultType" />
+          <s:element minOccurs="0" maxOccurs="1" name="PromoDetails" type="tns:ArrayOfPromoDetailsTypeData" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PromoEligibilityResultType">
+        <s:attribute name="BrMemberId" type="s:string" />
+        <s:attribute name="BrCustomerCtlnum" type="s:string" />
+      </s:complexType>
+      <s:complexType name="ArrayOfPromoDetailsTypeData">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Data">
+            <s:complexType>
+              <s:attribute name="PsTransactionId" type="s:string" />
+              <s:attribute name="StartDate" type="s:string" />
+              <s:attribute name="EndDate" type="s:string" />
+              <s:attribute name="RewardMethod" type="s:string" />
+              <s:attribute name="CheckEligibilityExpiryTimestamp" type="s:string" />
+              <s:attribute name="PromoCode" type="s:string" />
+              <s:attribute name="PromoCodeDisplayLanguage" type="s:string" />
+              <s:attribute name="PromoCodeDisplayText" type="s:string" />
+              <s:attribute name="PromoName" type="s:string" />
+              <s:attribute name="PromoDescription" type="s:string" />
+              <s:attribute name="PromoClass" type="s:string" />
+              <s:attribute name="RewardValueType" type="s:string" />
+              <s:attribute name="RewardValue" type="s:string" />
+              <s:attribute name="CampaignName" type="s:string" />
+              <s:attribute name="CampaignDescription" type="s:string" />
+            </s:complexType>
+          </s:element>
+        </s:sequence>
+      </s:complexType>
+      <s:element name="PromoCancel">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PromoCancelRequest" type="tns:PromoCancelRequestType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="PromoCancelRequestType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="UserInfo" type="tns:UserInfoType" />
+          <s:element minOccurs="0" maxOccurs="1" name="ClientReferenceData" type="tns:ClientReferenceDataType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Parameters" type="tns:PromoCancelParametersType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PromoCancelParametersType">
+        <s:attribute name="PsTransactionId" type="s:string" />
+      </s:complexType>
+      <s:element name="PromoCancelResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PromoCancelResponse" type="tns:PromoCancelResponseType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="PromoCancelResponseType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ResponseReferenceData" type="tns:ResponseReferenceDataType" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="Undo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UndoRequest" type="tns:UndoRequestType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="UndoRequestType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="UserInfo" type="tns:UserInfoType" />
+          <s:element minOccurs="0" maxOccurs="1" name="ClientReferenceData" type="tns:ClientReferenceDataType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Parameters" type="tns:UndoParametersType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="UndoParametersType">
+        <s:attribute name="RetailerControlNumber" type="s:string" />
+        <s:attribute name="ServiceNumber" type="s:string" />
+        <s:attribute name="BillTransactionID" type="s:string" />
+      </s:complexType>
+      <s:element name="UndoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UndoResponse" type="tns:UndoResponseType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="UndoResponseType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ResponseReferenceData" type="tns:ResponseReferenceDataType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Result" type="tns:UndoResultType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="UndoResultType">
+        <s:attribute name="AccountID" type="s:string" />
+        <s:attribute name="ServiceNumber" type="s:string" />
+        <s:attribute name="Balance" type="s:integer" />
+        <s:attribute name="CurrencyCode" type="s:string" />
+        <s:attribute name="CurrencySymbol" type="s:string" />
+        <s:attribute name="CurrencyDivisor" type="s:string" />
+        <s:attribute name="Status" type="s:string" />
+      </s:complexType>
+      <s:element name="QuoteProduct">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="QuoteProductRequest" type="tns:QuoteProductRequestType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="QuoteProductRequestType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="UserInfo" type="tns:UserInfoType" />
+          <s:element minOccurs="0" maxOccurs="1" name="ClientReferenceData" type="tns:ClientReferenceDataType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Parameters" type="tns:QuoteProductParametersType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="QuoteProductParametersType">
+        <s:attribute name="PlanCode" type="s:string" />
+        <s:attribute name="ServiceNumber" type="s:string" />
+        <s:attribute name="AccountID" type="s:string" />
+        <s:attribute name="FromAccountID" type="s:string" />
+        <s:attribute name="FromServiceNumber" type="s:string" />
+        <s:attribute name="CarrierCode" type="s:string" />
+        <s:attribute name="Amount" type="s:string" />
+        <s:attribute name="CurrencyCode" type="s:string" />
+        <s:attribute name="RecipientPhone" type="s:string" />
+        <s:attribute name="QuoteOnly" type="s:string" />
+      </s:complexType>
+      <s:element name="QuoteProductResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="QuoteProductResponse" type="tns:QuoteProductResponseType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="QuoteProductResponseType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ResponseReferenceData" type="tns:ResponseReferenceDataType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Result" type="tns:QuoteProductResultType" />
+          <s:element minOccurs="0" maxOccurs="1" name="MissingParameters" type="tns:ArrayOfMissingParameter" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="QuoteProductResultType">
+        <s:attribute name="Amount" type="s:string" />
+        <s:attribute name="CurrencyDivisor" type="s:string" />
+        <s:attribute name="CurrencyCode" type="s:string" />
+        <s:attribute name="CountryCode" type="s:string" />
+        <s:attribute name="CurrencySymbol" type="s:string" />
+        <s:attribute name="ResponseMessage" type="s:string" />
+        <s:attribute name="QuoteId" type="s:string" />
+        <s:attribute name="QuoteFx" type="s:string" />
+        <s:attribute name="QuotePathId" type="s:string" />
+        <s:attribute name="QuoteAmount" type="s:string" />
+        <s:attribute name="QuoteCurrency" type="s:string" />
+        <s:attribute name="QuoteExpires" type="s:string" />
+      </s:complexType>
+      <s:complexType name="ArrayOfMissingParameter">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="MissingParameter" type="tns:MissingParameter" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="MissingParameter">
+        <s:attribute name="FieldName" type="s:string" />
+        <s:attribute name="FieldType" type="s:string" />
+        <s:attribute name="MaxLength" type="s:string" />
+        <s:attribute name="Required" type="s:boolean" use="required" />
+      </s:complexType>
+    </s:schema>
+    <s:schema elementFormDefault="qualified">
+      <s:complexType name="UpdatePlanDestinationNumberType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Data">
+            <s:complexType>
+              <s:attribute name="PhoneNumber" type="s:string" />
+              <s:attribute name="NewPhoneNumber" type="s:string" />
+            </s:complexType>
+          </s:element>
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="SessionStartSoapIn">
+    <wsdl:part name="parameters" element="tns:SessionStart" />
+  </wsdl:message>
+  <wsdl:message name="SessionStartSoapOut">
+    <wsdl:part name="parameters" element="tns:SessionStartResponse" />
+  </wsdl:message>
+  <wsdl:message name="SessionEndSoapIn">
+    <wsdl:part name="parameters" element="tns:SessionEnd" />
+  </wsdl:message>
+  <wsdl:message name="SessionEndSoapOut">
+    <wsdl:part name="parameters" element="tns:SessionEndResponse" />
+  </wsdl:message>
+  <wsdl:message name="AccessValidationSoapIn">
+    <wsdl:part name="parameters" element="tns:AccessValidation" />
+  </wsdl:message>
+  <wsdl:message name="AccessValidationSoapOut">
+    <wsdl:part name="parameters" element="tns:AccessValidationResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetVersionSoapIn">
+    <wsdl:part name="parameters" element="tns:GetVersion" />
+  </wsdl:message>
+  <wsdl:message name="GetVersionSoapOut">
+    <wsdl:part name="parameters" element="tns:GetVersionResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateAccountSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateAccount" />
+  </wsdl:message>
+  <wsdl:message name="CreateAccountSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateAccountResponse" />
+  </wsdl:message>
+  <wsdl:message name="QueryAccountSoapIn">
+    <wsdl:part name="parameters" element="tns:QueryAccount" />
+  </wsdl:message>
+  <wsdl:message name="QueryAccountSoapOut">
+    <wsdl:part name="parameters" element="tns:QueryAccountResponse" />
+  </wsdl:message>
+  <wsdl:message name="RechargeSoapIn">
+    <wsdl:part name="parameters" element="tns:Recharge" />
+  </wsdl:message>
+  <wsdl:message name="RechargeSoapOut">
+    <wsdl:part name="parameters" element="tns:RechargeResponse" />
+  </wsdl:message>
+  <wsdl:message name="ReverseSoapIn">
+    <wsdl:part name="parameters" element="tns:Reverse" />
+  </wsdl:message>
+  <wsdl:message name="ReverseSoapOut">
+    <wsdl:part name="parameters" element="tns:ReverseResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdatePlanSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdatePlan" />
+  </wsdl:message>
+  <wsdl:message name="UpdatePlanSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdatePlanResponse" />
+  </wsdl:message>
+  <wsdl:message name="ReversePlanSoapIn">
+    <wsdl:part name="parameters" element="tns:ReversePlan" />
+  </wsdl:message>
+  <wsdl:message name="ReversePlanSoapOut">
+    <wsdl:part name="parameters" element="tns:ReversePlanResponse" />
+  </wsdl:message>
+  <wsdl:message name="RefundSoapIn">
+    <wsdl:part name="parameters" element="tns:Refund" />
+  </wsdl:message>
+  <wsdl:message name="RefundSoapOut">
+    <wsdl:part name="parameters" element="tns:RefundResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetProductsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetProducts" />
+  </wsdl:message>
+  <wsdl:message name="GetProductsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetProductsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetProductNotesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetProductNotes" />
+  </wsdl:message>
+  <wsdl:message name="GetProductNotesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetProductNotesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCommissionsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCommissions" />
+  </wsdl:message>
+  <wsdl:message name="GetCommissionsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCommissionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateAccountSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateAccount" />
+  </wsdl:message>
+  <wsdl:message name="UpdateAccountSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateAccountResponse" />
+  </wsdl:message>
+  <wsdl:message name="QueryByANISoapIn">
+    <wsdl:part name="parameters" element="tns:QueryByANI" />
+  </wsdl:message>
+  <wsdl:message name="QueryByANISoapOut">
+    <wsdl:part name="parameters" element="tns:QueryByANIResponse" />
+  </wsdl:message>
+  <wsdl:message name="ValidateRechargeSoapIn">
+    <wsdl:part name="parameters" element="tns:ValidateRecharge" />
+  </wsdl:message>
+  <wsdl:message name="ValidateRechargeSoapOut">
+    <wsdl:part name="parameters" element="tns:ValidateRechargeResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddNoteSoapIn">
+    <wsdl:part name="parameters" element="tns:AddNote" />
+  </wsdl:message>
+  <wsdl:message name="AddNoteSoapOut">
+    <wsdl:part name="parameters" element="tns:AddNoteResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateReferralSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateReferral" />
+  </wsdl:message>
+  <wsdl:message name="CreateReferralSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateReferralResponse" />
+  </wsdl:message>
+  <wsdl:message name="SubscribeSoapIn">
+    <wsdl:part name="parameters" element="tns:Subscribe" />
+  </wsdl:message>
+  <wsdl:message name="SubscribeSoapOut">
+    <wsdl:part name="parameters" element="tns:SubscribeResponse" />
+  </wsdl:message>
+  <wsdl:message name="UnSubscribeSoapIn">
+    <wsdl:part name="parameters" element="tns:UnSubscribe" />
+  </wsdl:message>
+  <wsdl:message name="UnSubscribeSoapOut">
+    <wsdl:part name="parameters" element="tns:UnSubscribeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IsSubscribedSoapIn">
+    <wsdl:part name="parameters" element="tns:IsSubscribed" />
+  </wsdl:message>
+  <wsdl:message name="IsSubscribedSoapOut">
+    <wsdl:part name="parameters" element="tns:IsSubscribedResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddTransactionSoapIn">
+    <wsdl:part name="parameters" element="tns:AddTransaction" />
+  </wsdl:message>
+  <wsdl:message name="AddTransactionSoapOut">
+    <wsdl:part name="parameters" element="tns:AddTransactionResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddTransactionNoBalUpdateSoapIn">
+    <wsdl:part name="parameters" element="tns:AddTransactionNoBalUpdate" />
+  </wsdl:message>
+  <wsdl:message name="AddTransactionNoBalUpdateSoapOut">
+    <wsdl:part name="parameters" element="tns:AddTransactionNoBalUpdateResponse" />
+  </wsdl:message>
+  <wsdl:message name="IssueInstantPromoSoapIn">
+    <wsdl:part name="parameters" element="tns:IssueInstantPromo" />
+  </wsdl:message>
+  <wsdl:message name="IssueInstantPromoSoapOut">
+    <wsdl:part name="parameters" element="tns:IssueInstantPromoResponse" />
+  </wsdl:message>
+  <wsdl:message name="LookupLocalValueSoapIn">
+    <wsdl:part name="parameters" element="tns:LookupLocalValue" />
+  </wsdl:message>
+  <wsdl:message name="LookupLocalValueSoapOut">
+    <wsdl:part name="parameters" element="tns:LookupLocalValueResponse" />
+  </wsdl:message>
+  <wsdl:message name="LookupBillerSoapIn">
+    <wsdl:part name="parameters" element="tns:LookupBiller" />
+  </wsdl:message>
+  <wsdl:message name="LookupBillerSoapOut">
+    <wsdl:part name="parameters" element="tns:LookupBillerResponse" />
+  </wsdl:message>
+  <wsdl:message name="PostPaymentSoapIn">
+    <wsdl:part name="parameters" element="tns:PostPayment" />
+  </wsdl:message>
+  <wsdl:message name="PostPaymentSoapOut">
+    <wsdl:part name="parameters" element="tns:PostPaymentResponse" />
+  </wsdl:message>
+  <wsdl:message name="RedeemRewardsSoapIn">
+    <wsdl:part name="parameters" element="tns:RedeemRewards" />
+  </wsdl:message>
+  <wsdl:message name="RedeemRewardsSoapOut">
+    <wsdl:part name="parameters" element="tns:RedeemRewardsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ReturnRewardsSoapIn">
+    <wsdl:part name="parameters" element="tns:ReturnRewards" />
+  </wsdl:message>
+  <wsdl:message name="ReturnRewardsSoapOut">
+    <wsdl:part name="parameters" element="tns:ReturnRewardsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTermsAndConditionsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTermsAndConditions" />
+  </wsdl:message>
+  <wsdl:message name="GetTermsAndConditionsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTermsAndConditionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="SendSecCodeSoapIn">
+    <wsdl:part name="parameters" element="tns:SendSecCode" />
+  </wsdl:message>
+  <wsdl:message name="SendSecCodeSoapOut">
+    <wsdl:part name="parameters" element="tns:SendSecCodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="BillingCreateReceiptSoapIn">
+    <wsdl:part name="parameters" element="tns:BillingCreateReceipt" />
+  </wsdl:message>
+  <wsdl:message name="BillingCreateReceiptSoapOut">
+    <wsdl:part name="parameters" element="tns:BillingCreateReceiptResponse" />
+  </wsdl:message>
+  <wsdl:message name="BillingReverseReceiptSoapIn">
+    <wsdl:part name="parameters" element="tns:BillingReverseReceipt" />
+  </wsdl:message>
+  <wsdl:message name="BillingReverseReceiptSoapOut">
+    <wsdl:part name="parameters" element="tns:BillingReverseReceiptResponse" />
+  </wsdl:message>
+  <wsdl:message name="BillingCreatePrePaymentPOSoapIn">
+    <wsdl:part name="parameters" element="tns:BillingCreatePrePaymentPO" />
+  </wsdl:message>
+  <wsdl:message name="BillingCreatePrePaymentPOSoapOut">
+    <wsdl:part name="parameters" element="tns:BillingCreatePrePaymentPOResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPromosSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPromos" />
+  </wsdl:message>
+  <wsdl:message name="GetPromosSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPromosResponse" />
+  </wsdl:message>
+  <wsdl:message name="PromoEligibilitySoapIn">
+    <wsdl:part name="parameters" element="tns:PromoEligibility" />
+  </wsdl:message>
+  <wsdl:message name="PromoEligibilitySoapOut">
+    <wsdl:part name="parameters" element="tns:PromoEligibilityResponse" />
+  </wsdl:message>
+  <wsdl:message name="PromoCancelSoapIn">
+    <wsdl:part name="parameters" element="tns:PromoCancel" />
+  </wsdl:message>
+  <wsdl:message name="PromoCancelSoapOut">
+    <wsdl:part name="parameters" element="tns:PromoCancelResponse" />
+  </wsdl:message>
+  <wsdl:message name="UndoSoapIn">
+    <wsdl:part name="parameters" element="tns:Undo" />
+  </wsdl:message>
+  <wsdl:message name="UndoSoapOut">
+    <wsdl:part name="parameters" element="tns:UndoResponse" />
+  </wsdl:message>
+  <wsdl:message name="QuoteProductSoapIn">
+    <wsdl:part name="parameters" element="tns:QuoteProduct" />
+  </wsdl:message>
+  <wsdl:message name="QuoteProductSoapOut">
+    <wsdl:part name="parameters" element="tns:QuoteProductResponse" />
+  </wsdl:message>
+  <wsdl:portType name="B2BSvcSoap">
+    <wsdl:operation name="SessionStart">
+      <wsdl:input message="tns:SessionStartSoapIn" />
+      <wsdl:output message="tns:SessionStartSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SessionEnd">
+      <wsdl:input message="tns:SessionEndSoapIn" />
+      <wsdl:output message="tns:SessionEndSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AccessValidation">
+      <wsdl:input message="tns:AccessValidationSoapIn" />
+      <wsdl:output message="tns:AccessValidationSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetVersion">
+      <wsdl:input message="tns:GetVersionSoapIn" />
+      <wsdl:output message="tns:GetVersionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateAccount">
+      <wsdl:input message="tns:CreateAccountSoapIn" />
+      <wsdl:output message="tns:CreateAccountSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="QueryAccount">
+      <wsdl:input message="tns:QueryAccountSoapIn" />
+      <wsdl:output message="tns:QueryAccountSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Recharge">
+      <wsdl:input message="tns:RechargeSoapIn" />
+      <wsdl:output message="tns:RechargeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Reverse">
+      <wsdl:input message="tns:ReverseSoapIn" />
+      <wsdl:output message="tns:ReverseSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePlan">
+      <wsdl:input message="tns:UpdatePlanSoapIn" />
+      <wsdl:output message="tns:UpdatePlanSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ReversePlan">
+      <wsdl:input message="tns:ReversePlanSoapIn" />
+      <wsdl:output message="tns:ReversePlanSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Refund">
+      <wsdl:input message="tns:RefundSoapIn" />
+      <wsdl:output message="tns:RefundSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProducts">
+      <wsdl:input message="tns:GetProductsSoapIn" />
+      <wsdl:output message="tns:GetProductsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetProductNotes">
+      <wsdl:input message="tns:GetProductNotesSoapIn" />
+      <wsdl:output message="tns:GetProductNotesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCommissions">
+      <wsdl:input message="tns:GetCommissionsSoapIn" />
+      <wsdl:output message="tns:GetCommissionsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAccount">
+      <wsdl:input message="tns:UpdateAccountSoapIn" />
+      <wsdl:output message="tns:UpdateAccountSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="QueryByANI">
+      <wsdl:input message="tns:QueryByANISoapIn" />
+      <wsdl:output message="tns:QueryByANISoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ValidateRecharge">
+      <wsdl:input message="tns:ValidateRechargeSoapIn" />
+      <wsdl:output message="tns:ValidateRechargeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddNote">
+      <wsdl:input message="tns:AddNoteSoapIn" />
+      <wsdl:output message="tns:AddNoteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateReferral">
+      <wsdl:input message="tns:CreateReferralSoapIn" />
+      <wsdl:output message="tns:CreateReferralSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Subscribe">
+      <wsdl:input message="tns:SubscribeSoapIn" />
+      <wsdl:output message="tns:SubscribeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UnSubscribe">
+      <wsdl:input message="tns:UnSubscribeSoapIn" />
+      <wsdl:output message="tns:UnSubscribeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IsSubscribed">
+      <wsdl:input message="tns:IsSubscribedSoapIn" />
+      <wsdl:output message="tns:IsSubscribedSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddTransaction">
+      <wsdl:input message="tns:AddTransactionSoapIn" />
+      <wsdl:output message="tns:AddTransactionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddTransactionNoBalUpdate">
+      <wsdl:input message="tns:AddTransactionNoBalUpdateSoapIn" />
+      <wsdl:output message="tns:AddTransactionNoBalUpdateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IssueInstantPromo">
+      <wsdl:input message="tns:IssueInstantPromoSoapIn" />
+      <wsdl:output message="tns:IssueInstantPromoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LookupLocalValue">
+      <wsdl:input message="tns:LookupLocalValueSoapIn" />
+      <wsdl:output message="tns:LookupLocalValueSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LookupBiller">
+      <wsdl:input message="tns:LookupBillerSoapIn" />
+      <wsdl:output message="tns:LookupBillerSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PostPayment">
+      <wsdl:input message="tns:PostPaymentSoapIn" />
+      <wsdl:output message="tns:PostPaymentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RedeemRewards">
+      <wsdl:input message="tns:RedeemRewardsSoapIn" />
+      <wsdl:output message="tns:RedeemRewardsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ReturnRewards">
+      <wsdl:input message="tns:ReturnRewardsSoapIn" />
+      <wsdl:output message="tns:ReturnRewardsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTermsAndConditions">
+      <wsdl:input message="tns:GetTermsAndConditionsSoapIn" />
+      <wsdl:output message="tns:GetTermsAndConditionsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendSecCode">
+      <wsdl:input message="tns:SendSecCodeSoapIn" />
+      <wsdl:output message="tns:SendSecCodeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BillingCreateReceipt">
+      <wsdl:input message="tns:BillingCreateReceiptSoapIn" />
+      <wsdl:output message="tns:BillingCreateReceiptSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BillingReverseReceipt">
+      <wsdl:input message="tns:BillingReverseReceiptSoapIn" />
+      <wsdl:output message="tns:BillingReverseReceiptSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BillingCreatePrePaymentPO">
+      <wsdl:input message="tns:BillingCreatePrePaymentPOSoapIn" />
+      <wsdl:output message="tns:BillingCreatePrePaymentPOSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPromos">
+      <wsdl:input message="tns:GetPromosSoapIn" />
+      <wsdl:output message="tns:GetPromosSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PromoEligibility">
+      <wsdl:input message="tns:PromoEligibilitySoapIn" />
+      <wsdl:output message="tns:PromoEligibilitySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PromoCancel">
+      <wsdl:input message="tns:PromoCancelSoapIn" />
+      <wsdl:output message="tns:PromoCancelSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Undo">
+      <wsdl:input message="tns:UndoSoapIn" />
+      <wsdl:output message="tns:UndoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="QuoteProduct">
+      <wsdl:input message="tns:QuoteProductSoapIn" />
+      <wsdl:output message="tns:QuoteProductSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="B2BSvcSoap" type="tns:B2BSvcSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="SessionStart">
+      <soap:operation soapAction="http://wsdl.idt.b2bapi.net/SessionStart" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SessionEnd">
+      <soap:operation soapAction="http://wsdl.idt.b2bapi.net/SessionEnd" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AccessValidation">
+      <soap:operation soapAction="http://wsdl.idt.b2bapi.net/AccessValidation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVersion">
+      <soap:operation soapAction="http://wsdl.idt.b2bapi.net/GetVersion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateAccount">
+      <soap:operation soapAction="http://wsdl.idt.b2bapi.net/CreateAccount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QueryAccount">
+      <soap:operation soapAction="http://wsdl.idt.b2bapi.net/QueryAccount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Recharge">
+      <soap:operation soapAction="http://wsdl.idt.b2bapi.net/Recharge" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Reverse">
+      <soap:operation soapAction="http://wsdl.idt.b2bapi.net/Reverse" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePlan">
+      <soap:operation soapAction="http://wsdl.idt.b2bapi.net/UpdatePlan" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReversePlan">
+      <soap:operation soapAction="http://wsdl.idt.b2bapi.net/ReversePlan" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Refund">
+      <soap:operation soapAction="http://wsdl.idt.b2bapi.net/Refund" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProducts">
+      <soap:operation soapAction="http://wsdl.idt.b2bapi.net/GetProducts" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProductNotes">
+      <soap:operation soapAction="http://wsdl.idt.b2bapi.net/GetProductNotes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCommissions">
+      <soap:operation soapAction="http://wsdl.idt.b2bapi.net/GetCommissions" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAccount">
+      <soap:operation soapAction="http://wsdl.idt.b2bapi.net/UpdateAccount" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QueryByANI">
+      <soap:operation soapAction="http://wsdl.idt.b2bapi.net/QueryByANI" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidateRecharge">
+      <soap:operation soapAction="http://wsdl.idt.b2bapi.net/ValidateRecharge" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddNote">
+      <soap:operation soapAction="http://wsdl.idt.b2bapi.net/AddNote" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateReferral">
+      <soap:operation soapAction="http://wsdl.idt.b2bapi.net/CreateReferral" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Subscribe">
+      <soap:operation soapAction="http://wsdl.idt.b2bapi.net/Subscribe" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UnSubscribe">
+      <soap:operation soapAction="http://wsdl.idt.b2bapi.net/UnSubscribe" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsSubscribed">
+      <soap:operation soapAction="http://wsdl.idt.b2bapi.net/IsSubscribed" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddTransaction">
+      <soap:operation soapAction="http://wsdl.idt.b2bapi.net/AddTransaction" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddTransactionNoBalUpdate">
+      <soap:operation soapAction="http://wsdl.idt.b2bapi.net/AddTransactionNoBalUpdate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IssueInstantPromo">
+      <soap:operation soapAction="http://wsdl.idt.b2bapi.net/IssueInstantPromo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LookupLocalValue">
+      <soap:operation soapAction="http://wsdl.idt.b2bapi.net/LookupLocalValue" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LookupBiller">
+      <soap:operation soapAction="http://wsdl.idt.b2bapi.net/LookupBiller" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PostPayment">
+      <soap:operation soapAction="http://wsdl.idt.b2bapi.net/PostPayment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RedeemRewards">
+      <soap:operation soapAction="http://wsdl.idt.b2bapi.net/RedeemRewards" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReturnRewards">
+      <soap:operation soapAction="http://wsdl.idt.b2bapi.net/ReturnRewards" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTermsAndConditions">
+      <soap:operation soapAction="http://wsdl.idt.b2bapi.net/GetTermsAndConditions" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendSecCode">
+      <soap:operation soapAction="http://wsdl.idt.b2bapi.net/SendSecCode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BillingCreateReceipt">
+      <soap:operation soapAction="http://wsdl.idt.b2bapi.net/BillingCreateReceipt" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BillingReverseReceipt">
+      <soap:operation soapAction="http://wsdl.idt.b2bapi.net/BillingReverseReceipt" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BillingCreatePrePaymentPO">
+      <soap:operation soapAction="http://wsdl.idt.b2bapi.net/BillingCreatePrePaymentPO" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPromos">
+      <soap:operation soapAction="http://wsdl.idt.b2bapi.net/GetPromos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PromoEligibility">
+      <soap:operation soapAction="http://wsdl.idt.b2bapi.net/PromoEligibility" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PromoCancel">
+      <soap:operation soapAction="http://wsdl.idt.b2bapi.net/PromoCancel" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Undo">
+      <soap:operation soapAction="http://wsdl.idt.b2bapi.net/Undo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QuoteProduct">
+      <soap:operation soapAction="http://wsdl.idt.b2bapi.net/QuoteProduct" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="B2BSvcSoap12" type="tns:B2BSvcSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="SessionStart">
+      <soap12:operation soapAction="http://wsdl.idt.b2bapi.net/SessionStart" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SessionEnd">
+      <soap12:operation soapAction="http://wsdl.idt.b2bapi.net/SessionEnd" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AccessValidation">
+      <soap12:operation soapAction="http://wsdl.idt.b2bapi.net/AccessValidation" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVersion">
+      <soap12:operation soapAction="http://wsdl.idt.b2bapi.net/GetVersion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateAccount">
+      <soap12:operation soapAction="http://wsdl.idt.b2bapi.net/CreateAccount" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QueryAccount">
+      <soap12:operation soapAction="http://wsdl.idt.b2bapi.net/QueryAccount" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Recharge">
+      <soap12:operation soapAction="http://wsdl.idt.b2bapi.net/Recharge" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Reverse">
+      <soap12:operation soapAction="http://wsdl.idt.b2bapi.net/Reverse" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePlan">
+      <soap12:operation soapAction="http://wsdl.idt.b2bapi.net/UpdatePlan" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReversePlan">
+      <soap12:operation soapAction="http://wsdl.idt.b2bapi.net/ReversePlan" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Refund">
+      <soap12:operation soapAction="http://wsdl.idt.b2bapi.net/Refund" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProducts">
+      <soap12:operation soapAction="http://wsdl.idt.b2bapi.net/GetProducts" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetProductNotes">
+      <soap12:operation soapAction="http://wsdl.idt.b2bapi.net/GetProductNotes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCommissions">
+      <soap12:operation soapAction="http://wsdl.idt.b2bapi.net/GetCommissions" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateAccount">
+      <soap12:operation soapAction="http://wsdl.idt.b2bapi.net/UpdateAccount" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QueryByANI">
+      <soap12:operation soapAction="http://wsdl.idt.b2bapi.net/QueryByANI" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidateRecharge">
+      <soap12:operation soapAction="http://wsdl.idt.b2bapi.net/ValidateRecharge" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddNote">
+      <soap12:operation soapAction="http://wsdl.idt.b2bapi.net/AddNote" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateReferral">
+      <soap12:operation soapAction="http://wsdl.idt.b2bapi.net/CreateReferral" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Subscribe">
+      <soap12:operation soapAction="http://wsdl.idt.b2bapi.net/Subscribe" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UnSubscribe">
+      <soap12:operation soapAction="http://wsdl.idt.b2bapi.net/UnSubscribe" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsSubscribed">
+      <soap12:operation soapAction="http://wsdl.idt.b2bapi.net/IsSubscribed" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddTransaction">
+      <soap12:operation soapAction="http://wsdl.idt.b2bapi.net/AddTransaction" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddTransactionNoBalUpdate">
+      <soap12:operation soapAction="http://wsdl.idt.b2bapi.net/AddTransactionNoBalUpdate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IssueInstantPromo">
+      <soap12:operation soapAction="http://wsdl.idt.b2bapi.net/IssueInstantPromo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LookupLocalValue">
+      <soap12:operation soapAction="http://wsdl.idt.b2bapi.net/LookupLocalValue" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LookupBiller">
+      <soap12:operation soapAction="http://wsdl.idt.b2bapi.net/LookupBiller" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PostPayment">
+      <soap12:operation soapAction="http://wsdl.idt.b2bapi.net/PostPayment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RedeemRewards">
+      <soap12:operation soapAction="http://wsdl.idt.b2bapi.net/RedeemRewards" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReturnRewards">
+      <soap12:operation soapAction="http://wsdl.idt.b2bapi.net/ReturnRewards" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTermsAndConditions">
+      <soap12:operation soapAction="http://wsdl.idt.b2bapi.net/GetTermsAndConditions" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendSecCode">
+      <soap12:operation soapAction="http://wsdl.idt.b2bapi.net/SendSecCode" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BillingCreateReceipt">
+      <soap12:operation soapAction="http://wsdl.idt.b2bapi.net/BillingCreateReceipt" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BillingReverseReceipt">
+      <soap12:operation soapAction="http://wsdl.idt.b2bapi.net/BillingReverseReceipt" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BillingCreatePrePaymentPO">
+      <soap12:operation soapAction="http://wsdl.idt.b2bapi.net/BillingCreatePrePaymentPO" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPromos">
+      <soap12:operation soapAction="http://wsdl.idt.b2bapi.net/GetPromos" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PromoEligibility">
+      <soap12:operation soapAction="http://wsdl.idt.b2bapi.net/PromoEligibility" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PromoCancel">
+      <soap12:operation soapAction="http://wsdl.idt.b2bapi.net/PromoCancel" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Undo">
+      <soap12:operation soapAction="http://wsdl.idt.b2bapi.net/Undo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QuoteProduct">
+      <soap12:operation soapAction="http://wsdl.idt.b2bapi.net/QuoteProduct" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="B2BSvc">
+    <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">IDT B2BService</wsdl:documentation>
+    <wsdl:port name="B2BSvcSoap" binding="tns:B2BSvcSoap">
+      <soap:address location="http://rc-b2bapi.awsqa.idt.net/b2bsvc.asmx" />
+    </wsdl:port>
+    <wsdl:port name="B2BSvcSoap12" binding="tns:B2BSvcSoap12">
+      <soap12:address location="http://rc-b2bapi.awsqa.idt.net/b2bsvc.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

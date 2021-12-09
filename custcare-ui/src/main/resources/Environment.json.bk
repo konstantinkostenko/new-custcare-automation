@@ -1,0 +1,106 @@
+{
+  "Environments": [
+    {
+      "Name": "QA",
+      "Portals": [
+        {
+          "Name": "CUSTCARE",
+          "BaseLoginUrl": "http://lwebqa03.ixtelecom.com/custcare",
+          "Users": [
+            {
+              "Type": "CustcareUser",
+              "Username": "testl5",
+              "Password": "test123"
+            },
+            {
+              "Type": "IdtUser",
+              "Username": "am\\dmontecinos",
+              "Password": "P@ssw0rd20!8"
+            },
+            {
+              "Type": "TestHR",
+              "Username": "testhr",
+              "Password": "test123"
+            },
+            {
+              "Type": "EuCsRep",
+              "Username": "eu_cs_rep",
+              "Password": "test123"
+            },
+            {
+              "Type": "EuCsRep2",
+              "Username": "eu_cs_rep2",
+              "Password": "test123"
+            },
+            {
+              "Type": "cpni",
+              "Username": "cpni",
+              "Password": "test123"
+            },
+            {
+              "Type": "cpni2",
+              "Username": "cpni2",
+              "Password": "test123"
+            },
+            {
+              "Type": "cpni3",
+              "Username": "cpni3",
+              "Password": "test123"
+            },
+            {
+              "Type": "comment",
+              "Username": "comment",
+              "Password": "test123"
+            },
+            {
+              "Type": "comment2",
+              "Username": "comment2",
+              "Password": "test123"
+            },
+            {
+              "Type": "testl1",
+              "Username": "testl1",
+              "Password": "test123"
+            },
+            {
+              "Type": "testl1",
+              "Username": "testl1",
+              "Password": "test123"
+            },
+            {
+              "Type": "testl2",
+              "Username": "testl2",
+              "Password": "test123"
+            },
+            {
+              "Type": "testl3",
+              "Username": "testl3",
+              "Password": "test123"
+            },
+            {
+              "Type": "testl4",
+              "Username": "testl4",
+              "Password": "test123"
+            },
+            {
+              "Type": "testl4a",
+              "Username": "testl4a",
+              "Password": "test123"
+            },
+          ]
+        }
+      ],
+      "DBs": [
+        {
+          "Name": "DEBIT",
+          "Host": "dbt1qa.crvy6h4fehaf.us-east-1.rds.amazonaws.com",
+          "User": "debit",
+          "Password": "oracle",
+          "Port": "1521",
+          "ServiceName": "dbt1qa",
+          "Type": "Oracle"
+        }
+      ]
+    }
+  ]
+}

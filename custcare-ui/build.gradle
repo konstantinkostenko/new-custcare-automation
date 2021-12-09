@@ -1,0 +1,180 @@
+import groovy.json.JsonSlurper
+
+plugins {
+    id 'com.intershop.gradle.wsdl' version '1.1.0'
+    id 'de.undercouch.download' version '3.3.0'
+    id "io.qameta.allure" version "2.8.1"
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile fileTree(dir: "${rootProject.rootDir}/libs", include: '*.jar')
+    compile group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
+    compile group: 'io.github.bonigarcia', name: 'webdrivermanager', version: '2.2.4'
+    compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.13.0'
+    compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.11.0'
+    compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.11.0'
+    compile group: 'commons-dbutils', name: 'commons-dbutils', version: '1.7'
+    compile group: 'javax.activation', name: 'activation', version: '1.1.1'
+    compile group: 'javax.xml.rpc', name: 'javax.xml.rpc-api', version: '1.1.1'
+    compile group: 'javax.mail', name: 'mail', version: '1.4.7'
+    testCompile group: 'io.cucumber', name: 'cucumber-picocontainer', version: '6.10.4'
+    testCompile group: 'io.cucumber', name: 'cucumber-testng', version: '6.10.4'
+    implementation 'io.qameta.allure:allure-cucumber6-jvm:2.17.0'
+    testCompile group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.25'
+    testCompile group: 'io.cucumber', name: 'cucumber-java', version: '6.10.4'
+    testImplementation group: 'io.cucumber', name: 'cucumber-junit', version: '6.10.4'
+    testImplementation group: 'junit', name: 'junit', version: '4.13.2'
+    implementation group: 'com.epam.reportportal', name: 'agent-java-cucumber6', version: '5.1.0-RC-3'
+    implementation group: 'com.epam.reportportal', name: 'logger-java-logback', version: '5.0.3'
+    testImplementation group: 'org.testng', name: 'testng', version: '7.1.0'
+    implementation group: 'com.epam.reportportal', name: 'agent-java-testng', version: '5.0.11'
+    implementation group: 'com.epam.reportportal', name: 'logger-java-log4j', version: '5.0.3'
+    implementation group: 'org.slf4j', name: 'slf4j-api', version: '1.7.28'
+    testImplementation group: 'org.apache.logging.log4j', name: 'log4j-slf4j-impl', version: '2.12.1'
+    implementation group: 'com.google.guava', name: 'guava', version: '30.1.1-jre'
+}
+
+
+configurations {
+    cucumberRuntime {
+        extendsFrom testImplementation
+    }
+}
+
+allure {
+    version = '2.13.5'
+    resultsDir = file("${rootProject.rootDir}/custcare-ui/build/allure-results")
+    reportDir = file("${rootProject.rootDir}/custcare-ui/build/allure-report")
+}
+
+task setRPProperties {
+    def propsRP = new Properties()
+    File rpEnvProps = new File(
+            "${rootProject.rootDir}/custcare-ui/src/main/resources/reportportal.properties")
+    propsRP.setProperty("rp.endpoint", rp_endpoint)
+    propsRP.setProperty("rp.launch", rp_launch)
+    propsRP.setProperty("rp.uuid", rp_uuid)
+    propsRP.setProperty("rp.project", rp_project)
+    if (project.hasProperty('rerun')){
+        propsRP.setProperty("rp.rerun", rerun)
+    }
+    propsRP.store(rpEnvProps.newWriter(), null)
+    rpEnvProps.with { it.text = it.readLines().findAll { it }.sort().join('\n') }
+}
+
+task reExecuteUIFeaturesv2() {
+    dependsOn assemble, testClasses
+    doLast {
+        javaexec {
+            main = "io.cucumber.core.cli.Main"
+            classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
+            args = [
+                    '--plugin', 'pretty',
+                    '--plugin', 'io.qameta.allure.cucumber6jvm.AllureCucumber6Jvm',
+                    '--plugin', 'com.epam.reportportal.cucumber.ScenarioReporter',
+                    '--glue', 'idt.custcare.ui', '@build/rerun.txt']
+            jvmArgs = ['-DenvironmentName=' + environmentName]
+            jvmArgs = ['-Dbrowser=' + browser]
+            jvmArgs = ['-Drp_uuid=' + rp_uuid]
+            jvmArgs = ['-Drp_rerun=' + true]
+        }
+    }
+    finalizedBy 'allureReport'
+}
+
+task executeUIFeaturesv2() {
+    dependsOn assemble, testClasses
+    doLast {
+        javaexec {
+            main = "io.cucumber.core.cli.Main"
+            classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
+            args = [
+                    '--plugin', 'pretty',
+                    '--plugin', 'rerun:build/rerun.txt',
+                    '--glue', 'idt.custcare.ui',
+                    '--plugin', 'io.qameta.allure.cucumber6jvm.AllureCucumber6Jvm',
+                    '--plugin', 'com.epam.reportportal.cucumber.ScenarioReporter',
+                    '--glue', 'tests', 'src/test/resources/features/']
+            jvmArgs = ['-DenvironmentName=' + environmentName]
+            jvmArgs = ['-Dbrowser=' + browser]
+            jvmArgs = ['-Drp_uuid=' + rp_uuid]
+        }
+    }
+    finalizedBy 'allureReport'
+}
+
+task executeUIFeatures(type: Test) {
+    doFirst {
+        useTestNG()
+        options {
+            useDefaultListeners = false
+            jvmArgs = ['-Dcucumber.options= ' +
+                               '--glue idt.custcare.ui ' +
+                               '--plugin pretty ' +
+                               '--plugin io.qameta.allure.cucumber4jvm.AllureCucumber4Jvm ' +
+                               '--plugin com.epam.reportportal.cucumber.ScenarioReporter ' +
+                               '--plugin rerun:build/rerun.txt ' +
+                               cucumberOptions]
+            jvmArgs = ['-DenvironmentName=' + environmentName]
+            jvmArgs = ['-Dbrowser=' + browser]
+            jvmArgs = ['-Drp_uuid=' + rp_uuid]
+        }
+        testLogging.showStandardStreams = false
+        scanForTestClasses = false
+        ignoreFailures = false
+        reports.html.enabled = false
+    }
+    finalizedBy 'allureReport'
+}
+
+task reExecuteUIFeatures(type: Test) {
+    doFirst {
+        if (isReExecutable()) {
+            useTestNG()
+            options {
+                useDefaultListeners = false
+                jvmArgs = ['-Dcucumber.options=' +
+                                   '--glue idt.custcare.ui ' +
+                                   '--plugin pretty ' +
+                                   '--plugin com.epam.reportportal.cucumber.ScenarioReporter ' +
+                                   '--plugin io.qameta.allure.cucumber4jvm.AllureCucumber4Jvm ' +
+                                   '@build/rerun.txt' + cucumberOptions]
+                jvmArgs = ['-DenvironmentName=' + environmentName]
+                jvmArgs = ['-Dbrowser=' + browser]
+                jvmArgs = ['-Drp_uuid=' + rp_uuid]
+                jvmArgs = ['-Drp_rerun=' + true]
+            }
+            testLogging.showStandardStreams = false
+            scanForTestClasses = false
+            ignoreFailures = false
+            reports.html.enabled = false
+        }
+    }
+    if (isReExecutable()) {
+        finalizedBy 'allureReport'
+    }
+}
+
+boolean isReExecutable() {
+    File failedScenariosFile = new File("${rootProject.rootDir}/custcare-ui/build/rerun.txt")
+    return failedScenariosFile.exists() && !failedScenariosFile.getText().isEmpty()
+}
+
+def globalProperties = new Properties()
+file("${rootProject.rootDir}/custcare-ui/gradle.properties").withInputStream { globalProperties.load(it) }
+def environmentFile = file("${rootProject.rootDir}/custcare-ui/src/main/resources/Environment.json")
+def config = new JsonSlurper().parseText(environmentFile.text)
+def propsRP = new Properties()
+
+Map splitService(String service) {
+    def serviceComponents = [:]
+    serviceComponents['host'] = service.substring(0, service.lastIndexOf("/"))
+    def endPoint = service.substring(service.lastIndexOf("/") + 1)
+    serviceComponents['endPoint'] = endPoint
+    serviceComponents['fileName'] = endPoint.split("\\.")[0]
+    return serviceComponents
+}
