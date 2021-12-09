@@ -140,9 +140,10 @@ public class ReactMtuTransactionsPage extends BasePage {
             transactionMap.put("Product", matCell.get(2).getText());
             transactionMap.put("Country", matCell.get(3).getText());
             transactionMap.put("Mobile Operator", matCell.get(4).getText());
-            transactionMap.put("Destination Phone", matCell.get(5).getText());
-            transactionMap.put("Amount", matCell.get(6).getText());
-            transactionMap.put("Status", matCell.get(7).getText());
+            transactionMap.put("Sender Phone", matCell.get(5).getText());
+            transactionMap.put("Destination Phone", matCell.get(6).getText());
+            transactionMap.put("Amount", matCell.get(7).getText());
+            transactionMap.put("Status", matCell.get(8).getText());
             transactions.add(transactionMap);
         }
         return transactions ;

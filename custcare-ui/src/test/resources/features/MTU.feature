@@ -58,8 +58,8 @@ Feature: MTU Query Feature
       And I fill PHONE NUMBER field with "9084846763" value in React application
       And I click on SEARCH on Mtu Page in React application
     Then I compare transactions in MTU transactions page in React application:
-      | Date	         | Product | Country   | Mobile Operator | Destination Phone | Amount | Status   |
-      | 8/6/2021 9:34 AM | IMTU    | Guatemala | Claro           | 50241008192       | $5.00  | Redeemed |
+      | Date	         | Product | Country   | Mobile Operator | Sender Phone| Destination Phone | Amount | Status   |
+      | 8/6/2021 9:34 AM | IMTU    | Guatemala | Claro           | 19084846763 | 50241008192       | $5.00  | Redeemed |
 
   Scenario: C89219352: MTU search by USERNAME by one day
     When I click on Query tab in React application
@@ -69,8 +69,8 @@ Feature: MTU Query Feature
       And I fill USERNAME field with "manoj.joshi+rc01@idt.net" value in React application
       And I click on SEARCH on Mtu Page in React application
     Then I compare transactions in MTU transactions page in React application:
-      | Date	         | Product | Country   | Mobile Operator | Destination Phone | Amount | Status   |
-      | 8/6/2021 9:34 AM | IMTU    | Guatemala | Claro           | 50241008192       | $5.00  | Redeemed |
+      | Date	         | Product | Country   | Mobile Operator | Sender Phone| Destination Phone | Amount | Status   |
+      | 8/6/2021 9:34 AM | IMTU    | Guatemala | Claro           | 19084846763 | 50241008192       | $5.00  | Redeemed |
 
   Scenario: C89362954: MTU search by PHONE by date range
     When I click on Query tab in React application
@@ -80,10 +80,10 @@ Feature: MTU Query Feature
       And I fill PHONE NUMBER field with "9084846763" value in React application
       And I click on SEARCH on Mtu Page in React application
     Then I compare transactions in MTU transactions page in React application:
-      | Date	         | Product | Country   | Mobile Operator | Destination Phone | Amount | Status   |
-      | 8/9/2021 6:53 AM | IMTU    | GH        | MTN             | 233242834366      | $10.00 | Redeemed |
-      | 8/9/2021 5:14 AM | IMTU    | Guatemala | Claro           | 50241008192       | $7.00  | Redeemed |
-      | 8/6/2021 9:34 AM | IMTU    | Guatemala | Claro           | 50241008192       | $5.00  | Redeemed |
+      | Date	         | Product | Country   | Mobile Operator | Sender Phone| Destination Phone | Amount | Status   |
+      | 8/9/2021 6:53 AM | IMTU    | GH        | MTN             | 19084846763 | 233242834366      | $10.00 | Redeemed |
+      | 8/9/2021 5:14 AM | IMTU    | Guatemala | Claro           | 19084846763 | 50241008192       | $7.00  | Redeemed |
+      | 8/6/2021 9:34 AM | IMTU    | Guatemala | Claro           | 19084846763 | 50241008192       | $5.00  | Redeemed |
 
   Scenario: C89219366: MTU search by USERNAME by date range
     When I click on Query tab in React application
@@ -93,10 +93,10 @@ Feature: MTU Query Feature
       And I fill USERNAME field with "manoj.joshi+rc01@idt.net" value in React application
       And I click on SEARCH on Mtu Page in React application
     Then I compare transactions in MTU transactions page in React application:
-      | Date	         | Product | Country   | Mobile Operator | Destination Phone | Amount | Status   |
-      | 8/9/2021 6:53 AM | IMTU    | GH        | MTN             | 233242834366      | $10.00 | Redeemed |
-      | 8/9/2021 5:14 AM | IMTU    | Guatemala | Claro           | 50241008192       | $7.00  | Redeemed |
-      | 8/6/2021 9:34 AM | IMTU    | Guatemala | Claro           | 50241008192       | $5.00  | Redeemed |
+      | Date	         | Product | Country   | Mobile Operator | Sender Phone| Destination Phone | Amount | Status   |
+      | 8/9/2021 6:53 AM | IMTU    | GH        | MTN             | 19084846763 | 233242834366      | $10.00 | Redeemed |
+      | 8/9/2021 5:14 AM | IMTU    | Guatemala | Claro           | 19084846763 | 50241008192       | $7.00  | Redeemed |
+      | 8/6/2021 9:34 AM | IMTU    | Guatemala | Claro           | 19084846763 | 50241008192       | $5.00  | Redeemed |
 
   Scenario: C89233031: Transactions search by Mobile Operator
     When I click on Query tab in React application
@@ -106,29 +106,29 @@ Feature: MTU Query Feature
       And I fill USERNAME field with "denis.shkliannik@idt.net" value in React application
       And I click on SEARCH on Mtu Page in React application
     Then I compare transactions in MTU transactions page in React application:
-      | Date	          | Product | Country    | Mobile Operator | Destination Phone | Amount | Status   |
-      | 8/6/2021 11:09 AM | IMTU    | Guatemala  | Tigo            | 50241008193       | $14.00 | Redeemed |
-      | 8/6/2021 11:08 AM | IMTU    | DO         | Claro           | 50241008193       | $6.00  | Fail     |
-      | 8/6/2021 11:07 AM | IMTU    | AR         | Movistar        | 50241008193       | $14.00 | Fail     |
-      | 8/6/2021 9:54 AM  | IMTU    | BO         | Tigo            | 50241008193       | $1.00  | Fail     |
-      | 8/6/2021 9:02 AM  | IMTU    | ElSalvador | Digicel         | 50241008193       | $2.00  | Fail     |
-      | 8/6/2021 8:46 AM  | IMTU    | Colombia   | Tigo            | 50241008193       | $1.00  | Fail     |
+      | Date	          | Product | Country    | Mobile Operator | Sender Phone| Destination Phone | Amount | Status   |
+      | 8/6/2021 11:09 AM | IMTU    | Guatemala  | Tigo            | 19088000883 | 50241008193       | $14.00 | Redeemed |
+      | 8/6/2021 11:08 AM | IMTU    | DO         | Claro           | 19088000883 | 50241008193       | $6.00  | Fail     |
+      | 8/6/2021 11:07 AM | IMTU    | AR         | Movistar        | 19088000883 | 50241008193       | $14.00 | Fail     |
+      | 8/6/2021 9:54 AM  | IMTU    | BO         | Tigo            | 19088000883 | 50241008193       | $1.00  | Fail     |
+      | 8/6/2021 9:02 AM  | IMTU    | ElSalvador | Digicel         | 19088000883 | 50241008193       | $2.00  | Fail     |
+      | 8/6/2021 8:46 AM  | IMTU    | Colombia   | Tigo            | 19088000883 | 50241008193       | $1.00  | Fail     |
     When I click MOBILE OPERATOR SEARCH button on Mtu Transactions Page
       And I put Movistar date in MOBILE OPERATOR SEARCH FIELD in MTU Transactions page in React application
       And I click SEARCH MOBILE OPERATOR button on Mtu Transactions Page
       And I compare transactions in MTU transactions page in React application:
-      | Date	          | Product | Country | Mobile Operator | Destination Phone | Amount | Status   |
-      | 8/6/2021 11:07 AM | IMTU    | AR      | Movistar        | 50241008193       | $14.00 | Fail     |
+      | Date	          | Product | Country | Mobile Operator | Sender Phone| Destination Phone | Amount | Status   |
+      | 8/6/2021 11:07 AM | IMTU    | AR      | Movistar        | 19088000883 | 50241008193       | $14.00 | Fail     |
     When I click MOBILE OPERATOR SEARCH button on Mtu Transactions Page
       And I click RESET button on Mtu Transactions Page
     Then I compare transactions in MTU transactions page in React application:
-      | Date	          | Product | Country    | Mobile Operator | Destination Phone | Amount | Status   |
-      | 8/6/2021 11:09 AM | IMTU    | Guatemala  | Tigo            | 50241008193       | $14.00 | Redeemed |
-      | 8/6/2021 11:08 AM | IMTU    | DO         | Claro           | 50241008193       | $6.00  | Fail     |
-      | 8/6/2021 11:07 AM | IMTU    | AR         | Movistar        | 50241008193       | $14.00 | Fail     |
-      | 8/6/2021 9:54 AM  | IMTU    | BO         | Tigo            | 50241008193       | $1.00  | Fail     |
-      | 8/6/2021 9:02 AM  | IMTU    | ElSalvador | Digicel         | 50241008193       | $2.00  | Fail     |
-      | 8/6/2021 8:46 AM  | IMTU    | Colombia   | Tigo            | 50241008193       | $1.00  | Fail     |
+      | Date	          | Product | Country    | Mobile Operator | Sender Phone| Destination Phone | Amount | Status   |
+      | 8/6/2021 11:09 AM | IMTU    | Guatemala  | Tigo            | 19088000883 | 50241008193       | $14.00 | Redeemed |
+      | 8/6/2021 11:08 AM | IMTU    | DO         | Claro           | 19088000883 | 50241008193       | $6.00  | Fail     |
+      | 8/6/2021 11:07 AM | IMTU    | AR         | Movistar        | 19088000883 | 50241008193       | $14.00 | Fail     |
+      | 8/6/2021 9:54 AM  | IMTU    | BO         | Tigo            | 19088000883 | 50241008193       | $1.00  | Fail     |
+      | 8/6/2021 9:02 AM  | IMTU    | ElSalvador | Digicel         | 19088000883 | 50241008193       | $2.00  | Fail     |
+      | 8/6/2021 8:46 AM  | IMTU    | Colombia   | Tigo            | 19088000883 | 50241008193       | $1.00  | Fail     |
 
   Scenario: C89233032: Pagination validation in Transactions page
     When I click on Query tab in React application
@@ -138,30 +138,30 @@ Feature: MTU Query Feature
       And I fill USERNAME field with "denis.shkliannik@idt.net" value in React application
       And I click on SEARCH on Mtu Page in React application
     Then I compare transactions in MTU transactions page in React application:
-      | Date	          | Product | Country    | Mobile Operator | Destination Phone | Amount | Status   |
-      | 8/6/2021 11:09 AM | IMTU    | Guatemala  | Tigo            | 50241008193       | $14.00 | Redeemed |
-      | 8/6/2021 11:08 AM | IMTU    | DO         | Claro           | 50241008193       | $6.00  | Fail     |
-      | 8/6/2021 11:07 AM | IMTU    | AR         | Movistar        | 50241008193       | $14.00 | Fail     |
-      | 8/6/2021 9:54 AM  | IMTU    | BO         | Tigo            | 50241008193       | $1.00  | Fail     |
-      | 8/6/2021 9:02 AM  | IMTU    | ElSalvador | Digicel         | 50241008193       | $2.00  | Fail     |
-      | 8/6/2021 8:46 AM  | IMTU    | Colombia   | Tigo            | 50241008193       | $1.00  | Fail     |
+      | Date	          | Product | Country    | Mobile Operator | Sender Phone| Destination Phone | Amount | Status   |
+      | 8/6/2021 11:09 AM | IMTU    | Guatemala  | Tigo            | 19088000883 | 50241008193       | $14.00 | Redeemed |
+      | 8/6/2021 11:08 AM | IMTU    | DO         | Claro           | 19088000883 | 50241008193       | $6.00  | Fail     |
+      | 8/6/2021 11:07 AM | IMTU    | AR         | Movistar        | 19088000883 | 50241008193       | $14.00 | Fail     |
+      | 8/6/2021 9:54 AM  | IMTU    | BO         | Tigo            | 19088000883 | 50241008193       | $1.00  | Fail     |
+      | 8/6/2021 9:02 AM  | IMTU    | ElSalvador | Digicel         | 19088000883 | 50241008193       | $2.00  | Fail     |
+      | 8/6/2021 8:46 AM  | IMTU    | Colombia   | Tigo            | 19088000883 | 50241008193       | $1.00  | Fail     |
     When I click NEXT PAGE button on Mtu Transactions Page
     Then I compare transactions in MTU transactions page in React application:
-      | Date	         | Product | Country   | Mobile Operator | Destination Phone | Amount | Status   |
-      | 8/6/2021 8:44 AM | IMTU    | BO        | Tigo            | 50241008193       | $1.00  | Fail     |
-      | 8/6/2021 8:43 AM | IMTU    | BO        | Tigo            | 50241008193       | $7.00  | Fail     |
-      | 8/6/2021 8:42 AM | IMTU    | Guatemala | Claro           | 50241008193       | $6.00  | Redeemed |
-      | 8/6/2021 8:38 AM | IMTU    | BO        | Tigo            | 50241008193       | $1.00  | Fail     |
-      | 8/6/2021 3:34 AM | IMTU    | Guatemala | Claro           | 50241008193       | $5.00  | Redeemed |
+      | Date	         | Product | Country   | Mobile Operator | Sender Phone| Destination Phone | Amount | Status   |
+      | 8/6/2021 8:44 AM | IMTU    | BO        | Tigo            | 19088000883 | 50241008193       | $1.00  | Fail     |
+      | 8/6/2021 8:43 AM | IMTU    | BO        | Tigo            | 19088000883 | 50241008193       | $7.00  | Fail     |
+      | 8/6/2021 8:42 AM | IMTU    | Guatemala | Claro           | 19088000883 | 50241008193       | $6.00  | Redeemed |
+      | 8/6/2021 8:38 AM | IMTU    | BO        | Tigo            | 19088000883 | 50241008193       | $1.00  | Fail     |
+      | 8/6/2021 3:34 AM | IMTU    | Guatemala | Claro           | 19088000883 | 50241008193       | $5.00  | Redeemed |
     When I click PREVIOUS PAGE button on Mtu Transactions Page
     Then I compare transactions in MTU transactions page in React application:
-      | Date	          | Product | Country    | Mobile Operator | Destination Phone | Amount | Status   |
-      | 8/6/2021 11:09 AM | IMTU    | Guatemala  | Tigo            | 50241008193       | $14.00 | Redeemed |
-      | 8/6/2021 11:08 AM | IMTU    | DO         | Claro           | 50241008193       | $6.00  | Fail     |
-      | 8/6/2021 11:07 AM | IMTU    | AR         | Movistar        | 50241008193       | $14.00 | Fail     |
-      | 8/6/2021 9:54 AM  | IMTU    | BO         | Tigo            | 50241008193       | $1.00  | Fail     |
-      | 8/6/2021 9:02 AM  | IMTU    | ElSalvador | Digicel         | 50241008193       | $2.00  | Fail     |
-      | 8/6/2021 8:46 AM  | IMTU    | Colombia   | Tigo            | 50241008193       | $1.00  | Fail     |
+      | Date	          | Product | Country    | Mobile Operator | Sender Phone| Destination Phone | Amount | Status   |
+      | 8/6/2021 11:09 AM | IMTU    | Guatemala  | Tigo            | 19088000883 | 50241008193       | $14.00 | Redeemed |
+      | 8/6/2021 11:08 AM | IMTU    | DO         | Claro           | 19088000883 | 50241008193       | $6.00  | Fail     |
+      | 8/6/2021 11:07 AM | IMTU    | AR         | Movistar        | 19088000883 | 50241008193       | $14.00 | Fail     |
+      | 8/6/2021 9:54 AM  | IMTU    | BO         | Tigo            | 19088000883 | 50241008193       | $1.00  | Fail     |
+      | 8/6/2021 9:02 AM  | IMTU    | ElSalvador | Digicel         | 19088000883 | 50241008193       | $2.00  | Fail     |
+      | 8/6/2021 8:46 AM  | IMTU    | Colombia   | Tigo            | 19088000883 | 50241008193       | $1.00  | Fail     |
 
   Scenario: C89233515: Transactions search by Destination Phone #
     When I click on Query tab in React application
@@ -171,25 +171,25 @@ Feature: MTU Query Feature
       And I fill USERNAME field with "manoj.joshi+rc01@idt.net" value in React application
       And I click on SEARCH on Mtu Page in React application
     Then I compare transactions in MTU transactions page in React application:
-      | Date	         | Product | Country   | Mobile Operator | Destination Phone | Amount | Status   |
-      | 8/9/2021 6:53 AM | IMTU    | GH        | MTN             | 233242834366      | $10.00 | Redeemed |
-      | 8/9/2021 5:14 AM | IMTU    | Guatemala | Claro           | 50241008192       | $7.00  | Redeemed |
-      | 8/6/2021 9:34 AM | IMTU    | Guatemala | Claro           | 50241008192       | $5.00  | Redeemed |
+      | Date	         | Product | Country   | Mobile Operator | Sender Phone| Destination Phone | Amount | Status   |
+      | 8/9/2021 6:53 AM | IMTU    | GH        | MTN             | 19084846763 | 233242834366      | $10.00 | Redeemed |
+      | 8/9/2021 5:14 AM | IMTU    | Guatemala | Claro           | 19084846763 | 50241008192       | $7.00  | Redeemed |
+      | 8/6/2021 9:34 AM | IMTU    | Guatemala | Claro           | 19084846763 | 50241008192       | $5.00  | Redeemed |
     When I click DESTINATION PHONE SEARCH button on Mtu Transactions Page
       And I put 233242834366 date in DESTINATION PHONE SEARCH FIELD in MTU Transactions page in React application
       And I click SEARCH DESTINATION PHONE button on Mtu Transactions Page
       And I compare transactions in MTU transactions page in React application:
-        | Date	           | Product | Country   | Mobile Operator | Destination Phone | Amount | Status   |
-        | 8/9/2021 6:53 AM | IMTU    | GH        | MTN             | 233242834366      | $10.00 | Redeemed |
+        | Date	           | Product | Country   | Mobile Operator | Sender Phone| Destination Phone | Amount | Status   |
+        | 8/9/2021 6:53 AM | IMTU    | GH        | MTN             | 19084846763 | 233242834366      | $10.00 | Redeemed |
     When I click DESTINATION PHONE SEARCH button on Mtu Transactions Page
       And I click RESET button on Mtu Transactions Page
     When I click DESTINATION PHONE SEARCH button on Mtu Transactions Page
       And I put 50241008192 date in DESTINATION PHONE SEARCH FIELD in MTU Transactions page in React application
       And I click SEARCH DESTINATION PHONE button on Mtu Transactions Page
     Then I compare transactions in MTU transactions page in React application:
-      | Date	         | Product | Country   | Mobile Operator | Destination Phone | Amount | Status   |
-      | 8/9/2021 5:14 AM | IMTU    | Guatemala | Claro           | 50241008192       | $7.00  | Redeemed |
-      | 8/6/2021 9:34 AM | IMTU    | Guatemala | Claro           | 50241008192       | $5.00  | Redeemed |
+      | Date	         | Product | Country   | Mobile Operator | Sender Phone| Destination Phone | Amount | Status   |
+      | 8/9/2021 5:14 AM | IMTU    | Guatemala | Claro           | 19084846763 | 50241008192       | $7.00  | Redeemed |
+      | 8/6/2021 9:34 AM | IMTU    | Guatemala | Claro           | 19084846763 | 50241008192       | $5.00  | Redeemed |
 
   Scenario: C89746791: MTU Search: Use default search range of 14 days
     When I click on Query tab in React application
@@ -239,9 +239,9 @@ Feature: MTU Query Feature
       And I fill PHONE NUMBER field with "9084846763" value in React application
       And I click on SEARCH on Mtu Page in React application
     Then I compare transactions in MTU transactions page in React application:
-      | Date	         | Product | Country   | Mobile Operator | Destination Phone | Amount | Status   |
-      | 8/9/2021 6:53 AM | IMTU    | GH        | MTN             | 233242834366      | $10.00 | Redeemed |
-      | 8/9/2021 5:14 AM | IMTU    | Guatemala | Claro           | 50241008192       | $7.00  | Redeemed |
+      | Date	         | Product | Country   | Mobile Operator | Sender Phone| Destination Phone | Amount | Status   |
+      | 8/9/2021 6:53 AM | IMTU    | GH        | MTN             | 19084846763 | 233242834366      | $10.00 | Redeemed |
+      | 8/9/2021 5:14 AM | IMTU    | Guatemala | Claro           | 19084846763 | 50241008192       | $7.00  | Redeemed |
 
   Scenario: C92415237: Search for CallingApp transactions
     When I click on Query tab in React application
@@ -251,13 +251,13 @@ Feature: MTU Query Feature
       And I fill PHONE NUMBER field with "19739797521" value in React application
       And I click on SEARCH on Mtu Page in React application
     Then I compare transactions in MTU transactions page in React application:
-      | Date             | Product | Country   | Mobile Operator | Destination Phone | Amount | Status   |
-      | 8/9/2021 6:39 AM | IMTU    | GH        | MTN             | 233240183507      | $10.00 | Redeemed |
-      | 8/9/2021 6:36 AM | IMTU    | GH        | MTN             | 233240023222      | $10.00 | Redeemed |
-      | 8/9/2021 6:34 AM | IMTU    | GH        | MTN             | 233240049482      | $7.00  | Redeemed |
-      | 8/9/2021 6:25 AM | IMTU    | Guatemala | Tigo            | 50279995555       | $7.00  | Fail     |
-      | 8/9/2021 6:24 AM | IMTU    | Guatemala | Tigo            | 50279995555       | $7.00  | Fail     |
-      | 8/9/2021 6:22 AM | IMTU    | Guatemala | Tigo            | 50279995555       | $7.00  | Fail     |
+      | Date             | Product | Country   | Mobile Operator | Sender Phone| Destination Phone | Amount | Status   |
+      | 8/9/2021 6:39 AM | IMTU    | GH        | MTN             | 19739797521 | 233240183507      | $10.00 | Redeemed |
+      | 8/9/2021 6:36 AM | IMTU    | GH        | MTN             | 19739797521 | 233240023222      | $10.00 | Redeemed |
+      | 8/9/2021 6:34 AM | IMTU    | GH        | MTN             | 19739797521 | 233240049482      | $7.00  | Redeemed |
+      | 8/9/2021 6:25 AM | IMTU    | Guatemala | Tigo            | 19739797521 | 50279995555       | $7.00  | Fail     |
+      | 8/9/2021 6:24 AM | IMTU    | Guatemala | Tigo            | 19739797521 | 50279995555       | $7.00  | Fail     |
+      | 8/9/2021 6:22 AM | IMTU    | Guatemala | Tigo            | 19739797521 | 50279995555       | $7.00  | Fail     |
 
   Scenario: C92416291: Search for MoneyApp transactions
     When I click on Query tab in React application
@@ -267,11 +267,11 @@ Feature: MTU Query Feature
       And I fill PHONE NUMBER field with "16465161351" value in React application
       And I click on SEARCH on Mtu Page in React application
     Then I compare transactions in MTU transactions page in React application:
-      | Date              | Product | Country   | Mobile Operator | Destination Phone | Amount | Status   |
-      | 8/5/2021 10:30 AM | IMTU    | Guatemala | Claro           | 50241008192       | $7.00  | Redeemed |
-      | 8/5/2021 10:30 AM | IMTU    | Guatemala | Claro           | 50241008192       | $7.00  | Redeemed |
-      | 8/5/2021 10:03 AM | IMTU    | Guatemala | Claro           | 50241008192       | $5.00  | Redeemed |
-      | 8/5/2021 10:03 AM | IMTU    | Guatemala | Claro           | 50241008192       | $5.00  | Redeemed |
+      | Date              | Product | Country   | Mobile Operator | Sender Phone| Destination Phone | Amount | Status   |
+      | 8/5/2021 10:30 AM | IMTU    | Guatemala | Claro           | 16465161351 | 50241008192       | $7.00  | Redeemed |
+      | 8/5/2021 10:30 AM | IMTU    | Guatemala | Claro           | 16465161351 | 50241008192       | $7.00  | Redeemed |
+      | 8/5/2021 10:03 AM | IMTU    | Guatemala | Claro           | 16465161351 | 50241008192       | $5.00  | Redeemed |
+      | 8/5/2021 10:03 AM | IMTU    | Guatemala | Claro           | 16465161351 | 50241008192       | $5.00  | Redeemed |
 
   Scenario: C92128703: See additional "DTC Info" details of DTC transaction
     When I click on Query tab in React application
@@ -281,9 +281,9 @@ Feature: MTU Query Feature
       And I fill PHONE NUMBER field with "9084846763" value in React application
       And I click on SEARCH on Mtu Page in React application
     Then I compare transactions in MTU transactions page in React application:
-      | Date	         | Product | Country   | Mobile Operator | Destination Phone | Amount | Status   |
-      | 8/9/2021 6:53 AM | IMTU    | GH        | MTN             | 233242834366      | $10.00 | Redeemed |
-      | 8/9/2021 5:14 AM | IMTU    | Guatemala | Claro           | 50241008192       | $7.00  | Redeemed |
+      | Date	         | Product | Country   | Mobile Operator | Sender Phone| Destination Phone | Amount | Status   |
+      | 8/9/2021 6:53 AM | IMTU    | GH        | MTN             | 19084846763 | 233242834366      | $10.00 | Redeemed |
+      | 8/9/2021 5:14 AM | IMTU    | Guatemala | Claro           | 19084846763 | 50241008192       | $7.00  | Redeemed |
     When I click expand button for transaction with 8/9/2021 6:53 AM Date
     Then I should see Credit Card Authorized Status equals Delayed Capture in MTU page
       And I should see Transaction Type equals Real time recharge in MTU page
@@ -308,13 +308,14 @@ Feature: MTU Query Feature
       And I fill PHONE NUMBER field with "9084846763" value in React application
       And I click on SEARCH on Mtu Page in React application
     Then I compare transactions in MTU transactions page in React application:
-      | Date	         | Product | Country   | Mobile Operator | Destination Phone | Amount | Status   |
-      | 8/9/2021 6:53 AM | IMTU    | GH        | MTN             | 233242834366      | $10.00 | Redeemed |
-      | 8/9/2021 5:14 AM | IMTU    | Guatemala | Claro           | 50241008192       | $7.00  | Redeemed |
+      | Date	         | Product | Country   | Mobile Operator | Sender Phone| Destination Phone | Amount | Status   |
+      | 8/9/2021 6:53 AM | IMTU    | GH        | MTN             | 19084846763 | 233242834366      | $10.00 | Redeemed |
+      | 8/9/2021 5:14 AM | IMTU    | Guatemala | Claro           | 19084846763 | 50241008192       | $7.00  | Redeemed |
     When I click expand button for transaction with 8/9/2021 6:53 AM Date
       And I click on MTU DETAILS on Mtu Page in React application
     Then I should see Receipt Number equals 45783 in MTU page
       And I should see External Reference ID equals 301850656919 in MTU page
+      And I should see Sender Phone equals 19084846763 in MTU page
       And I should see FX Rate Used equals MAP in MTU page
       And I should see Amount Received equals $7.85 in MTU page
 
@@ -326,13 +327,13 @@ Feature: MTU Query Feature
       And I fill PHONE NUMBER field with "19739797521" value in React application
       And I click on SEARCH on Mtu Page in React application
     Then I compare transactions in MTU transactions page in React application:
-      | Date             | Product | Country   | Mobile Operator | Destination Phone | Amount | Status   |
-      | 8/9/2021 6:39 AM | IMTU    | GH        | MTN             | 233240183507      | $10.00 | Redeemed |
-      | 8/9/2021 6:36 AM | IMTU    | GH        | MTN             | 233240023222      | $10.00 | Redeemed |
-      | 8/9/2021 6:34 AM | IMTU    | GH        | MTN             | 233240049482      | $7.00  | Redeemed |
-      | 8/9/2021 6:25 AM | IMTU    | Guatemala | Tigo            | 50279995555       | $7.00  | Fail     |
-      | 8/9/2021 6:24 AM | IMTU    | Guatemala | Tigo            | 50279995555       | $7.00  | Fail     |
-      | 8/9/2021 6:22 AM | IMTU    | Guatemala | Tigo            | 50279995555       | $7.00  | Fail     |
+      | Date             | Product | Country   | Mobile Operator | Sender Phone| Destination Phone | Amount | Status   |
+      | 8/9/2021 6:39 AM | IMTU    | GH        | MTN             | 19739797521 | 233240183507      | $10.00 | Redeemed |
+      | 8/9/2021 6:36 AM | IMTU    | GH        | MTN             | 19739797521 | 233240023222      | $10.00 | Redeemed |
+      | 8/9/2021 6:34 AM | IMTU    | GH        | MTN             | 19739797521 | 233240049482      | $7.00  | Redeemed |
+      | 8/9/2021 6:25 AM | IMTU    | Guatemala | Tigo            | 19739797521 | 50279995555       | $7.00  | Fail     |
+      | 8/9/2021 6:24 AM | IMTU    | Guatemala | Tigo            | 19739797521 | 50279995555       | $7.00  | Fail     |
+      | 8/9/2021 6:22 AM | IMTU    | Guatemala | Tigo            | 19739797521 | 50279995555       | $7.00  | Fail     |
     When I click expand button for transaction with 8/9/2021 6:39 AM Date
     Then I should see Credit Card Authorized Status equals Delayed Capture in MTU page
       And I should see Transaction Type equals Real time recharge in MTU page
@@ -357,17 +358,18 @@ Feature: MTU Query Feature
       And I fill PHONE NUMBER field with "19739797521" value in React application
       And I click on SEARCH on Mtu Page in React application
     Then I compare transactions in MTU transactions page in React application:
-      | Date             | Product | Country   | Mobile Operator | Destination Phone | Amount | Status   |
-      | 8/9/2021 6:39 AM | IMTU    | GH        | MTN             | 233240183507      | $10.00 | Redeemed |
-      | 8/9/2021 6:36 AM | IMTU    | GH        | MTN             | 233240023222      | $10.00 | Redeemed |
-      | 8/9/2021 6:34 AM | IMTU    | GH        | MTN             | 233240049482      | $7.00  | Redeemed |
-      | 8/9/2021 6:25 AM | IMTU    | Guatemala | Tigo            | 50279995555       | $7.00  | Fail     |
-      | 8/9/2021 6:24 AM | IMTU    | Guatemala | Tigo            | 50279995555       | $7.00  | Fail     |
-      | 8/9/2021 6:22 AM | IMTU    | Guatemala | Tigo            | 50279995555       | $7.00  | Fail     |
+      | Date             | Product | Country   | Mobile Operator | Sender Phone| Destination Phone | Amount | Status   |
+      | 8/9/2021 6:39 AM | IMTU    | GH        | MTN             | 19739797521 | 233240183507      | $10.00 | Redeemed |
+      | 8/9/2021 6:36 AM | IMTU    | GH        | MTN             | 19739797521 | 233240023222      | $10.00 | Redeemed |
+      | 8/9/2021 6:34 AM | IMTU    | GH        | MTN             | 19739797521 | 233240049482      | $7.00  | Redeemed |
+      | 8/9/2021 6:25 AM | IMTU    | Guatemala | Tigo            | 19739797521 | 50279995555       | $7.00  | Fail     |
+      | 8/9/2021 6:24 AM | IMTU    | Guatemala | Tigo            | 19739797521 | 50279995555       | $7.00  | Fail     |
+      | 8/9/2021 6:22 AM | IMTU    | Guatemala | Tigo            | 19739797521 | 50279995555       | $7.00  | Fail     |
     When I click expand button for transaction with 8/9/2021 6:39 AM Date
       And I click on MTU DETAILS on Mtu Page in React application
     Then I should see Receipt Number equals 45783 in MTU page
       And I should see External Reference ID equals 301850571415 in MTU page
+      And I should see Sender Phone equals 19739797521 in MTU page
       And I should see FX Rate Used equals MAP in MTU page
       And I should see Amount Received equals $7.85 in MTU page
 
@@ -379,11 +381,11 @@ Feature: MTU Query Feature
       And I fill PHONE NUMBER field with "16465161351" value in React application
       And I click on SEARCH on Mtu Page in React application
     Then I compare transactions in MTU transactions page in React application:
-      | Date              | Product | Country   | Mobile Operator | Destination Phone | Amount | Status   |
-      | 8/5/2021 10:30 AM | IMTU    | Guatemala | Claro           | 50241008192       | $7.00  | Redeemed |
-      | 8/5/2021 10:30 AM | IMTU    | Guatemala | Claro           | 50241008192       | $7.00  | Redeemed |
-      | 8/5/2021 10:03 AM | IMTU    | Guatemala | Claro           | 50241008192       | $5.00  | Redeemed |
-      | 8/5/2021 10:03 AM | IMTU    | Guatemala | Claro           | 50241008192       | $5.00  | Redeemed |
+      | Date              | Product | Country   | Mobile Operator | Sender Phone| Destination Phone | Amount | Status   |
+      | 8/5/2021 10:30 AM | IMTU    | Guatemala | Claro           | 16465161351 | 50241008192       | $7.00  | Redeemed |
+      | 8/5/2021 10:30 AM | IMTU    | Guatemala | Claro           | 16465161351 | 50241008192       | $7.00  | Redeemed |
+      | 8/5/2021 10:03 AM | IMTU    | Guatemala | Claro           | 16465161351 | 50241008192       | $5.00  | Redeemed |
+      | 8/5/2021 10:03 AM | IMTU    | Guatemala | Claro           | 16465161351 | 50241008192       | $5.00  | Redeemed |
     When I click expand button for transaction with 8/5/2021 10:30 AM Date
     Then I should see Credit Card Authorized Status equals Delayed Capture in MTU page
       And I should see Transaction Type equals Real time recharge in MTU page
@@ -407,15 +409,16 @@ Feature: MTU Query Feature
       And I fill PHONE NUMBER field with "16465161351" value in React application
       And I click on SEARCH on Mtu Page in React application
     Then I compare transactions in MTU transactions page in React application:
-      | Date              | Product | Country   | Mobile Operator | Destination Phone | Amount | Status   |
-      | 8/5/2021 10:30 AM | IMTU    | Guatemala | Claro           | 50241008192       | $7.00  | Redeemed |
-      | 8/5/2021 10:30 AM | IMTU    | Guatemala | Claro           | 50241008192       | $7.00  | Redeemed |
-      | 8/5/2021 10:03 AM | IMTU    | Guatemala | Claro           | 50241008192       | $5.00  | Redeemed |
-      | 8/5/2021 10:03 AM | IMTU    | Guatemala | Claro           | 50241008192       | $5.00  | Redeemed |
+      | Date              | Product | Country   | Mobile Operator | Sender Phone| Destination Phone | Amount | Status   |
+      | 8/5/2021 10:30 AM | IMTU    | Guatemala | Claro           | 16465161351 | 50241008192       | $7.00  | Redeemed |
+      | 8/5/2021 10:30 AM | IMTU    | Guatemala | Claro           | 16465161351 | 50241008192       | $7.00  | Redeemed |
+      | 8/5/2021 10:03 AM | IMTU    | Guatemala | Claro           | 16465161351 | 50241008192       | $5.00  | Redeemed |
+      | 8/5/2021 10:03 AM | IMTU    | Guatemala | Claro           | 16465161351 | 50241008192       | $5.00  | Redeemed |
     When I click expand button for transaction with 8/5/2021 10:30 AM Date
       And I click on MTU DETAILS on Mtu Page in React application
     Then I should see Receipt Number equals 30103162817382022 in MTU page
       And I should see External Reference ID equals 30103162817382022 in MTU page
+      And I should see Sender Phone equals 16465161351 in MTU page
       And I should see FX Rate Used equals MAP in MTU page
       And I should see Amount Received equals $7.00 in MTU page
 
@@ -427,8 +430,8 @@ Feature: MTU Query Feature
       And I fill MSISDN field with "41008192" value in React application
       And I click on SEARCH on Mtu Page in React application
     Then I compare transactions in MTU transactions page in React application:
-      | Date             | Product | Country   | Mobile Operator | Destination Phone | Amount | Status   |
-      | 9/1/2021 7:50 AM | IMTU    | Guatemala | Tigo            | 41008192          | $7.00  | Redeemed |
+      | Date             | Product | Country   | Mobile Operator | Sender Phone| Destination Phone | Amount | Status   |
+      | 9/1/2021 7:50 AM | IMTU    | Guatemala | Tigo            | 9025550100  | 41008192          | $7.00  | Redeemed |
 
   Scenario: C92864516: MTU search by Destination Phone Number by date range
     When I click on Query tab in React application
@@ -438,9 +441,9 @@ Feature: MTU Query Feature
       And I fill MSISDN field with "41008192" value in React application
       And I click on SEARCH on Mtu Page in React application
     Then I compare transactions in MTU transactions page in React application:
-      | Date              | Product | Country   | Mobile Operator | Destination Phone | Amount | Status   |
-      | 9/6/2021 11:17 AM | IMTU    | Guatemala | Tigo            | 41008192          | $7.00  | Redeemed |
-      | 9/1/2021 7:50 AM  | IMTU    | Guatemala | Tigo            | 41008192          | $7.00  | Redeemed |
+      | Date              | Product | Country   | Mobile Operator | Sender Phone| Destination Phone | Amount | Status   |
+      | 9/6/2021 11:17 AM | IMTU    | Guatemala | Tigo            | 9025550100  | 41008192          | $7.00  | Redeemed |
+      | 9/1/2021 7:50 AM  | IMTU    | Guatemala | Tigo            | 9025550100  | 41008192          | $7.00  | Redeemed |
 
   Scenario: C92864524: Failed transactions are not displayed if search MTU by Destination Phone Number
     When I click on Query tab in React application
@@ -450,9 +453,9 @@ Feature: MTU Query Feature
       And I fill MSISDN field with "41008192" value in React application
       And I click on SEARCH on Mtu Page in React application
     Then I compare transactions in MTU transactions page in React application:
-      | Date              | Product | Country   | Mobile Operator | Destination Phone | Amount | Status   |
-      | 9/6/2021 11:17 AM | IMTU    | Guatemala | Tigo            | 41008192          | $7.00  | Redeemed |
-      | 9/1/2021 7:50 AM  | IMTU    | Guatemala | Tigo            | 41008192          | $7.00  | Redeemed |
+      | Date              | Product | Country   | Mobile Operator | Sender Phone| Destination Phone | Amount | Status   |
+      | 9/6/2021 11:17 AM | IMTU    | Guatemala | Tigo            | 9025550100  | 41008192          | $7.00  | Redeemed |
+      | 9/1/2021 7:50 AM  | IMTU    | Guatemala | Tigo            | 9025550100  | 41008192          | $7.00  | Redeemed |
     When I click on Query tab in React application
       And I click on MTU on Mtu Page in React application
     Then I put 2021-07-04 date in START DATE field in React application
@@ -460,13 +463,13 @@ Feature: MTU Query Feature
       And I fill PHONE NUMBER field with "16465161351" value in React application
       And I click on SEARCH on Mtu Page in React application
     Then I compare transactions in MTU transactions page in React application:
-      | Date              | Product | Country   | Mobile Operator | Destination Phone | Amount | Status   |
-      | 8/11/2021 5:25 AM | IMTU    | BO        | Tigo            | 59155511568       | $1.00  | Fail     |
-      | 8/11/2021 5:25 AM | IMTU    | BO        | Tigo            | 59155511568       | $1.00  | Fail     |
-      | 8/11/2021 4:17 AM | IMTU    | Guatemala | Claro           | 50212335546       | $5.00  | Redeemed |
-      | 8/11/2021 4:17 AM | IMTU    | Guatemala | Claro           | 50212335546       | $5.00  | Redeemed |
-      | 8/11/2021 4:06 AM | IMTU    | MX        | Telcel          | 524558411657      | $11.00 | Fail     |
-      | 8/11/2021 4:06 AM | IMTU    | MX        | Telcel          | 524558411657      | $11.00 | Fail     |
+      | Date              | Product | Country   | Mobile Operator | Sender Phone| Destination Phone | Amount | Status   |
+      | 8/11/2021 5:25 AM | IMTU    | BO        | Tigo            | 16465161351 | 59155511568       | $1.00  | Fail     |
+      | 8/11/2021 5:25 AM | IMTU    | BO        | Tigo            | 16465161351 | 59155511568       | $1.00  | Fail     |
+      | 8/11/2021 4:17 AM | IMTU    | Guatemala | Claro           | 16465161351 | 50212335546       | $5.00  | Redeemed |
+      | 8/11/2021 4:17 AM | IMTU    | Guatemala | Claro           | 16465161351 | 50212335546       | $5.00  | Redeemed |
+      | 8/11/2021 4:06 AM | IMTU    | MX        | Telcel          | 16465161351 | 524558411657      | $11.00 | Fail     |
+      | 8/11/2021 4:06 AM | IMTU    | MX        | Telcel          | 16465161351 | 524558411657      | $11.00 | Fail     |
 
   Scenario: C92864539: Retailer Info details for International e-Gift product
     When I click on Query tab in React application
@@ -476,8 +479,8 @@ Feature: MTU Query Feature
       And I fill MSISDN field with "41008192" value in React application
       And I click on SEARCH on Mtu Page in React application
     Then I compare transactions in MTU transactions page in React application:
-      | Date              | Product              | Country   | Mobile Operator | Destination Phone | Amount | Status   |
-      | 10/4/2021 4:10 AM | International E-Gift | Guatemala | Tomza_TROPIGAS  | 41008192          | $63.00 | Redeemed |
+      | Date              | Product              | Country   | Mobile Operator | Sender Phone| Destination Phone | Amount | Status   |
+      | 10/4/2021 4:10 AM | International E-Gift | Guatemala | Tomza_TROPIGAS  | -           | 41008192          | $63.00 | Redeemed |
     When I click expand button for transaction with 10/4/2021 4:10 AM Date
     Then I should see Retailer ID equals 1135329746 in MTU page
       And I should see Commission equals $1.50 in MTU page
@@ -490,12 +493,13 @@ Feature: MTU Query Feature
       And I fill MSISDN field with "41008192" value in React application
       And I click on SEARCH on Mtu Page in React application
     Then I compare transactions in MTU transactions page in React application:
-      | Date              | Product              | Country   | Mobile Operator | Destination Phone | Amount | Status   |
-      | 10/4/2021 4:10 AM | International E-Gift | Guatemala | Tomza_TROPIGAS  | 41008192          | $63.00 | Redeemed |
+      | Date              | Product              | Country   | Mobile Operator | Sender Phone| Destination Phone | Amount | Status   |
+      | 10/4/2021 4:10 AM | International E-Gift | Guatemala | Tomza_TROPIGAS  | -           | 41008192          | $63.00 | Redeemed |
     When I click expand button for transaction with 10/4/2021 4:10 AM Date
       And I click on MTU DETAILS on Mtu Page in React application
     Then I should see Receipt Number equals 9W-LZ7P-J194 in MTU page
       And I should see External Reference ID equals 3021633335052038 in MTU page
+      And I should see Sender Phone equals - in MTU page
       And I should see FX Rate Used equals MAP in MTU page
       And I should see Amount Received equals Q440.00 in MTU page
 
@@ -507,8 +511,8 @@ Feature: MTU Query Feature
       And I fill MSISDN field with "5024100819" value in React application
       And I click on SEARCH on Mtu Page in React application
     Then I compare transactions in MTU transactions page in React application:
-      | Date              | Product         | Country | Mobile Operator     | Destination Phone | Amount  | Status   |
-      | 10/4/2021 4:06 AM | Domestic E-Gift | US      | CashStar_Burlington | 5024100819        | $100.00 | Redeemed |
+      | Date              | Product         | Country | Mobile Operator     | Sender Phone| Destination Phone | Amount  | Status   |
+      | 10/4/2021 4:06 AM | Domestic E-Gift | US      | CashStar_Burlington | -           | 5024100819        | $100.00 | Redeemed |
     When I click expand button for transaction with 10/4/2021 4:06 AM Date
     Then I should see Retailer ID equals 1135329746 in MTU page
       And I should see Commission equals $2.50 in MTU page
@@ -521,12 +525,13 @@ Feature: MTU Query Feature
       And I fill MSISDN field with "5024100819" value in React application
       And I click on SEARCH on Mtu Page in React application
     Then I compare transactions in MTU transactions page in React application:
-      | Date              | Product         | Country | Mobile Operator     | Destination Phone | Amount  | Status   |
-      | 10/4/2021 4:06 AM | Domestic E-Gift | US      | CashStar_Burlington | 5024100819        | $100.00 | Redeemed |
+      | Date              | Product         | Country | Mobile Operator     | Sender Phone| Destination Phone | Amount  | Status   |
+      | 10/4/2021 4:06 AM | Domestic E-Gift | US      | CashStar_Burlington | -           | 5024100819        | $100.00 | Redeemed |
     When I click expand button for transaction with 10/4/2021 4:06 AM Date
       And I click on MTU DETAILS on Mtu Page in React application
     Then I should see Receipt Number equals 36397937 in MTU page
       And I should see External Reference ID equals 302163333477900 in MTU page
+      And I should see Sender Phone equals - in MTU page
       And I should see FX Rate Used equals MAP in MTU page
       And I should see Amount Received equals $100.00 in MTU page
 
@@ -538,8 +543,8 @@ Feature: MTU Query Feature
       And I fill MSISDN field with "5024100819" value in React application
       And I click on SEARCH on Mtu Page in React application
     Then I compare transactions in MTU transactions page in React application:
-      | Date              | Product | Country | Mobile Operator | Destination Phone | Amount | Status   |
-      | 10/1/2021 9:55 AM | DMTU    | US      | IS_Verizon      | 5024100819        | $30.00 | Redeemed |
+      | Date              | Product | Country | Mobile Operator | Sender Phone| Destination Phone | Amount | Status   |
+      | 10/1/2021 9:55 AM | DMTU    | US      | IS_Verizon      | 5024100819  | 5024100819        | $30.00 | Redeemed |
     When I click expand button for transaction with 10/1/2021 9:55 AM Date
     Then I should see Retailer ID equals 1135329746 in MTU page
       And I should see Commission equals $0.60 in MTU page
@@ -552,12 +557,13 @@ Feature: MTU Query Feature
       And I fill MSISDN field with "5024100819" value in React application
       And I click on SEARCH on Mtu Page in React application
     Then I compare transactions in MTU transactions page in React application:
-      | Date              | Product | Country | Mobile Operator | Destination Phone | Amount | Status   |
-      | 10/1/2021 9:55 AM | DMTU    | US      | IS_Verizon      | 5024100819        | $30.00 | Redeemed |
+      | Date              | Product | Country | Mobile Operator | Sender Phone| Destination Phone | Amount | Status   |
+      | 10/1/2021 9:55 AM | DMTU    | US      | IS_Verizon      | 5024100819  | 5024100819        | $30.00 | Redeemed |
     When I click expand button for transaction with 10/1/2021 9:55 AM Date
       And I click on MTU DETAILS on Mtu Page in React application
     Then I should see Receipt Number equals 807308447 in MTU page
       And I should see External Reference ID equals 30122163309653259 in MTU page
+      And I should see Sender Phone equals 5024100819 in MTU page
       And I should see FX Rate Used equals MAP in MTU page
       And I should see Amount Received equals $30.00 in MTU page
 
@@ -569,9 +575,9 @@ Feature: MTU Query Feature
       And I fill MSISDN field with "41008192" value in React application
       And I click on SEARCH on Mtu Page in React application
     Then I compare transactions in MTU transactions page in React application:
-      | Date              | Product              | Country   | Mobile Operator       | Destination Phone | Amount | Status   |
-      | 10/1/2021 9:54 AM | IMTU                 | Guatemala | Tigo                  | 41008192          | $7.00  | Redeemed |
-      | 10/1/2021 8:21 AM | International E-Gift | Guatemala | RapiMovil_AgenciasWay | 41008192          | $25.00 | Redeemed |
+      | Date              | Product              | Country   | Mobile Operator       | Sender Phone| Destination Phone | Amount | Status   |
+      | 10/1/2021 9:54 AM | IMTU                 | Guatemala | Tigo                  | 6465161351  | 41008192          | $7.00  | Redeemed |
+      | 10/1/2021 8:21 AM | International E-Gift | Guatemala | RapiMovil_AgenciasWay | -           | 41008192          | $25.00 | Redeemed |
     When I click expand button for transaction with 10/1/2021 9:54 AM Date
     Then I should see Retailer ID equals 1135329746 in MTU page
       And I should see Commission equals $0.63 in MTU page
@@ -584,13 +590,14 @@ Feature: MTU Query Feature
       And I fill MSISDN field with "41008192" value in React application
       And I click on SEARCH on Mtu Page in React application
     Then I compare transactions in MTU transactions page in React application:
-      | Date              | Product              | Country   | Mobile Operator       | Destination Phone | Amount | Status   |
-      | 10/1/2021 9:54 AM | IMTU                 | Guatemala | Tigo                  | 41008192          | $7.00  | Redeemed |
-      | 10/1/2021 8:21 AM | International E-Gift | Guatemala | RapiMovil_AgenciasWay | 41008192          | $25.00 | Redeemed |
+      | Date              | Product              | Country   | Mobile Operator       | Sender Phone| Destination Phone | Amount | Status   |
+      | 10/1/2021 9:54 AM | IMTU                 | Guatemala | Tigo                  | 6465161351  | 41008192          | $7.00  | Redeemed |
+      | 10/1/2021 8:21 AM | International E-Gift | Guatemala | RapiMovil_AgenciasWay | -           | 41008192          | $25.00 | Redeemed |
     When I click expand button for transaction with 10/1/2021 9:54 AM Date
       And I click on MTU DETAILS on Mtu Page in React application
     Then I should see Receipt Number equals 1802608291 in MTU page
       And I should see External Reference ID equals 301111633096456310 in MTU page
+      And I should see Sender Phone equals 6465161351 in MTU page
       And I should see FX Rate Used equals MAP in MTU page
       And I should see Amount Received equals Q50.40 in MTU page
 
@@ -602,8 +609,8 @@ Feature: MTU Query Feature
       And I fill USERNAME field with "k2test@idt.net" value in React application
       And I click on SEARCH on Mtu Page in React application
     Then I compare transactions in MTU transactions page in React application:
-      | Date	          | Product | Country   | Mobile Operator | Destination Phone | Amount | Status |
-      | 10/6/2021 7:09 PM | IMTU    | IT        | Vodafone        | 393823645241      | E6.00  | FAILED |
+      | Date	          | Product | Country   | Mobile Operator | Sender Phone| Destination Phone | Amount | Status |
+      | 10/6/2021 7:09 PM | IMTU    | IT        | Vodafone        |             | 393823645241      | E6.00  | FAILED |
 
   Scenario: C92891939 MTU page is able to search by Sender's Customer Phone of K2 Transactions
     When I click on Query tab in React application
@@ -613,8 +620,8 @@ Feature: MTU Query Feature
       And I fill DESTINATION PHONE NUMBER field with "41008192" value in React application
       And I click on SEARCH on Mtu Page in React application
      Then I compare transactions in MTU transactions page in React application:
-      | Date	           | Product | Country   | Mobile Operator | Destination Phone | Amount | Status   |
-      | 10/19/2021 2:08 PM | IMTU    | Guatemala | Tigo            | 41008192          | $14.00 | Redeemed |
+      | Date	           | Product | Country   | Mobile Operator | Sender Phone| Destination Phone | Amount | Status   |
+      | 10/19/2021 2:08 PM | IMTU    | Guatemala | Tigo            | 7328295913  | 41008192          | $14.00 | Redeemed |
 
   Scenario: C92891940  MTU page is able to search by Destination Phone Number of K2 Transactions
     When I click on Query tab in React application
@@ -624,13 +631,13 @@ Feature: MTU Query Feature
       And I fill PHONE NUMBER field with "497328295913" value in React application
       And I click on SEARCH on Mtu Page in React application
     Then I compare transactions in MTU transactions page in React application:
-      | Date               | Product | Country     | Mobile Operator | Destination Phone | Amount     | Status    |
-      | 10/21/2021 9:16 PM |   IMTU  |    ES       | Vodafone        | +34674446155      | E5.30      | COMPLETED |
-      | 10/21/2021 9:16 PM |   IMTU  |    ES       | Vodafone        | +34674446155      | E5.30      | COMPLETED |
-      | 10/21/2021 12:46 PM |  IMTU  |    ES       | Vodafone        | +34674446155      | E5.30      | COMPLETED |
-      | 10/21/2021 12:46 PM |  IMTU  |    ES       | Vodafone        | +34674446155      | E5.30      | FAILED    |
-      | 10/21/2021 12:46 PM |  IMTU  |    ES       | Vodafone        | +34674446155      | E5.30      | COMPLETED |
-      | 10/21/2021 12:46 PM |  IMTU  |    ES       | Vodafone        | +34674446155      | E5.30      | COMPLETED |
+      | Date               | Product | Country     | Mobile Operator | Sender Phone| Destination Phone | Amount     | Status    |
+      | 10/21/2021 9:16 PM |   IMTU  |    ES       | Vodafone        | -           | +34674446155      | E5.30      | COMPLETED |
+      | 10/21/2021 9:16 PM |   IMTU  |    ES       | Vodafone        | -           | +34674446155      | E5.30      | COMPLETED |
+      | 10/21/2021 12:46 PM |  IMTU  |    ES       | Vodafone        | -           | +34674446155      | E5.30      | COMPLETED |
+      | 10/21/2021 12:46 PM |  IMTU  |    ES       | Vodafone        | -           | +34674446155      | E5.30      | FAILED    |
+      | 10/21/2021 12:46 PM |  IMTU  |    ES       | Vodafone        | -           | +34674446155      | E5.30      | COMPLETED |
+      | 10/21/2021 12:46 PM |  IMTU  |    ES       | Vodafone        | -           | +34674446155      | E5.30      | COMPLETED |
 
   Scenario:C92968844 Operator name is displayed in K2 transactions - MTU
     When I click on Query tab in React application
@@ -640,13 +647,13 @@ Feature: MTU Query Feature
       And I fill PHONE NUMBER field with "497328295913" value in React application
       And I click on SEARCH on Mtu Page in React application
     Then I compare transactions in MTU transactions page in React application:
-      | Date               | Product    | Country      | Mobile Operator | Destination Phone | Amount  | Status    |
-      | 10/27/2021 9:43 PM | IMTU       | IT           | Vodafone        | +393823645241     | E6.00   | COMPLETED |
-      | 10/27/2021 9:34 PM | IMTU       | NG           | Airtel          | +2347164536721    | E6.00   | COMPLETED |
-      | 10/27/2021 9:34 PM | IMTU       | IT           | Vodafone        | +393823645241     | E6.00   | COMPLETED |
-      | 10/27/2021 9:34 PM | IMTU       | ES           | Vodafone        | +34674446155      | E5.30   | COMPLETED |
-      | 10/27/2021 9:34 PM | IMTU       | ES           | Vodafone        | +34674446155      | E5.30   | COMPLETED |
-      | 10/27/2021 9:34 PM | IMTU       | ES           | Vodafone        | +34674446155      | E5.30   | COMPLETED |
+      | Date               | Product    | Country      | Mobile Operator | Sender Phone| Destination Phone | Amount  | Status    |
+      | 10/27/2021 9:43 PM | IMTU       | IT           | Vodafone        | -           | +393823645241     | E6.00   | COMPLETED |
+      | 10/27/2021 9:34 PM | IMTU       | NG           | Airtel          | -           | +2347164536721    | E6.00   | COMPLETED |
+      | 10/27/2021 9:34 PM | IMTU       | IT           | Vodafone        | -           | +393823645241     | E6.00   | COMPLETED |
+      | 10/27/2021 9:34 PM | IMTU       | ES           | Vodafone        | -           | +34674446155      | E5.30   | COMPLETED |
+      | 10/27/2021 9:34 PM | IMTU       | ES           | Vodafone        | -           | +34674446155      | E5.30   | COMPLETED |
+      | 10/27/2021 9:34 PM | IMTU       | ES           | Vodafone        | -           | +34674446155      | E5.30   | COMPLETED |
 
   Scenario:C92970223  Aggregator and External Product ID added in K2 transactions details - MTU
     When I click on Query tab in React application
@@ -656,13 +663,13 @@ Feature: MTU Query Feature
       And I fill PHONE NUMBER field with "497328295913" value in React application
       And I click on SEARCH on Mtu Page in React application
     Then I compare transactions in MTU transactions page in React application:
-      | Date               | Product    | Country      | Mobile Operator | Destination Phone | Amount  | Status    |
-      | 10/27/2021 9:43 PM | IMTU       | IT           | Vodafone        | +393823645241     | E6.00   | COMPLETED |
-      | 10/27/2021 9:34 PM | IMTU       | NG           | Airtel          | +2347164536721    | E6.00   | COMPLETED |
-      | 10/27/2021 9:34 PM | IMTU       | IT           | Vodafone        | +393823645241     | E6.00   | COMPLETED |
-      | 10/27/2021 9:34 PM | IMTU       | ES           | Vodafone        | +34674446155      | E5.30   | COMPLETED |
-      | 10/27/2021 9:34 PM | IMTU       | ES           | Vodafone        | +34674446155      | E5.30   | COMPLETED |
-      | 10/27/2021 9:34 PM | IMTU       | ES           | Vodafone        | +34674446155      | E5.30   | COMPLETED |
+      | Date               | Product    | Country      | Mobile Operator | Sender Phone| Destination Phone | Amount  | Status    |
+      | 10/27/2021 9:43 PM | IMTU       | IT           | Vodafone        | -           | +393823645241     | E6.00   | COMPLETED |
+      | 10/27/2021 9:34 PM | IMTU       | NG           | Airtel          | -           | +2347164536721    | E6.00   | COMPLETED |
+      | 10/27/2021 9:34 PM | IMTU       | IT           | Vodafone        | -           | +393823645241     | E6.00   | COMPLETED |
+      | 10/27/2021 9:34 PM | IMTU       | ES           | Vodafone        | -           | +34674446155      | E5.30   | COMPLETED |
+      | 10/27/2021 9:34 PM | IMTU       | ES           | Vodafone        | -           | +34674446155      | E5.30   | COMPLETED |
+      | 10/27/2021 9:34 PM | IMTU       | ES           | Vodafone        | -           | +34674446155      | E5.30   | COMPLETED |
     When I click expand button for transaction with 10/27/2021 9:43 PM Date
     And I click on MTU DETAILS on Mtu Page in React application
     Then I should see Aggregator equals DingV3 in MTU page
@@ -676,13 +683,13 @@ Feature: MTU Query Feature
       And I fill PHONE NUMBER field with "497328295913" value in React application
       And I click on SEARCH on Mtu Page in React application
     Then I compare transactions in MTU transactions page in React application:
-      | Date               | Product    | Country      | Mobile Operator | Destination Phone | Amount  | Status    |
-      | 10/27/2021 9:43 PM | IMTU       | IT           | Vodafone        | +393823645241     | E6.00   | COMPLETED |
-      | 10/27/2021 9:34 PM | IMTU       | NG           | Airtel          | +2347164536721    | E6.00   | COMPLETED |
-      | 10/27/2021 9:34 PM | IMTU       | IT           | Vodafone        | +393823645241     | E6.00   | COMPLETED |
-      | 10/27/2021 9:34 PM | IMTU       | ES           | Vodafone        | +34674446155      | E5.30   | COMPLETED |
-      | 10/27/2021 9:34 PM | IMTU       | ES           | Vodafone        | +34674446155      | E5.30   | COMPLETED |
-      | 10/27/2021 9:34 PM | IMTU       | ES           | Vodafone        | +34674446155      | E5.30   | COMPLETED |
+      | Date               | Product    | Country      | Mobile Operator | Sender Phone| Destination Phone | Amount  | Status    |
+      | 10/27/2021 9:43 PM | IMTU       | IT           | Vodafone        | -           | +393823645241     | E6.00   | COMPLETED |
+      | 10/27/2021 9:34 PM | IMTU       | NG           | Airtel          | -           | +2347164536721    | E6.00   | COMPLETED |
+      | 10/27/2021 9:34 PM | IMTU       | IT           | Vodafone        | -           | +393823645241     | E6.00   | COMPLETED |
+      | 10/27/2021 9:34 PM | IMTU       | ES           | Vodafone        | -           | +34674446155      | E5.30   | COMPLETED |
+      | 10/27/2021 9:34 PM | IMTU       | ES           | Vodafone        | -           | +34674446155      | E5.30   | COMPLETED |
+      | 10/27/2021 9:34 PM | IMTU       | ES           | Vodafone        | -           | +34674446155      | E5.30   | COMPLETED |
     When I click expand button for transaction with 10/27/2021 9:43 PM Date
       And I click on MTU DETAILS on Mtu Page in React application
       And I should see Sender Phone equals +497328295913 in MTU page
@@ -693,8 +700,8 @@ Feature: MTU Query Feature
       And I fill PIN field with "8465224869" value in React application
       And I click on SEARCH on Mtu Page in React application
     Then I compare transactions in MTU transactions page in React application:
-      | Date               | Product | Country | Mobile Operator | Destination Phone | Amount     | Status   |
-      | 12/1/2021 12:25 PM | IMTU    | MA      | Baluwo          | 21260664876234    | 5.00Dirham | Redeemed |
+      | Date               | Product | Country | Mobile Operator | Sender Phone| Destination Phone | Amount     | Status   |
+      | 12/1/2021 12:25 PM | IMTU    | MA      | Baluwo          | 5917748355  | 21260664876234    | 5.00Dirham | Redeemed |
     When I click expand button for transaction with 12/1/2021 12:25 PM Date
     Then I should see Retailer ID equals - in MTU page
       And I should see Commission equals - in MTU page
@@ -713,8 +720,8 @@ Feature: MTU Query Feature
       And I fill PIN field with "40482702454" value in React application
       And I click on SEARCH on Mtu Page in React application
     Then I compare transactions in MTU transactions page in React application:
-      | Date               | Product    | Country   | Mobile Operator | Destination Phone | Amount | Status   |
-      | 11/15/2021 4:01 AM | IMTU       | Guatemala | Tigo            | 41008192          | $14.00 | Redeemed |
+      | Date               | Product    | Country   | Mobile Operator | Sender Phone| Destination Phone | Amount | Status   |
+      | 11/15/2021 4:01 AM | IMTU       | Guatemala | Tigo            | 16465161351 | 41008192          | $14.00 | Redeemed |
     When I click expand button for transaction with 11/15/2021 4:01 AM Date
     Then I should see Credit Card Authorized Status equals Delayed Capture in MTU page
       And I should see Transaction Type equals Real time recharge in MTU page
@@ -745,9 +752,9 @@ Feature: MTU Query Feature
       And I fill PIN field with "40499334037" value in React application
       And I click on SEARCH on Mtu Page in React application
     Then I compare transactions in MTU transactions page in React application:
-      | Date               | Product    | Country   | Mobile Operator | Destination Phone | Amount | Status   |
-      | 11/23/2021 7:09 AM | IMTU       | Guatemala | Tigo            | 41008192          | $7.00  | Reversed |
-      | 11/15/2021 5:20 AM | IMTU       | Guatemala | Tigo            | 41008192          | $7.00  | Redeemed |
+      | Date               | Product    | Country   | Mobile Operator | Sender Phone| Destination Phone | Amount | Status   |
+      | 11/23/2021 7:09 AM | IMTU       | Guatemala | Tigo            | 6465161351  | 41008192          | $7.00  | Reversed |
+      | 11/15/2021 5:20 AM | IMTU       | Guatemala | Tigo            | 6465161351  | 41008192          | $7.00  | Redeemed |
     When I click expand button for transaction with 11/15/2021 5:20 AM Date
     Then I should see Retailer ID equals 1135329746 in MTU page
       And I should see Commission equals $0.63 in MTU page
@@ -775,13 +782,13 @@ Feature: MTU Query Feature
       And I fill PHONE NUMBER field with "19739797521" value in React application
       And I click on SEARCH on Mtu Page in React application
     Then I compare transactions in MTU transactions page in React application:
-      | Date             | Product | Country   | Mobile Operator | Destination Phone | Amount | Status   |
-      | 8/9/2021 6:39 AM | IMTU    | GH        | MTN             | 233240183507      | $10.00 | Redeemed |
-      | 8/9/2021 6:36 AM | IMTU    | GH        | MTN             | 233240023222      | $10.00 | Redeemed |
-      | 8/9/2021 6:34 AM | IMTU    | GH        | MTN             | 233240049482      | $7.00  | Redeemed |
-      | 8/9/2021 6:25 AM | IMTU    | Guatemala | Tigo            | 50279995555       | $7.00  | Fail     |
-      | 8/9/2021 6:24 AM | IMTU    | Guatemala | Tigo            | 50279995555       | $7.00  | Fail     |
-      | 8/9/2021 6:22 AM | IMTU    | Guatemala | Tigo            | 50279995555       | $7.00  | Fail     |
+      | Date             | Product | Country   | Mobile Operator | Sender Phone| Destination Phone | Amount | Status   |
+      | 8/9/2021 6:39 AM | IMTU    | GH        | MTN             | 19739797521 | 233240183507      | $10.00 | Redeemed |
+      | 8/9/2021 6:36 AM | IMTU    | GH        | MTN             | 19739797521 | 233240023222      | $10.00 | Redeemed |
+      | 8/9/2021 6:34 AM | IMTU    | GH        | MTN             | 19739797521 | 233240049482      | $7.00  | Redeemed |
+      | 8/9/2021 6:25 AM | IMTU    | Guatemala | Tigo            | 19739797521 | 50279995555       | $7.00  | Fail     |
+      | 8/9/2021 6:24 AM | IMTU    | Guatemala | Tigo            | 19739797521 | 50279995555       | $7.00  | Fail     |
+      | 8/9/2021 6:22 AM | IMTU    | Guatemala | Tigo            | 19739797521 | 50279995555       | $7.00  | Fail     |
 
   Scenario: C93045609 Date Range is disabled when search by PIN
     When I click on Query tab in React application
